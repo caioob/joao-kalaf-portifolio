@@ -1,0 +1,216 @@
+[
+  {
+    "id": "p-001",
+    "slug": "showreel-2026",
+    "category": "video",
+    "title": { "pt": "Showreel 2026", "en": "Showreel 2026" },
+    "description": {
+      "pt": "Projeto demonstrativo — conteúdo provisório. Reel com os melhores trabalhos de edição do ano: cortes ritmados, color grading e sound design.",
+      "en": "Placeholder project — temporary content. Reel with the year's best editing work: rhythmic cuts, color grading and sound design."
+    },
+    "thumbnail": {
+      "src": "/images/projects/p-001-thumb.svg",
+      "alt": { "pt": "Miniatura do showreel 2026", "en": "Showreel 2026 thumbnail" }
+    },
+    "media": [
+      {
+        "type": "video",
+        "provider": "vimeo",
+        "videoId": "76979871",
+        "title": { "pt": "Showreel 2026", "en": "Showreel 2026" }
+      }
+    ],
+    "tools": ["Premiere Pro", "DaVinci Resolve"],
+    "date": "2026-05",
+    "featured": true,
+    "links": []
+  },
+  {
+    "id": "p-002",
+    "slug": "identidade-cafe-aurora",
+    "category": "graphic",
+    "title": { "pt": "Identidade — Café Aurora", "en": "Identity — Café Aurora" },
+    "description": {
+      "pt": "Projeto demonstrativo — conteúdo provisório. Identidade visual completa para cafeteria: logotipo, paleta, papelaria e embalagens.",
+      "en": "Placeholder project — temporary content. Full visual identity for a coffee shop: logo, palette, stationery and packaging."
+    },
+    "thumbnail": {
+      "src": "/images/projects/p-002-thumb.svg",
+      "alt": { "pt": "Identidade visual do Café Aurora", "en": "Café Aurora visual identity" }
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "/images/projects/p-002-thumb.svg",
+        "alt": { "pt": "Painel da identidade visual", "en": "Visual identity board" }
+      }
+    ],
+    "tools": ["Illustrator", "Photoshop"],
+    "date": "2026-03",
+    "featured": false,
+    "links": [
+      {
+        "label": { "pt": "Ver no Behance", "en": "View on Behance" },
+        "url": "https://www.behance.net/"
+      }
+    ]
+  },
+  {
+    "id": "p-003",
+    "slug": "app-financeiro-fluxo",
+    "category": "product",
+    "title": { "pt": "App Financeiro — Fluxo", "en": "Finance App — Fluxo" },
+    "description": {
+      "pt": "Projeto demonstrativo — conteúdo provisório. Design de produto para app de finanças pessoais: pesquisa, fluxos, design system e protótipo navegável.",
+      "en": "Placeholder project — temporary content. Product design for a personal finance app: research, flows, design system and interactive prototype."
+    },
+    "thumbnail": {
+      "src": "/images/projects/p-003-thumb.svg",
+      "alt": { "pt": "Telas do app Fluxo", "en": "Fluxo app screens" }
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "/images/projects/p-003-thumb.svg",
+        "alt": { "pt": "Telas principais do aplicativo", "en": "Main app screens" }
+      }
+    ],
+    "tools": ["Figma"],
+    "date": "2026-01",
+    "featured": true,
+    "links": [
+      {
+        "label": { "pt": "Protótipo no Figma", "en": "Figma prototype" },
+        "url": "https://www.figma.com/"
+      }
+    ]
+  },
+  {
+    "id": "p-004",
+    "slug": "abertura-festival-luz",
+    "category": "motion",
+    "title": { "pt": "Abertura — Festival Luz", "en": "Title Sequence — Luz Festival" },
+    "description": {
+      "pt": "Projeto demonstrativo — conteúdo provisório. Vinheta de abertura para festival de cinema: tipografia animada, partículas e trilha sincronizada.",
+      "en": "Placeholder project — temporary content. Opening title sequence for a film festival: animated typography, particles and synced score."
+    },
+    "thumbnail": {
+      "src": "/images/projects/p-004-thumb.svg",
+      "alt": { "pt": "Frame da vinheta do Festival Luz", "en": "Luz Festival title sequence frame" }
+    },
+    "media": [
+      {
+        "type": "video",
+        "provider": "youtube",
+        "videoId": "ScMzIvxBSi4",
+        "title": { "pt": "Vinheta de abertura", "en": "Title sequence" }
+      }
+    ],
+    "tools": ["After Effects", "Cinema 4D"],
+    "date": "2025-11",
+    "featured": false,
+    "links": []
+  },
+  {
+    "id": "p-005",
+    "slug": "documentario-mare",
+    "category": "video",
+    "title": { "pt": "Documentário — Maré", "en": "Documentary — Maré" },
+    "description": {
+      "pt": "Projeto demonstrativo — conteúdo provisório. Edição de documentário curto: estrutura narrativa, ritmo de entrevistas e finalização.",
+      "en": "Placeholder project — temporary content. Short documentary editing: narrative structure, interview pacing and finishing."
+    },
+    "thumbnail": {
+      "src": "/images/projects/p-005-thumb.svg",
+      "alt": { "pt": "Frame do documentário Maré", "en": "Maré documentary frame" }
+    },
+    "media": [
+      {
+        "type": "video",
+        "provider": "vimeo",
+        "videoId": "76979871",
+        "title": { "pt": "Trailer do documentário", "en": "Documentary trailer" }
+      }
+    ],
+    "tools": ["Premiere Pro", "Audition"],
+    "date": "2025-09",
+    "featured": false,
+    "links": []
+  },
+  {
+    "id": "p-006",
+    "slug": "motion-campanha-vento",
+    "category": "motion",
+    "title": { "pt": "Campanha animada — Vento", "en": "Animated Campaign — Vento" },
+    "description": {
+      "pt": "Projeto demonstrativo — conteúdo provisório. Série de peças animadas para redes sociais: ilustração 2D, rigging e loops perfeitos.",
+      "en": "Placeholder project — temporary content. Animated social media series: 2D illustration, rigging and perfect loops."
+    },
+    "thumbnail": {
+      "src": "/images/projects/p-006-thumb.svg",
+      "alt": { "pt": "Frame da campanha Vento", "en": "Vento campaign frame" }
+    },
+    "media": [
+      {
+        "type": "video",
+        "provider": "youtube",
+        "videoId": "ScMzIvxBSi4",
+        "title": { "pt": "Peça da campanha", "en": "Campaign piece" }
+      }
+    ],
+    "tools": ["After Effects", "Illustrator"],
+    "date": "2025-07",
+    "featured": false,
+    "links": []
+  },
+  {
+    "id": "p-007",
+    "slug": "ecommerce-horta",
+    "category": "product",
+    "title": { "pt": "E-commerce — Horta", "en": "E-commerce — Horta" },
+    "description": {
+      "pt": "Projeto demonstrativo — conteúdo provisório. Redesign de e-commerce de produtos orgânicos: arquitetura de informação, checkout e acessibilidade.",
+      "en": "Placeholder project — temporary content. Organic products e-commerce redesign: information architecture, checkout and accessibility."
+    },
+    "thumbnail": {
+      "src": "/images/projects/p-007-thumb.svg",
+      "alt": { "pt": "Telas do e-commerce Horta", "en": "Horta e-commerce screens" }
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "/images/projects/p-007-thumb.svg",
+        "alt": { "pt": "Fluxo de compra redesenhado", "en": "Redesigned purchase flow" }
+      }
+    ],
+    "tools": ["Figma", "Maze"],
+    "date": "2025-05",
+    "featured": false,
+    "links": []
+  },
+  {
+    "id": "p-008",
+    "slug": "cartazes-temporada-teatro",
+    "category": "graphic",
+    "title": { "pt": "Cartazes — Temporada de Teatro", "en": "Posters — Theater Season" },
+    "description": {
+      "pt": "Projeto demonstrativo — conteúdo provisório. Série de cartazes para temporada teatral: colagem, tipografia expressiva e sistema de variações.",
+      "en": "Placeholder project — temporary content. Poster series for a theater season: collage, expressive typography and a variation system."
+    },
+    "thumbnail": {
+      "src": "/images/projects/p-008-thumb.svg",
+      "alt": { "pt": "Cartazes da temporada de teatro", "en": "Theater season posters" }
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "/images/projects/p-008-thumb.svg",
+        "alt": { "pt": "Série de cartazes", "en": "Poster series" }
+      }
+    ],
+    "tools": ["Photoshop", "InDesign"],
+    "date": "2025-03",
+    "featured": false,
+    "links": []
+  }
+]

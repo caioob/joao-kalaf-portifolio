@@ -1,0 +1,47 @@
+/*
+ * Design tokens — the single source of truth for every visual value.
+ * Client-requested design changes happen HERE and nowhere else.
+ * Runbook: docs/03-design-system.md §8
+ */
+@theme {
+  /* ── Color (design §2) ─────────────────────────────────── */
+  --color-surface: #fafaf8;
+  --color-surface-raised: #ffffff;
+  --color-ink: #1c1b1a;
+  --color-ink-muted: #6e6a66;
+  --color-line: #e8e5e1;
+  /* accent pending client approval; accent-strong must keep ≥4.5:1 on surface */
+  --color-accent: #e8590c;
+  --color-accent-strong: #c2410c;
+  --color-accent-ink: #ffffff;
+
+  /* ── Typography (design §3) ────────────────────────────── */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --text-display: clamp(2.5rem, 6vw, 4rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.01em;
+  --text-h2: clamp(1.75rem, 4vw, 2.25rem);
+  --text-h2--line-height: 1.15;
+  --text-h3: clamp(1.1875rem, 2vw, 1.375rem);
+  --text-h3--line-height: 1.3;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.45;
+
+  /* ── Layout (design §4) ────────────────────────────────── */
+  --container-site: 75rem;
+  --container-modal: 55rem;
+  /* applied per side of each <Section>: 32→48px, i.e. 64–96px between sections */
+  --spacing-section: clamp(2rem, 5vw, 3rem);
+  --spacing-grid: 1.5rem;
+  --radius-card: 0.75rem;
+  --aspect-thumb: 16 / 10;
+
+  /* ── Motion (design §6) ────────────────────────────────── */
+  --ease-standard: cubic-bezier(0, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-slow: 250ms;
+}

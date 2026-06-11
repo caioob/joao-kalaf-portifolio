@@ -1,0 +1,53 @@
+{
+  "name": "João Kalaf",
+  "tagline": {
+    "pt": "Conteúdo provisório — design que se move entre vídeo, produto e marca.",
+    "en": "Placeholder content — design that moves across video, product and brand."
+  },
+  "bio": {
+    "pt": "Conteúdo provisório aguardando o texto real.\n\nDesigner multidisciplinar com atuação em edição de vídeo, motion design, product design e design gráfico. Este parágrafo será substituído pela biografia definitiva.",
+    "en": "Placeholder content awaiting the real text.\n\nMultidisciplinary designer working across video editing, motion design, product design and graphic design. This paragraph will be replaced by the final biography."
+  },
+  "services": [
+    {
+      "id": "video",
+      "name": { "pt": "Edição de Vídeo", "en": "Video Editing" },
+      "blurb": {
+        "pt": "Montagem, ritmo, cor e som a serviço da narrativa.",
+        "en": "Editing, pacing, color and sound in service of the story."
+      }
+    },
+    {
+      "id": "motion",
+      "name": { "pt": "Motion Design", "en": "Motion Design" },
+      "blurb": {
+        "pt": "Animação 2D/3D, vinhetas e tipografia em movimento.",
+        "en": "2D/3D animation, title sequences and kinetic typography."
+      }
+    },
+    {
+      "id": "product",
+      "name": { "pt": "Product Design", "en": "Product Design" },
+      "blurb": {
+        "pt": "Interfaces e fluxos centrados em quem usa.",
+        "en": "Interfaces and flows centered on the people using them."
+      }
+    },
+    {
+      "id": "graphic",
+      "name": { "pt": "Design Gráfico", "en": "Graphic Design" },
+      "blurb": {
+        "pt": "Identidades, cartazes e sistemas visuais com personalidade.",
+        "en": "Identities, posters and visual systems with personality."
+      }
+    }
+  ],
+  "email": "contato@exemplo.com",
+  "socials": [
+    { "label": "Behance", "url": "https://www.behance.net/joaokalaf/" },
+    { "label": "Instagram", "url": "https://www.instagram.com/tintasmc/" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/joao-kalaf/" },
+    { "label": "Vimeo", "url": "https://vimeo.com/" }
+  ],
+  "photo": null
+}
