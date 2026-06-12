@@ -22,7 +22,7 @@ Explicitly _not_ used in v1 — each is replaced by ~30 lines of our own code:
 ## 2. Folder structure
 
 ```
-boquinha/
+joaokalaf/
 ├── docs/                      # these specs
 ├── public/
 │   ├── images/projects/       # project thumbnails & gallery images
