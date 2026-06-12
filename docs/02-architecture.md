@@ -119,5 +119,6 @@ Nothing else is stateful. No effects for data (it's a static import).
 ## 7. Build & deployment
 
 - `npm run build` → fully static `dist/` (HTML/CSS/JS/images). No server code, no env vars.
-- Deployable to any static host. **Recommendation: Vercel** (zero-config Vite preset, free tier, preview deploys, easy custom domain). Netlify equivalent; GitHub Pages possible (needs `base` config in Vite).
-- v2 note: choosing Supabase later keeps the site static (client-side SDK); choosing a build-time CMS would add a rebuild webhook. Either way today's host choice is not a lock-in.
+- **Decided & live: Vercel (Hobby plan, free — project is non-commercial).** The GitHub repo is connected via Vercel's Git integration: every push to `main` builds (`npm run build`, auto-detected Vite preset, zero config files) and deploys; other branches/PRs get preview URLs. Production URL: <https://joao-kalaf-portifolio.vercel.app/>. No `base` path needed (site is served from the domain root).
+- If a custom domain is attached later: add it in the Vercel dashboard and update the absolute URLs in `index.html` (`canonical`, `og:url`, `og:image` ×2).
+- v2 note: choosing Supabase later keeps the site static (client-side SDK); choosing a build-time CMS would add a rebuild webhook. The host choice is not a lock-in.
