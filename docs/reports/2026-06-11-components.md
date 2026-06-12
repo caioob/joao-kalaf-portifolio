@@ -6,24 +6,24 @@
 
 ## 1. What was delivered
 
-| Area | Delivered |
-| --- | --- |
-| Filter state | `src/lib/categoryFilter.js` — pure `parseCategoryFromHash()` + `useCategoryFilter()` (`useSyncExternalStore` on `hashchange`). Filters live in the URL (`#work/motion`), so filtered views are shareable (FR-1) |
-| Components | All 9 from the inventory: `LanguageToggle` (PT/EN segments, `aria-pressed`), `Navbar` (sticky, blur, border-on-scroll), `Hero` (name/roles/tagline/CTA), `FilterBar` (5 pills, accent underline), `ProjectCard` (lazy 16:10 thumbnail, category chip, year, play glyph, featured dot), `ProjectDetail` (modal), `ServiceList` (01–04), `ContactSection` (editorial line, `mailto:` CTA, socials), `Footer` (copyright, credit, second toggle) |
-| Modal | Native `<dialog>` + `showModal()` — focus trap, Esc, inert background and focus-return come from the platform. Overlay-click close via target check; body scroll lock; privacy-friendly embeds (`youtube-nocookie.com`, Vimeo `dnt=1`) that mount only while open (FR-2/FR-5) |
-| Composition | `App.jsx` — `Page` reads `getProjects()`/`getProfile()` once and passes props (architecture §3 respected: no component touches the repository); owns modal state; `WorkSection` (grid + empty state) and `AboutSection` split out to respect the 150-line rule |
-| Token | New `--container-modal: 55rem` in `theme.css` (design §4/§5 synced) — the spec'd 880px modal width as a token instead of a forbidden arbitrary value |
-| Dictionaries | Grew to 24 keys per language (section titles, a11y labels, featured/links labels); removed unused `hero.kicker`; parity test keeps them in lockstep |
-| Tests | 17 new (55 total): hash-parsing matrix; the spec'd App smoke suite — 8 cards render, pill click filters to 2 + writes the hash, shared `#work/graphic` URL initializes filtered, modal opens with title/closes, iframes exist only while the modal is open, language toggle flips the whole page, services + contact CTA render |
+| Area         | Delivered                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Filter state | `src/lib/categoryFilter.js` — pure `parseCategoryFromHash()` + `useCategoryFilter()` (`useSyncExternalStore` on `hashchange`). Filters live in the URL (`#work/motion`), so filtered views are shareable (FR-1)                                                                                                                                                                                                                       |
+| Components   | All 9 from the inventory: `LanguageToggle` (PT/EN segments, `aria-pressed`), `Navbar` (sticky, blur, border-on-scroll), `Hero` (name/roles/tagline/CTA), `FilterBar` (5 pills, accent underline), `ProjectCard` (lazy 16:10 thumbnail, category chip, year, play glyph, featured dot), `ProjectDetail` (modal), `ServiceList` (01–04), `ContactSection` (editorial line, `mailto:` CTA, socials), `Footer` (copyright, second toggle) |
+| Modal        | Native `<dialog>` + `showModal()` — focus trap, Esc, inert background and focus-return come from the platform. Overlay-click close via target check; body scroll lock; privacy-friendly embeds (`youtube-nocookie.com`, Vimeo `dnt=1`) that mount only while open (FR-2/FR-5)                                                                                                                                                         |
+| Composition  | `App.jsx` — `Page` reads `getProjects()`/`getProfile()` once and passes props (architecture §3 respected: no component touches the repository); owns modal state; `WorkSection` (grid + empty state) and `AboutSection` split out to respect the 150-line rule                                                                                                                                                                        |
+| Token        | New `--container-modal: 55rem` in `theme.css` (design §4/§5 synced) — the spec'd 880px modal width as a token instead of a forbidden arbitrary value                                                                                                                                                                                                                                                                                  |
+| Dictionaries | Grew to 23 keys per language (section titles, a11y labels, featured/links labels); removed unused `hero.kicker`; parity test keeps them in lockstep                                                                                                                                                                                                                                                                                   |
+| Tests        | 17 new (55 total): hash-parsing matrix; the spec'd App smoke suite — 8 cards render, pill click filters to 2 + writes the hash, shared `#work/graphic` URL initializes filtered, modal opens with title/closes, iframes exist only while the modal is open, language toggle flips the whole page, services + contact CTA render                                                                                                       |
 
 ## 2. Verification results
 
-| Check | Result |
-| --- | --- |
-| `npm run lint` | ✅ clean |
+| Check                  | Result                                                         |
+| ---------------------- | -------------------------------------------------------------- |
+| `npm run lint`         | ✅ clean                                                       |
 | `npm run check:tokens` | ✅ clean — no raw visual values in any of the 9 new components |
-| `npm run test` | ✅ 55/55 (38 prior + 17 new) |
-| `npm run build` | ✅ JS 67.1 kB gzip, CSS 4.7 kB gzip — budget <150 kB intact |
+| `npm run test`         | ✅ 55/55 (38 prior + 17 new)                                   |
+| `npm run build`        | ✅ JS 67.1 kB gzip, CSS 4.7 kB gzip — budget <150 kB intact    |
 
 ## 3. Deviations from spec
 

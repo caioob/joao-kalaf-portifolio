@@ -37,7 +37,7 @@ Single route, anchor-linked sections. No client-side router in v1.
 │              └── ProjectDetail (modal)    │
 │ 3. About     bio + the four services      │
 │ 4. Contact   email CTA + social links     │
-│ Footer       credits · language toggle    │
+│ Footer       copyright · language toggle  │
 └──────────────────────────────────────────┘
 ```
 

@@ -6,7 +6,7 @@ export default function Hero({ profile }) {
   const { t, pick } = useI18n()
 
   return (
-    <Section id="hero">
+    <Section id="hero" reveal={false}>
       <Container>
         <h1 className="font-display text-display text-ink">{profile.name}</h1>
         <p className="mt-5 text-small font-medium tracking-widest text-ink-muted uppercase">

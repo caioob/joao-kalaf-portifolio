@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App.jsx'
-import { getProjects } from './lib/projects.js'
+import { getProjects, getProfile } from './lib/projects.js'
 
 // jsdom reports navigator.language as en-US, so the app renders in English.
 beforeEach(() => {
@@ -17,7 +17,7 @@ function workGrid() {
 describe('App', () => {
   it('renders the hero with the profile name', () => {
     render(<App />)
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Nome do Designer')
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(getProfile().name)
   })
 
   it('shows all seed projects in the work grid by default', () => {
@@ -76,11 +76,17 @@ describe('App', () => {
     render(<App />)
     expect(screen.getByRole('heading', { name: 'Selected work' })).toBeInTheDocument()
 
+    expect(document.title).toContain('Video, Motion, Product')
+
     const navbar = within(screen.getByRole('banner'))
     await user.click(navbar.getByRole('button', { name: 'pt' }))
 
     expect(screen.getByRole('heading', { name: 'Trabalhos selecionados' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Ver trabalhos' })).toBeInTheDocument()
+    expect(document.title).toContain('Vídeo, Motion, Produto')
+    expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
+      'Portfólio de João Kalaf',
+    )
   })
 
   it('renders the four services and the contact CTA', () => {

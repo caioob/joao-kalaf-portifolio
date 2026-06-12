@@ -3,8 +3,8 @@
 
 /* Self-hosted variable fonts (design §3) — files in public/fonts/ */
 @font-face {
-  font-family: 'Fraunces';
-  src: url('/fonts/fraunces-latin-opsz-normal.woff2') format('woff2-variations');
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik-Regular.ttf');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;

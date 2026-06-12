@@ -83,7 +83,6 @@ Stored in `src/data/profile.json` (single object).
   "detail.tools": "Ferramentas",
   "detail.close": "Fechar",
   "contact.cta": "Vamos conversar",
-  "footer.credit": "Feito com café",
   // ... final list grows during implementation; keys never hold content, only UI copy
 }
 ```

@@ -1,4 +1,7 @@
 {
+  "a11y.skipToContent": "Skip to content",
+  "meta.title": "João Kalaf — Video, Motion, Product & Graphic Design",
+  "meta.description": "Portfolio of João Kalaf — video editing, motion design, product design and graphic design.",
   "nav.label": "Main navigation",
   "nav.work": "Work",
   "nav.about": "About",
@@ -21,6 +24,5 @@
   "detail.close": "Close",
   "about.title": "About",
   "contact.line": "Let's make something together?",
-  "contact.cta": "Let's talk",
-  "footer.credit": "Made with coffee"
+  "contact.cta": "Let's talk"
 }

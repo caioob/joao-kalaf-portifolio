@@ -33,12 +33,12 @@ Category chips use `ink-muted` text on `line`-tinted backgrounds — categories 
 
 ## 3. Typography
 
-| Token            | Face                    | Notes                                                                                                |
-| ---------------- | ----------------------- | ---------------------------------------------------------------------------------------------------- |
-| `--font-display` | **Fraunces** (variable) | Editorial serif with personality. **Pending client approval** — fallback candidate: Instrument Serif |
-| `--font-sans`    | **Inter** (variable)    | UI & body                                                                                            |
+| Token            | Face                 | Notes                                                                                             |
+| ---------------- | -------------------- | ------------------------------------------------------------------------------------------------- |
+| `--font-display` | **Rubik**            | Geometric sans with rounded warmth. **Pending client approval** — self-hosted `Rubik-Regular.ttf` |
+| `--font-sans`    | **Inter** (variable) | UI & body                                                                                         |
 
-Components reference `font-display` / `font-sans` only — never a face name. Both fonts are self-hosted (`@font-face` in `src/styles/index.css`, `font-display: swap`, woff2 only) — no CDN request (performance + privacy). Swapping a font is a 3-step runbook entry (§8).
+Components reference `font-display` / `font-sans` only — never a face name. Both fonts are self-hosted (`@font-face` in `src/styles/index.css`, `font-display: swap`) — no CDN request (performance + privacy). Inter ships as woff2; Rubik is currently a static `.ttf` pending approval (convert to woff2 when locked). Swapping a font is a 3-step runbook entry (§8).
 
 Type scale — defined as `@theme` text tokens with `clamp()` (fluid desktop→mobile), each bundling size + line-height + tracking. Components use the utility (`text-display`), never raw sizes:
 
@@ -78,18 +78,18 @@ Every page section composes `Section > Container`, so "more/less breathing room"
 
 States to design/build for every interactive component: default · hover · focus-visible · active · (disabled/empty where relevant).
 
-| Component        | Description & key states                                                                                                                                                                                                                                |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Navbar`         | Sticky, translucent surface + blur, hairline bottom border appears on scroll. Anchor links + `LanguageToggle`. Collapses to compact row on mobile (4 links fit — no hamburger).                                                                         |
-| `LanguageToggle` | Two-segment control `PT / EN`; active segment ink-on-line, inactive muted. `aria-pressed`.                                                                                                                                                              |
-| `Hero`           | Name in `text-display font-display`; role list as one muted line ("Video · Motion · Product · Graphic"); short tagline; accent CTA → `#work`.                                                                                                           |
-| `FilterBar`      | Horizontal pill row: All + 4 categories. Active pill = accent-strong text + accent hairline underline; inactive = muted. Scrollable on mobile with fade hint. `aria-pressed` per pill.                                                                  |
-| `ProjectCard`    | Thumbnail (`aspect-thumb`), title (`text-h3`), category chip, year. Hover: thumbnail scales 1.02 inside clipped frame, title gains accent-strong. Entire card is one `<button>`/link. Video projects show a small play glyph on the thumbnail.          |
+| Component        | Description & key states                                                                                                                                                                                                                                              |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Navbar`         | Sticky, translucent surface + blur, hairline bottom border appears on scroll. Anchor links + `LanguageToggle`. Collapses to compact row on mobile (4 links fit — no hamburger).                                                                                       |
+| `LanguageToggle` | Two-segment control `PT / EN`; active segment ink-on-line, inactive muted. `aria-pressed`.                                                                                                                                                                            |
+| `Hero`           | Name in `text-display font-display`; role list as one muted line ("Video · Motion · Product · Graphic"); short tagline; accent CTA → `#work`.                                                                                                                         |
+| `FilterBar`      | Horizontal pill row: All + 4 categories. Active pill = accent-strong text + accent hairline underline; inactive = muted. Scrollable on mobile with fade hint. `aria-pressed` per pill.                                                                                |
+| `ProjectCard`    | Thumbnail (`aspect-thumb`), title (`text-h3`), category chip, year. Hover: thumbnail scales 1.02 inside clipped frame, title gains accent-strong. Entire card is one `<button>`/link. Video projects show a small play glyph on the thumbnail.                        |
 | `ProjectDetail`  | Modal: raised surface, max-width `--container-modal`, scrollable body. Title, meta row (category · year · tools), description, media gallery (images + lazy video embeds 16:9), external links. Focus trap, `Esc`/overlay/✕ close, focus returns to the opening card. |
-| `ServiceList`    | The four disciplines as a 2×2 (mobile 1-col) list: name + one-line description each. Text only, numbered `01–04` in muted `font-display`.                                                                                                               |
-| `ContactSection` | Big editorial invitation line + accent `mailto:` button + social links row.                                                                                                                                                                             |
-| `Footer`         | Small: copyright, "made with" credit, repeat of `LanguageToggle`.                                                                                                                                                                                       |
-| Empty state      | Muted message + "show all" link when a filter has no projects.                                                                                                                                                                                          |
+| `ServiceList`    | The four disciplines as a 2×2 (mobile 1-col) list: name + one-line description each. Text only, numbered `01–04` in muted `font-display`.                                                                                                                             |
+| `ContactSection` | Big editorial invitation line + accent `mailto:` button + social links row.                                                                                                                                                                                           |
+| `Footer`         | Small: copyright, repeat of `LanguageToggle`.                                                                                                                                                                                                                         |
+| Empty state      | Muted message + "show all" link when a filter has no projects.                                                                                                                                                                                                        |
 
 ## 6. Motion
 

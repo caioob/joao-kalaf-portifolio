@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Section from './components/layout/Section.jsx'
 import Container from './components/layout/Container.jsx'
 import Navbar from './components/Navbar.jsx'
@@ -76,15 +76,31 @@ function AboutSection({ profile }) {
 }
 
 function Page() {
+  const { t, lang } = useI18n()
   const profile = getProfile()
   const projects = getProjects()
   const [openId, setOpenId] = useState(null)
   const openProject = projects.find((project) => project.id === openId)
 
+  // Upgrade the static (PT) <title>/description to the active language. The
+  // index.html defaults still serve first paint and no-JS crawlers.
+  useEffect(() => {
+    document.title = t('meta.title')
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute('content', t('meta.description'))
+  }, [t, lang])
+
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only rounded-full bg-accent px-4 py-2 text-small font-medium text-accent-ink focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-20"
+      >
+        {t('a11y.skipToContent')}
+      </a>
       <Navbar />
-      <main>
+      <main id="main">
         <Hero profile={profile} />
         <WorkSection projects={projects} onOpen={setOpenId} />
         <AboutSection profile={profile} />
