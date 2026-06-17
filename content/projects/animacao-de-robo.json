@@ -1,0 +1,47 @@
+{
+  "id": "p-014",
+  "slug": "animacao-de-robo",
+  "category": "graphic",
+  "title": {
+    "pt": "animação de robo",
+    "en": "animação de robo"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/animacao-de-robo-thumb.webp",
+    "alt": {
+      "pt": "animação de robo",
+      "en": "animação de robo"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/Ugp9LDfmHQt/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "animacao-de-robo",
+        "en": "animacao-de-robo"
+      }
+    }
+  ],
+  "tools": [
+    "Adobe After Effects"
+  ],
+  "date": "2020-12",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/110094557/animacao-de-robo"
+    }
+  ]
+}

@@ -7,8 +7,14 @@
  * field; non-strict (prod) skips the record with a console.warn so one bad
  * edit never blanks the whole site.
  */
-import rawProjects from '../data/projects.json'
-import rawProfile from '../data/profile.json'
+// Content lives as one JSON file per project under /content (v2 layout,
+// docs/02 §2 / docs/07). Vite globs them at build time; the seam below
+// (getProjects/getProfile) and the validators are unchanged — only the source
+// of the raw records moved out of src/data.
+import rawProfile from '../../content/profile.json'
+
+const projectModules = import.meta.glob('../../content/projects/*.json', { eager: true })
+const rawProjects = Object.values(projectModules).map((mod) => mod.default ?? mod)
 
 /** Canonical category enum — filters, services, and the v2 admin form all key off it. */
 export const CATEGORIES = ['video', 'motion', 'product', 'graphic']

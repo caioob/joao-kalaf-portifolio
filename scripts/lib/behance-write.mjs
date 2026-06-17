@@ -24,6 +24,11 @@ export function stripMeta(mappedProjects) {
   return mappedProjects.map((m) => m.project)
 }
 
+/** Per-file content layout (docs/02 §2): one file per project, named by slug. */
+export function projectFilename(slug) {
+  return `${slug}.json`
+}
+
 export function countTranslateMarkers(profile, projects) {
   let count = 0
 
@@ -45,6 +50,7 @@ export function writeOutput(data, outputDir) {
   mkdirSync(outputDir, { recursive: true })
   mkdirSync(join(outputDir, '_raw'), { recursive: true })
   mkdirSync(join(outputDir, 'images'), { recursive: true })
+  mkdirSync(join(outputDir, 'projects'), { recursive: true })
 
   const projects = stripMeta(data.mappedProjects)
   const review = buildReview({
@@ -61,7 +67,14 @@ export function writeOutput(data, outputDir) {
   })
 
   writeFileSync(join(outputDir, 'profile.json'), JSON.stringify(data.profile, null, 2) + '\n')
-  writeFileSync(join(outputDir, 'projects.json'), JSON.stringify(projects, null, 2) + '\n')
+  // One file per project (content/projects/<slug>.json layout), ready to copy
+  // straight into the repo's content/ dir.
+  for (const project of projects) {
+    writeFileSync(
+      join(outputDir, 'projects', projectFilename(project.slug)),
+      JSON.stringify(project, null, 2) + '\n',
+    )
+  }
   writeFileSync(join(outputDir, '_review.json'), JSON.stringify(review, null, 2) + '\n')
 
   if (data.rawUser) {

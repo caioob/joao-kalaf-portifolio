@@ -1,0 +1,79 @@
+{
+  "id": "p-002",
+  "slug": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover",
+  "category": "graphic",
+  "title": {
+    "pt": "Tudo Palmeado Segue o Jogo - Album Cover",
+    "en": "Tudo Palmeado Segue o Jogo - Album Cover"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/Tudo-Palmeado-Segue-o-Jogo-Album-Cover-thumb.webp",
+    "alt": {
+      "pt": "Tudo Palmeado Segue o Jogo - Album Cover",
+      "en": "Tudo Palmeado Segue o Jogo - Album Cover"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "image",
+      "src": "/images/projects/Tudo-Palmeado-Segue-o-Jogo-Album-Cover-1.webp",
+      "alt": {
+        "pt": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover",
+        "en": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover"
+      },
+      "width": 1350,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Tudo-Palmeado-Segue-o-Jogo-Album-Cover-2.webp",
+      "alt": {
+        "pt": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover",
+        "en": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover"
+      },
+      "width": 2560,
+      "height": 2560
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Tudo-Palmeado-Segue-o-Jogo-Album-Cover-3.webp",
+      "alt": {
+        "pt": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover",
+        "en": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover"
+      },
+      "width": 2560,
+      "height": 2560
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Tudo-Palmeado-Segue-o-Jogo-Album-Cover-4.webp",
+      "alt": {
+        "pt": "Image may contain: screenshot",
+        "en": "Image may contain: screenshot"
+      },
+      "width": 2560,
+      "height": 2560
+    }
+  ],
+  "tools": [
+    "Blender 3D",
+    "Adobe After Effects"
+  ],
+  "date": "2026-03",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/245625925/Tudo-Palmeado-Segue-o-Jogo-Album-Cover"
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "id": "p-015",
+  "slug": "Banco-Next-Storyboard",
+  "category": "graphic",
+  "title": {
+    "pt": "Banco Next - Storyboard",
+    "en": "Banco Next - Storyboard"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/Banco-Next-Storyboard-thumb.webp",
+    "alt": {
+      "pt": "Banco Next - Storyboard",
+      "en": "Banco Next - Storyboard"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-1.webp",
+      "alt": {
+        "pt": "Banco-Next-Storyboard",
+        "en": "Banco-Next-Storyboard"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-2.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon and drawing",
+        "en": "Image may contain: cartoon and drawing"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-3.webp",
+      "alt": {
+        "pt": "Image may contain: drawing, sketch and cartoon",
+        "en": "Image may contain: drawing, sketch and cartoon"
+      },
+      "width": 2100,
+      "height": 1181
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-4.webp",
+      "alt": {
+        "pt": "Image may contain: sketch, drawing and cartoon",
+        "en": "Image may contain: sketch, drawing and cartoon"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-5.webp",
+      "alt": {
+        "pt": "Image may contain: drawing, cartoon and sketch",
+        "en": "Image may contain: drawing, cartoon and sketch"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-6.webp",
+      "alt": {
+        "pt": "Image may contain: drawing, sketch and cartoon",
+        "en": "Image may contain: drawing, sketch and cartoon"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-7.webp",
+      "alt": {
+        "pt": "Image may contain: map, drawing and sketch",
+        "en": "Image may contain: map, drawing and sketch"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-8.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon, drawing and sketch",
+        "en": "Image may contain: cartoon, drawing and sketch"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-9.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon and drawing",
+        "en": "Image may contain: cartoon and drawing"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-10.webp",
+      "alt": {
+        "pt": "Image may contain: sketch, cartoon and drawing",
+        "en": "Image may contain: sketch, cartoon and drawing"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-11.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon, illustration and drawing",
+        "en": "Image may contain: cartoon, illustration and drawing"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-12.webp",
+      "alt": {
+        "pt": "Image may contain: drawing and sketch",
+        "en": "Image may contain: drawing and sketch"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-13.webp",
+      "alt": {
+        "pt": "Image may contain: sketch, drawing and cartoon",
+        "en": "Image may contain: sketch, drawing and cartoon"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-14.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon, drawing and illustration",
+        "en": "Image may contain: cartoon, drawing and illustration"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-15.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon and drawing",
+        "en": "Image may contain: cartoon and drawing"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-16.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon, sketch and drawing",
+        "en": "Image may contain: cartoon, sketch and drawing"
+      },
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-17.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon, drawing and sketch",
+        "en": "Image may contain: cartoon, drawing and sketch"
+      },
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "tools": [],
+  "date": "2022-05",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/143058293/Banco-Next-Storyboard"
+    }
+  ]
+}

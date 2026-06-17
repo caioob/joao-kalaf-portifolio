@@ -1,0 +1,93 @@
+{
+  "id": "p-001",
+  "slug": "Zoho-Event-Film-Motion-Brand-Content",
+  "category": "graphic",
+  "title": {
+    "pt": "Zoho - Event Film, Motion & Brand Content",
+    "en": "Zoho - Event Film, Motion & Brand Content"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/Zoho-Event-Film-Motion-Brand-Content-thumb.webp",
+    "alt": {
+      "pt": "Zoho - Event Film, Motion & Brand Content",
+      "en": "Zoho - Event Film, Motion & Brand Content"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/Sd_s7cN-5F-/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Zoho-Event-Film-Motion-Brand-Content",
+        "en": "Zoho-Event-Film-Motion-Brand-Content"
+      }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/HVvtxjhjhEZ/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Zoho-Event-Film-Motion-Brand-Content",
+        "en": "Zoho-Event-Film-Motion-Brand-Content"
+      }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/NmSqnShMH8C/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Zoho-Event-Film-Motion-Brand-Content",
+        "en": "Zoho-Event-Film-Motion-Brand-Content"
+      }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/--5grDAEJFh/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Zoho-Event-Film-Motion-Brand-Content",
+        "en": "Zoho-Event-Film-Motion-Brand-Content"
+      }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/V5vtnU35SzN/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Zoho-Event-Film-Motion-Brand-Content",
+        "en": "Zoho-Event-Film-Motion-Brand-Content"
+      }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/DVzXkUEGLWP/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Zoho-Event-Film-Motion-Brand-Content",
+        "en": "Zoho-Event-Film-Motion-Brand-Content"
+      }
+    }
+  ],
+  "tools": [
+    "Adobe Premiere Pro",
+    "Adobe After Effects"
+  ],
+  "date": "2026-06",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/250717465/Zoho-Event-Film-Motion-Brand-Content"
+    }
+  ]
+}

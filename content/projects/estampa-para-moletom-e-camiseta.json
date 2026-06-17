@@ -1,0 +1,86 @@
+{
+  "id": "p-012",
+  "slug": "estampa-para-moletom-e-camiseta",
+  "category": "graphic",
+  "title": {
+    "pt": "estampa para moletom e camiseta",
+    "en": "estampa para moletom e camiseta"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/estampa-para-moletom-e-camiseta-thumb.webp",
+    "alt": {
+      "pt": "estampa para moletom e camiseta",
+      "en": "estampa para moletom e camiseta"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "image",
+      "src": "/images/projects/estampa-para-moletom-e-camiseta-1.webp",
+      "alt": {
+        "pt": "Image may contain: active shirt, sleeve and sweatshirt",
+        "en": "Image may contain: active shirt, sleeve and sweatshirt"
+      },
+      "width": 2560,
+      "height": 2240
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/estampa-para-moletom-e-camiseta-2.webp",
+      "alt": {
+        "pt": "Image may contain: cartoon, drawing and shirt",
+        "en": "Image may contain: cartoon, drawing and shirt"
+      },
+      "width": 2560,
+      "height": 2560
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/estampa-para-moletom-e-camiseta-3.webp",
+      "alt": {
+        "pt": "estampa-para-moletom-e-camiseta",
+        "en": "estampa-para-moletom-e-camiseta"
+      },
+      "width": 2560,
+      "height": 2560
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/estampa-para-moletom-e-camiseta-4.webp",
+      "alt": {
+        "pt": "Image may contain: shirt",
+        "en": "Image may contain: shirt"
+      },
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/estampa-para-moletom-e-camiseta-5.webp",
+      "alt": {
+        "pt": "Image may contain: shirt",
+        "en": "Image may contain: shirt"
+      },
+      "width": 1080,
+      "height": 1080
+    }
+  ],
+  "tools": [],
+  "date": "2022-08",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/149699693/estampa-para-moletom-e-camiseta"
+    }
+  ]
+}

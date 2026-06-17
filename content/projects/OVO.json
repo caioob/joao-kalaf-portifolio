@@ -1,0 +1,60 @@
+{
+  "id": "p-004",
+  "slug": "OVO",
+  "category": "graphic",
+  "title": {
+    "pt": "OVO",
+    "en": "OVO"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/OVO-thumb.webp",
+    "alt": {
+      "pt": "OVO",
+      "en": "OVO"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "image",
+      "src": "/images/projects/OVO-1.webp",
+      "alt": {
+        "pt": "Image may contain: egg and food",
+        "en": "Image may contain: egg and food"
+      },
+      "width": 2560,
+      "height": 1440
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/OVO-2.webp",
+      "alt": {
+        "pt": "Image may contain: egg",
+        "en": "Image may contain: egg"
+      },
+      "width": 2560,
+      "height": 2000
+    }
+  ],
+  "tools": [
+    "Adobe Ilustrator",
+    "Adobe Photoshop",
+    "Blender 3D"
+  ],
+  "date": "2023-11",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/183936401/OVO"
+    }
+  ]
+}

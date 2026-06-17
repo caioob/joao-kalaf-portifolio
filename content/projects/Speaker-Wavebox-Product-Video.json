@@ -1,0 +1,50 @@
+{
+  "id": "p-005",
+  "slug": "Speaker-Wavebox-Product-Video",
+  "category": "video",
+  "title": {
+    "pt": "Speaker Wavebox - Product Video",
+    "en": "Speaker Wavebox - Product Video"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/Speaker-Wavebox-Product-Video-thumb.webp",
+    "alt": {
+      "pt": "Speaker Wavebox - Product Video",
+      "en": "Speaker Wavebox - Product Video"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/PsAnBZtyD6E/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Speaker-Wavebox-Product-Video",
+        "en": "Speaker-Wavebox-Product-Video"
+      }
+    }
+  ],
+  "tools": [
+    "Keyshot",
+    "Adobe After Effects",
+    "Adobe Premiere Pro",
+    "Adobe Audition"
+  ],
+  "date": "2024-06",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/200523387/Speaker-Wavebox-Product-Video"
+    }
+  ]
+}

@@ -1,6 +1,12 @@
 // @vitest-environment node
 import { describe, it, expect } from 'vitest'
-import { buildReview, stripMeta, countTranslateMarkers } from './behance-write.mjs'
+import { buildReview, stripMeta, countTranslateMarkers, projectFilename } from './behance-write.mjs'
+
+describe('projectFilename', () => {
+  it('names a project file by its slug', () => {
+    expect(projectFilename('earphone-tws-product-video')).toBe('earphone-tws-product-video.json')
+  })
+})
 
 describe('buildReview', () => {
   it('builds correct structure with all fields', () => {

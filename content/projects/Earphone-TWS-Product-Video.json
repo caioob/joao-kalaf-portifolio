@@ -1,0 +1,111 @@
+{
+  "id": "p-003",
+  "slug": "Earphone-TWS-Product-Video",
+  "category": "video",
+  "title": {
+    "pt": "Earphone TWS - Product Video",
+    "en": "Earphone TWS - Product Video"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/Earphone-TWS-Product-Video-thumb.webp",
+    "alt": {
+      "pt": "Earphone TWS - Product Video",
+      "en": "Earphone TWS - Product Video"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "image",
+      "src": "/images/projects/Earphone-TWS-Product-Video-1.webp",
+      "alt": {
+        "pt": "Earphone-TWS-Product-Video",
+        "en": "Earphone-TWS-Product-Video"
+      },
+      "width": 1198,
+      "height": 674
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Earphone-TWS-Product-Video-2.webp",
+      "alt": {
+        "pt": "Earphone-TWS-Product-Video",
+        "en": "Earphone-TWS-Product-Video"
+      },
+      "width": 1042,
+      "height": 586
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Earphone-TWS-Product-Video-3.webp",
+      "alt": {
+        "pt": "Earphone-TWS-Product-Video",
+        "en": "Earphone-TWS-Product-Video"
+      },
+      "width": 1318,
+      "height": 742
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Earphone-TWS-Product-Video-4.webp",
+      "alt": {
+        "pt": "Earphone-TWS-Product-Video",
+        "en": "Earphone-TWS-Product-Video"
+      },
+      "width": 1022,
+      "height": 574
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Earphone-TWS-Product-Video-5.webp",
+      "alt": {
+        "pt": "Earphone-TWS-Product-Video",
+        "en": "Earphone-TWS-Product-Video"
+      },
+      "width": 716,
+      "height": 402
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/QAeJr5vxFNA/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Earphone-TWS-Product-Video",
+        "en": "Earphone-TWS-Product-Video"
+      }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/SzsG8Ke2YWN/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Earphone-TWS-Product-Video",
+        "en": "Earphone-TWS-Product-Video"
+      }
+    }
+  ],
+  "tools": [
+    "Adobe After Effects",
+    "Blender",
+    "Adobe Premiere Pro",
+    "Adobe Audition",
+    "Adobe Photoshop",
+    "Keyshot"
+  ],
+  "date": "2024-05",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/199521835/Earphone-TWS-Product-Video"
+    }
+  ]
+}

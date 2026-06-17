@@ -1,0 +1,49 @@
+{
+  "id": "p-008",
+  "slug": "Video-comercial-POCKET-COLOURS",
+  "category": "motion",
+  "title": {
+    "pt": "Vídeo comercial POCKET COLOURS",
+    "en": "Vídeo comercial POCKET COLOURS"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/Video-comercial-POCKET-COLOURS-thumb.webp",
+    "alt": {
+      "pt": "Vídeo comercial POCKET COLOURS",
+      "en": "Vídeo comercial POCKET COLOURS"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/QNyo8ijXtWB/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "Video-comercial-POCKET-COLOURS",
+        "en": "Video-comercial-POCKET-COLOURS"
+      }
+    }
+  ],
+  "tools": [
+    "Adobe After Effects",
+    "Adobe Premiere Pro",
+    "Adobe Photoshop"
+  ],
+  "date": "2023-11",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/184288397/Video-comercial-POCKET-COLOURS"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "p-011",
+  "slug": "mao-figurativa",
+  "category": "graphic",
+  "title": {
+    "pt": "mão figurativa",
+    "en": "mão figurativa"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/mao-figurativa-thumb.webp",
+    "alt": {
+      "pt": "mão figurativa",
+      "en": "mão figurativa"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "image",
+      "src": "/images/projects/mao-figurativa-1.webp",
+      "alt": {
+        "pt": "Image may contain: drawing, painting and child art",
+        "en": "Image may contain: drawing, painting and child art"
+      },
+      "width": 2560,
+      "height": 1707
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/mao-figurativa-2.webp",
+      "alt": {
+        "pt": "Image may contain: art, child art and drawing",
+        "en": "Image may contain: art, child art and drawing"
+      },
+      "width": 2560,
+      "height": 1707
+    }
+  ],
+  "tools": [],
+  "date": "2020-02",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/92904587/mao-figurativa"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "p-013",
+  "slug": "Trabalhos-graficos-em-vetor",
+  "category": "graphic",
+  "title": {
+    "pt": "Trabalhos gráficos em vetor",
+    "en": "Trabalhos gráficos em vetor"
+  },
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "thumbnail": {
+    "src": "/images/projects/Trabalhos-graficos-em-vetor-thumb.webp",
+    "alt": {
+      "pt": "Trabalhos gráficos em vetor",
+      "en": "Trabalhos gráficos em vetor"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "media": [
+    {
+      "type": "image",
+      "src": "/images/projects/Trabalhos-graficos-em-vetor-1.webp",
+      "alt": {
+        "pt": "Image may contain: map and drawing",
+        "en": "Image may contain: map and drawing"
+      },
+      "width": 2560,
+      "height": 1809
+    },
+    {
+      "type": "image",
+      "src": "/images/projects/Trabalhos-graficos-em-vetor-2.webp",
+      "alt": {
+        "pt": "Image may contain: drawing, christmas tree and sketch",
+        "en": "Image may contain: drawing, christmas tree and sketch"
+      },
+      "width": 1809,
+      "height": 2558
+    }
+  ],
+  "tools": [],
+  "date": "2022-08",
+  "featured": false,
+  "links": [
+    {
+      "label": {
+        "pt": "Ver no Behance",
+        "en": "View on Behance"
+      },
+      "url": "https://www.behance.net/gallery/149702733/Trabalhos-graficos-em-vetor"
+    }
+  ]
+}
