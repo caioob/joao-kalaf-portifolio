@@ -16,7 +16,9 @@
       "alt": {
         "pt": "Zoho - Event Film, Motion & Brand Content",
         "en": "Zoho - Event Film, Motion & Brand Content"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -107,7 +109,9 @@
       "alt": {
         "pt": "Tudo Palmeado Segue o Jogo - Album Cover",
         "en": "Tudo Palmeado Segue o Jogo - Album Cover"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -116,7 +120,9 @@
         "alt": {
           "pt": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover",
           "en": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover"
-        }
+        },
+        "width": 1350,
+        "height": 1080
       },
       {
         "type": "image",
@@ -124,7 +130,9 @@
         "alt": {
           "pt": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover",
           "en": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover"
-        }
+        },
+        "width": 2560,
+        "height": 2560
       },
       {
         "type": "image",
@@ -132,7 +140,9 @@
         "alt": {
           "pt": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover",
           "en": "Tudo-Palmeado-Segue-o-Jogo-Album-Cover"
-        }
+        },
+        "width": 2560,
+        "height": 2560
       },
       {
         "type": "image",
@@ -140,7 +150,9 @@
         "alt": {
           "pt": "Image may contain: screenshot",
           "en": "Image may contain: screenshot"
-        }
+        },
+        "width": 2560,
+        "height": 2560
       }
     ],
     "tools": [
@@ -176,7 +188,9 @@
       "alt": {
         "pt": "Earphone TWS - Product Video",
         "en": "Earphone TWS - Product Video"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -185,7 +199,9 @@
         "alt": {
           "pt": "Earphone-TWS-Product-Video",
           "en": "Earphone-TWS-Product-Video"
-        }
+        },
+        "width": 1198,
+        "height": 674
       },
       {
         "type": "image",
@@ -193,7 +209,9 @@
         "alt": {
           "pt": "Earphone-TWS-Product-Video",
           "en": "Earphone-TWS-Product-Video"
-        }
+        },
+        "width": 1042,
+        "height": 586
       },
       {
         "type": "image",
@@ -201,7 +219,9 @@
         "alt": {
           "pt": "Earphone-TWS-Product-Video",
           "en": "Earphone-TWS-Product-Video"
-        }
+        },
+        "width": 1318,
+        "height": 742
       },
       {
         "type": "image",
@@ -209,7 +229,9 @@
         "alt": {
           "pt": "Earphone-TWS-Product-Video",
           "en": "Earphone-TWS-Product-Video"
-        }
+        },
+        "width": 1022,
+        "height": 574
       },
       {
         "type": "image",
@@ -217,7 +239,9 @@
         "alt": {
           "pt": "Earphone-TWS-Product-Video",
           "en": "Earphone-TWS-Product-Video"
-        }
+        },
+        "width": 716,
+        "height": 402
       },
       {
         "type": "video",
@@ -275,7 +299,9 @@
       "alt": {
         "pt": "OVO",
         "en": "OVO"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -284,7 +310,9 @@
         "alt": {
           "pt": "Image may contain: egg and food",
           "en": "Image may contain: egg and food"
-        }
+        },
+        "width": 2560,
+        "height": 1440
       },
       {
         "type": "image",
@@ -292,7 +320,9 @@
         "alt": {
           "pt": "Image may contain: egg",
           "en": "Image may contain: egg"
-        }
+        },
+        "width": 2560,
+        "height": 2000
       }
     ],
     "tools": [
@@ -329,7 +359,9 @@
       "alt": {
         "pt": "Speaker Wavebox - Product Video",
         "en": "Speaker Wavebox - Product Video"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -377,7 +409,9 @@
       "alt": {
         "pt": "Infusor de chá Irupé (Vitória-régia)",
         "en": "Infusor de chá Irupé (Vitória-régia)"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -386,7 +420,9 @@
         "alt": {
           "pt": "Image may contain: sky, houseplant and flowerpot",
           "en": "Image may contain: sky, houseplant and flowerpot"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -394,7 +430,9 @@
         "alt": {
           "pt": "Infusor-de-cha-Irup-%28Vitoria-rgia%29",
           "en": "Infusor-de-cha-Irup-%28Vitoria-rgia%29"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -402,7 +440,9 @@
         "alt": {
           "pt": "Image may contain: art",
           "en": "Image may contain: art"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -410,7 +450,9 @@
         "alt": {
           "pt": "Image may contain: grass",
           "en": "Image may contain: grass"
-        }
+        },
+        "width": 2000,
+        "height": 617
       },
       {
         "type": "image",
@@ -418,7 +460,9 @@
         "alt": {
           "pt": "Infusor-de-cha-Irup-%28Vitoria-rgia%29",
           "en": "Infusor-de-cha-Irup-%28Vitoria-rgia%29"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -426,7 +470,9 @@
         "alt": {
           "pt": "Image may contain: coin",
           "en": "Image may contain: coin"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "video",
@@ -468,7 +514,9 @@
       "alt": {
         "pt": "Rapidin: comidas prontas - Packaging Design",
         "en": "Rapidin: comidas prontas - Packaging Design"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -477,7 +525,9 @@
         "alt": {
           "pt": "Image may contain: screenshot and typography",
           "en": "Image may contain: screenshot and typography"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -485,7 +535,9 @@
         "alt": {
           "pt": "Image may contain: screenshot",
           "en": "Image may contain: screenshot"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -493,7 +545,9 @@
         "alt": {
           "pt": "Image may contain: screenshot and cartoon",
           "en": "Image may contain: screenshot and cartoon"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -501,7 +555,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, illustration and screenshot",
           "en": "Image may contain: cartoon, illustration and screenshot"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -509,7 +565,9 @@
         "alt": {
           "pt": "Image may contain: cup, coffee and screenshot",
           "en": "Image may contain: cup, coffee and screenshot"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -517,7 +575,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, typography and illustration",
           "en": "Image may contain: cartoon, typography and illustration"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -525,7 +585,9 @@
         "alt": {
           "pt": "Image may contain: home appliance, kitchen appliance and indoor",
           "en": "Image may contain: home appliance, kitchen appliance and indoor"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -533,7 +595,9 @@
         "alt": {
           "pt": "Image may contain: screenshot and indoor",
           "en": "Image may contain: screenshot and indoor"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -541,7 +605,9 @@
         "alt": {
           "pt": "Image may contain: cartoon and screenshot",
           "en": "Image may contain: cartoon and screenshot"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -549,7 +615,9 @@
         "alt": {
           "pt": "Image may contain: screenshot",
           "en": "Image may contain: screenshot"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -557,7 +625,9 @@
         "alt": {
           "pt": "Image may contain: screenshot",
           "en": "Image may contain: screenshot"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -565,7 +635,9 @@
         "alt": {
           "pt": "Image may contain: green and sign",
           "en": "Image may contain: green and sign"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -573,7 +645,9 @@
         "alt": {
           "pt": "Rapidin-comidas-prontas-Packaging-Design",
           "en": "Rapidin-comidas-prontas-Packaging-Design"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -581,7 +655,9 @@
         "alt": {
           "pt": "Image may contain: cartoon and illustration",
           "en": "Image may contain: cartoon and illustration"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -589,7 +665,9 @@
         "alt": {
           "pt": "Image may contain: screenshot",
           "en": "Image may contain: screenshot"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -597,7 +675,9 @@
         "alt": {
           "pt": "Image may contain: box",
           "en": "Image may contain: box"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -605,7 +685,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, poster and illustration",
           "en": "Image may contain: cartoon, poster and illustration"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       },
       {
         "type": "image",
@@ -613,7 +695,9 @@
         "alt": {
           "pt": "Rapidin-comidas-prontas-Packaging-Design",
           "en": "Rapidin-comidas-prontas-Packaging-Design"
-        }
+        },
+        "width": 2400,
+        "height": 1350
       }
     ],
     "tools": [
@@ -651,7 +735,9 @@
       "alt": {
         "pt": "Vídeo comercial POCKET COLOURS",
         "en": "Vídeo comercial POCKET COLOURS"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -698,7 +784,9 @@
       "alt": {
         "pt": "30ª Mostra Design IFSC – Identidade Visual",
         "en": "30ª Mostra Design IFSC – Identidade Visual"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -707,7 +795,9 @@
         "alt": {
           "pt": "Image may contain: screenshot",
           "en": "Image may contain: screenshot"
-        }
+        },
+        "width": 1920,
+        "height": 2160
       },
       {
         "type": "image",
@@ -715,7 +805,9 @@
         "alt": {
           "pt": "30-Mostra-Design-IFSC-Identidade-Visual",
           "en": "30-Mostra-Design-IFSC-Identidade-Visual"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -723,7 +815,9 @@
         "alt": {
           "pt": "Image may contain: screenshot",
           "en": "Image may contain: screenshot"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -731,7 +825,9 @@
         "alt": {
           "pt": "Image may contain: screenshot and circle",
           "en": "Image may contain: screenshot and circle"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -739,7 +835,9 @@
         "alt": {
           "pt": "30-Mostra-Design-IFSC-Identidade-Visual",
           "en": "30-Mostra-Design-IFSC-Identidade-Visual"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -747,7 +845,9 @@
         "alt": {
           "pt": "Image may contain: screenshot, template and internet",
           "en": "Image may contain: screenshot, template and internet"
-        }
+        },
+        "width": 1920,
+        "height": 2288
       },
       {
         "type": "image",
@@ -755,7 +855,9 @@
         "alt": {
           "pt": "Image may contain: screenshot",
           "en": "Image may contain: screenshot"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -763,7 +865,9 @@
         "alt": {
           "pt": "30-Mostra-Design-IFSC-Identidade-Visual",
           "en": "30-Mostra-Design-IFSC-Identidade-Visual"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -771,7 +875,9 @@
         "alt": {
           "pt": "Image may contain: illustration",
           "en": "Image may contain: illustration"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -779,7 +885,9 @@
         "alt": {
           "pt": "Image may contain: screenshot, illustration and typography",
           "en": "Image may contain: screenshot, illustration and typography"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -787,7 +895,9 @@
         "alt": {
           "pt": "Image may contain: book, screenshot and poster",
           "en": "Image may contain: book, screenshot and poster"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -795,7 +905,9 @@
         "alt": {
           "pt": "30-Mostra-Design-IFSC-Identidade-Visual",
           "en": "30-Mostra-Design-IFSC-Identidade-Visual"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -803,7 +915,9 @@
         "alt": {
           "pt": "Image may contain: bottle and indoor",
           "en": "Image may contain: bottle and indoor"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -811,7 +925,9 @@
         "alt": {
           "pt": "Image may contain: poster and outdoor",
           "en": "Image may contain: poster and outdoor"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -819,7 +935,9 @@
         "alt": {
           "pt": "Image may contain: poster, screenshot and illustration",
           "en": "Image may contain: poster, screenshot and illustration"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -827,7 +945,9 @@
         "alt": {
           "pt": "Image may contain: typography, screenshot and illustration",
           "en": "Image may contain: typography, screenshot and illustration"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       }
     ],
     "tools": [
@@ -863,7 +983,9 @@
       "alt": {
         "pt": "Dragões urbanos",
         "en": "Dragões urbanos"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -872,7 +994,9 @@
         "alt": {
           "pt": "Dragoes-urbanos",
           "en": "Dragoes-urbanos"
-        }
+        },
+        "width": 2560,
+        "height": 1613
       },
       {
         "type": "image",
@@ -880,7 +1004,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, drawing and illustration",
           "en": "Image may contain: cartoon, drawing and illustration"
-        }
+        },
+        "width": 2560,
+        "height": 1707
       },
       {
         "type": "image",
@@ -888,7 +1014,9 @@
         "alt": {
           "pt": "Dragoes-urbanos",
           "en": "Dragoes-urbanos"
-        }
+        },
+        "width": 2338,
+        "height": 1700
       },
       {
         "type": "image",
@@ -896,7 +1024,9 @@
         "alt": {
           "pt": "Dragoes-urbanos",
           "en": "Dragoes-urbanos"
-        }
+        },
+        "width": 2560,
+        "height": 1966
       }
     ],
     "tools": [],
@@ -929,7 +1059,9 @@
       "alt": {
         "pt": "mão figurativa",
         "en": "mão figurativa"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -938,7 +1070,9 @@
         "alt": {
           "pt": "Image may contain: drawing, painting and child art",
           "en": "Image may contain: drawing, painting and child art"
-        }
+        },
+        "width": 2560,
+        "height": 1707
       },
       {
         "type": "image",
@@ -946,7 +1080,9 @@
         "alt": {
           "pt": "Image may contain: art, child art and drawing",
           "en": "Image may contain: art, child art and drawing"
-        }
+        },
+        "width": 2560,
+        "height": 1707
       }
     ],
     "tools": [],
@@ -979,7 +1115,9 @@
       "alt": {
         "pt": "estampa para moletom e camiseta",
         "en": "estampa para moletom e camiseta"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -988,7 +1126,9 @@
         "alt": {
           "pt": "Image may contain: active shirt, sleeve and sweatshirt",
           "en": "Image may contain: active shirt, sleeve and sweatshirt"
-        }
+        },
+        "width": 2560,
+        "height": 2240
       },
       {
         "type": "image",
@@ -996,7 +1136,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, drawing and shirt",
           "en": "Image may contain: cartoon, drawing and shirt"
-        }
+        },
+        "width": 2560,
+        "height": 2560
       },
       {
         "type": "image",
@@ -1004,7 +1146,9 @@
         "alt": {
           "pt": "estampa-para-moletom-e-camiseta",
           "en": "estampa-para-moletom-e-camiseta"
-        }
+        },
+        "width": 2560,
+        "height": 2560
       },
       {
         "type": "image",
@@ -1012,7 +1156,9 @@
         "alt": {
           "pt": "Image may contain: shirt",
           "en": "Image may contain: shirt"
-        }
+        },
+        "width": 1080,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1020,7 +1166,9 @@
         "alt": {
           "pt": "Image may contain: shirt",
           "en": "Image may contain: shirt"
-        }
+        },
+        "width": 1080,
+        "height": 1080
       }
     ],
     "tools": [],
@@ -1053,7 +1201,9 @@
       "alt": {
         "pt": "Trabalhos gráficos em vetor",
         "en": "Trabalhos gráficos em vetor"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -1062,7 +1212,9 @@
         "alt": {
           "pt": "Image may contain: map and drawing",
           "en": "Image may contain: map and drawing"
-        }
+        },
+        "width": 2560,
+        "height": 1809
       },
       {
         "type": "image",
@@ -1070,7 +1222,9 @@
         "alt": {
           "pt": "Image may contain: drawing, christmas tree and sketch",
           "en": "Image may contain: drawing, christmas tree and sketch"
-        }
+        },
+        "width": 1809,
+        "height": 2558
       }
     ],
     "tools": [],
@@ -1103,7 +1257,9 @@
       "alt": {
         "pt": "animação de robo",
         "en": "animação de robo"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -1148,7 +1304,9 @@
       "alt": {
         "pt": "Banco Next - Storyboard",
         "en": "Banco Next - Storyboard"
-      }
+      },
+      "width": 1600,
+      "height": 1000
     },
     "media": [
       {
@@ -1157,7 +1315,9 @@
         "alt": {
           "pt": "Banco-Next-Storyboard",
           "en": "Banco-Next-Storyboard"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1165,7 +1325,9 @@
         "alt": {
           "pt": "Image may contain: cartoon and drawing",
           "en": "Image may contain: cartoon and drawing"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1173,7 +1335,9 @@
         "alt": {
           "pt": "Image may contain: drawing, sketch and cartoon",
           "en": "Image may contain: drawing, sketch and cartoon"
-        }
+        },
+        "width": 2100,
+        "height": 1181
       },
       {
         "type": "image",
@@ -1181,7 +1345,9 @@
         "alt": {
           "pt": "Image may contain: sketch, drawing and cartoon",
           "en": "Image may contain: sketch, drawing and cartoon"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1189,7 +1355,9 @@
         "alt": {
           "pt": "Image may contain: drawing, cartoon and sketch",
           "en": "Image may contain: drawing, cartoon and sketch"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1197,7 +1365,9 @@
         "alt": {
           "pt": "Image may contain: drawing, sketch and cartoon",
           "en": "Image may contain: drawing, sketch and cartoon"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1205,7 +1375,9 @@
         "alt": {
           "pt": "Image may contain: map, drawing and sketch",
           "en": "Image may contain: map, drawing and sketch"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1213,7 +1385,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, drawing and sketch",
           "en": "Image may contain: cartoon, drawing and sketch"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1221,7 +1395,9 @@
         "alt": {
           "pt": "Image may contain: cartoon and drawing",
           "en": "Image may contain: cartoon and drawing"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1229,7 +1405,9 @@
         "alt": {
           "pt": "Image may contain: sketch, cartoon and drawing",
           "en": "Image may contain: sketch, cartoon and drawing"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1237,7 +1415,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, illustration and drawing",
           "en": "Image may contain: cartoon, illustration and drawing"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1245,7 +1425,9 @@
         "alt": {
           "pt": "Image may contain: drawing and sketch",
           "en": "Image may contain: drawing and sketch"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1253,7 +1435,9 @@
         "alt": {
           "pt": "Image may contain: sketch, drawing and cartoon",
           "en": "Image may contain: sketch, drawing and cartoon"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1261,7 +1445,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, drawing and illustration",
           "en": "Image may contain: cartoon, drawing and illustration"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1269,7 +1455,9 @@
         "alt": {
           "pt": "Image may contain: cartoon and drawing",
           "en": "Image may contain: cartoon and drawing"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1277,7 +1465,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, sketch and drawing",
           "en": "Image may contain: cartoon, sketch and drawing"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       },
       {
         "type": "image",
@@ -1285,7 +1475,9 @@
         "alt": {
           "pt": "Image may contain: cartoon, drawing and sketch",
           "en": "Image may contain: cartoon, drawing and sketch"
-        }
+        },
+        "width": 1920,
+        "height": 1080
       }
     ],
     "tools": [],

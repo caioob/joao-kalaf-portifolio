@@ -1,7 +1,7 @@
 import { chromium } from 'playwright'
 import { parseProfileUrl, scrapeProfile, normalizeProject, normalizeUser } from './lib/behance-scrape.mjs'
 import { mapProject, mapProfile } from './lib/behance-map.mjs'
-import { processImages } from './lib/behance-images.mjs'
+import { processImages, applyImageDimensions } from './lib/behance-images.mjs'
 import { writeOutput } from './lib/behance-write.mjs'
 
 function parseArgs(argv) {
@@ -79,7 +79,9 @@ async function main() {
     log('Processing images...')
     let missingImageCount = 0
     try {
-      missingImageCount = await processImages(mappedProjects, args.output)
+      const { missing, dimensions } = await processImages(mappedProjects, args.output)
+      missingImageCount = missing
+      applyImageDimensions(mappedProjects, dimensions)
     } catch (err) {
       log(`Warning: image processing failed: ${err.message}`)
       log('Data files will still be written with remote URLs as fallback.')
@@ -112,10 +114,10 @@ async function main() {
     log('')
     log('Next steps:')
     log('  1. Review _review.json for warnings')
-    log('  2. Fix any incorrect categories in projects.json')
+    log('  2. Fix any incorrect categories in projects/*.json')
     log('  3. Translate all TRANSLATE: fields')
-    log('  4. Copy data to src/data/ and images to public/images/projects/')
-    log('  5. Run: npm run lint && npm run check:tokens && npm run test && npm run build')
+    log('  4. Copy projects/* to content/projects/, profile.json to content/, images to public/images/projects/')
+    log('  5. Run: npm run lint && npm run check:tokens && npm run test && npm run test:scripts && npm run build')
   } finally {
     await browser.close()
   }

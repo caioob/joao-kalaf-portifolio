@@ -62,16 +62,29 @@ function normalizeModuleType(typename) {
   return 'unknown'
 }
 
+// Pick the highest-resolution downloadable render so the responsive ladder
+// (docs/08) has the most to downscale from. In Behance be-state the reliable,
+// width-tagged URLs live in `imageSizes.allAvailable[]` (incl. the full-res
+// `source`); the named `size_*` keys are unreliable — `size_1400` is often
+// `null` and `size_max_1200` carries dimensions but no `url`. So we gather every
+// url-bearing entry and take the widest, falling back to an original/source URL
+// (when widths are absent) and finally any url.
 function extractBestImageUrl(imageSizes) {
   if (!imageSizes) return ''
-  for (const key of ['size_1400', 'size_max_1200', 'size_1200', 'size_disp', 'size_600']) {
-    if (imageSizes[key]?.url) return imageSizes[key].url
+  const candidates = []
+  const consider = (e) => {
+    if (e && typeof e === 'object' && typeof e.url === 'string') candidates.push(e)
   }
-  const entries = Object.values(imageSizes)
-  const largest = entries
-    .filter((e) => e?.url)
-    .sort((a, b) => (b.width || 0) - (a.width || 0))[0]
-  return largest?.url || ''
+  if (Array.isArray(imageSizes.allAvailable)) imageSizes.allAvailable.forEach(consider)
+  for (const [key, value] of Object.entries(imageSizes)) {
+    if (key !== 'allAvailable') consider(value)
+  }
+
+  const withWidth = candidates.filter((e) => typeof e.width === 'number' && e.width > 0)
+  if (withWidth.length) return withWidth.sort((a, b) => b.width - a.width)[0].url
+
+  const original = candidates.find((e) => /\/(source|original|original_webp)\//.test(e.url))
+  return (original || candidates[0])?.url || ''
 }
 
 function extractVideoProvider(embedHtml) {
@@ -115,7 +128,9 @@ export function normalizeProject(raw) {
       const modType = normalizeModuleType(mod.__typename || mod.type)
 
       if (modType === 'image') {
-        const imgSrc = mod.src || extractBestImageUrl(mod.imageSizes) || ''
+        // Prefer the highest-res source from imageSizes; mod.src is often the
+        // downscaled `disp` (~1400px) render, so it's only the fallback.
+        const imgSrc = extractBestImageUrl(mod.imageSizes) || mod.src || ''
         const caption = stripHtml(mod.caption || mod.altText || '')
         return { type: 'image', src: imgSrc, caption }
       }

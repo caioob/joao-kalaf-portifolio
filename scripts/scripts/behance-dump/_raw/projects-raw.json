@@ -17,7 +17,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -544,7 +544,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733414
+        "unix_timestamp": 1781738679
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -1448,6 +1448,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=250717465"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -1561,7 +1571,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -1581,7 +1592,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -2108,7 +2119,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733418
+        "unix_timestamp": 1781738683
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -4741,6 +4752,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=245625925"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -4854,7 +4875,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -4874,7 +4896,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -5401,7 +5423,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733422
+        "unix_timestamp": 1781738687
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -8760,7 +8782,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -9287,7 +9309,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733426
+        "unix_timestamp": 1781738690
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -10660,6 +10682,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=183936401"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -10773,7 +10805,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -10793,7 +10826,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -11320,7 +11353,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733428
+        "unix_timestamp": 1781738692
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -13289,6 +13322,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=200523387"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -13402,7 +13445,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -13422,7 +13466,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -13949,7 +13993,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733432
+        "unix_timestamp": 1781738695
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -16333,6 +16377,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=159612053"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -16446,7 +16500,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -16466,7 +16521,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -16993,7 +17048,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733466
+        "unix_timestamp": 1781738729
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -23050,7 +23105,7 @@
             "all": 5
           },
           "views": {
-            "all": 42
+            "all": 43
           },
           "comments": {
             "all": 0
@@ -23208,7 +23263,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -23735,7 +23790,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733469
+        "unix_timestamp": 1781738731
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -24536,6 +24591,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=184288397"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -24649,7 +24714,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -24669,7 +24735,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -25196,7 +25262,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733471
+        "unix_timestamp": 1781738733
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -30693,7 +30759,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -31220,7 +31286,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733473
+        "unix_timestamp": 1781738736
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -33933,6 +33999,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=92904313"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -34046,7 +34122,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -34066,7 +34143,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -34593,7 +34670,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733478
+        "unix_timestamp": 1781738737
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -36082,6 +36159,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=92904587"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -36195,7 +36282,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -36215,7 +36303,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -36742,7 +36830,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733480
+        "unix_timestamp": 1781738739
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -39104,6 +39192,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=149699693"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -39217,7 +39315,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -39237,7 +39336,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -39764,7 +39863,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733482
+        "unix_timestamp": 1781738741
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -41036,6 +41135,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=149702733"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -41149,7 +41258,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -41169,7 +41279,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -41696,7 +41806,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733484
+        "unix_timestamp": 1781738743
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -42410,6 +42520,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=110094557"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -42523,7 +42643,8 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   },
   {
     "gates": {
@@ -42543,7 +42664,7 @@
       "track_user_project_progress": 0,
       "optimized_covers": 0,
       "message_banner": 0,
-      "feature_unified_messenger": 1,
+      "feature_unified_messenger": 0,
       "feature_content_discovery_project_click": 0,
       "feature_content_discovery_project_impression": 0,
       "max_banner": 0,
@@ -43070,7 +43191,7 @@
         "signature": {
           "endpoint": "/v2/project/editor/sign_request"
         },
-        "unix_timestamp": 1781733487
+        "unix_timestamp": 1781738745
       },
       "GOOGLE_TAG_ID": "AW-457480919",
       "CONTENT_SQUARE_TAG_ID": "49ab2c90c5266",
@@ -48438,6 +48559,16 @@
       "urls": {
         "search": "/search",
         "edit": "/portfolio/editor?project_id=143058293"
+      },
+      "messageManagerSidebar": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
+      },
+      "messageManagerFooter": {
+        "threadId": "",
+        "didFinishBlockingUser": false,
+        "briefs": []
       }
     },
     "footer": {
@@ -48551,6 +48682,7 @@
         "briefs": []
       }
     },
-    "miniprofileAnalytics": {}
+    "miniprofileAnalytics": {},
+    "project/messageManagerAnalytics": {}
   }
 ]

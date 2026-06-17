@@ -1,6 +1,13 @@
 import { mkdirSync } from 'node:fs'
-import { dirname } from 'node:path'
+import { basename, dirname } from 'node:path'
 import sharp from 'sharp'
+
+// Canonical master dimensions (docs/08 §2). The smaller widths + AVIF variants
+// are derived from these masters at build time, not here.
+export const THUMB_WIDTH = 1600
+export const THUMB_HEIGHT = 1000
+export const GALLERY_MAX_WIDTH = 2560
+export const WEBP_QUALITY = 80
 
 export function thumbnailDest(slug, outputDir) {
   return `${outputDir}/images/${slug}-thumb.webp`
@@ -41,33 +48,65 @@ export async function downloadImage(url, destPath) {
   return buffer
 }
 
+/**
+ * Write the canonical WebP master and return its intrinsic dimensions.
+ * @returns {Promise<{ width: number, height: number }>}
+ */
 export async function convertToWebP(buffer, destPath, type) {
   mkdirSync(dirname(destPath), { recursive: true })
-  const pipeline = sharp(buffer).webp({ quality: 80 })
+  const pipeline = sharp(buffer).webp({ quality: WEBP_QUALITY })
 
   if (type === 'thumbnail') {
-    pipeline.resize(1600, 1000, { fit: 'cover', position: 'centre' })
+    pipeline.resize(THUMB_WIDTH, THUMB_HEIGHT, { fit: 'cover', position: 'centre' })
   } else {
-    pipeline.resize(1600, null, { fit: 'inside', withoutEnlargement: true })
+    pipeline.resize(GALLERY_MAX_WIDTH, null, { fit: 'inside', withoutEnlargement: true })
   }
 
-  await pipeline.toFile(destPath)
+  const info = await pipeline.toFile(destPath)
+  return { width: info.width, height: info.height }
 }
 
+/**
+ * Download + convert every image, returning the failure count and a map of
+ * filename → intrinsic dimensions (keyed by basename so it matches each record's
+ * `src`). See applyImageDimensions.
+ * @returns {Promise<{ missing: number, dimensions: Record<string, { width: number, height: number }> }>}
+ */
 export async function processImages(mappedProjects, outputDir) {
   const imageUrls = parseImageUrls(mappedProjects, outputDir)
   let missing = 0
+  const dimensions = {}
 
   for (const { url, dest, type } of imageUrls) {
     try {
       const buffer = await downloadImage(url, dest)
-      await convertToWebP(buffer, dest, type)
-      console.log(`  ✓ ${type}: ${dest}`)
+      const { width, height } = await convertToWebP(buffer, dest, type)
+      dimensions[basename(dest)] = { width, height }
+      console.log(`  ✓ ${type}: ${dest} (${width}×${height})`)
     } catch (err) {
       missing++
       console.warn(`  ✗ ${type}: ${url} — ${err.message}`)
     }
   }
 
-  return missing
+  return { missing, dimensions }
+}
+
+/**
+ * Write recorded intrinsic dimensions onto each Image record (thumbnail + image
+ * media), matched by filename. Mutates and returns the mappedProjects. Records
+ * whose image failed to download are left without dimensions (optional in schema).
+ */
+export function applyImageDimensions(mappedProjects, dimensions) {
+  for (const { project } of mappedProjects) {
+    const thumb = dimensions[basename(project.thumbnail.src)]
+    if (thumb) Object.assign(project.thumbnail, thumb)
+
+    for (const item of project.media) {
+      if (item.type !== 'image') continue
+      const dims = dimensions[basename(item.src)]
+      if (dims) Object.assign(item, dims)
+    }
+  }
+  return mappedProjects
 }

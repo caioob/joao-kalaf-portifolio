@@ -212,6 +212,41 @@ describe('normalizeProject', () => {
     const normalized = normalizeProject(project)
     expect(normalized.modules[0].src).toBe('https://cdn/1400.jpg')
   })
+
+  it('picks the widest render from allAvailable over the small disp in mod.src', () => {
+    // Real be-state shape: named size_* keys are null / url-less; the
+    // downloadable width-tagged URLs (incl. full-res `source`) are in allAvailable.
+    const project = {
+      ...rawProject,
+      modules: [
+        {
+          __typename: 'ImageModule',
+          src: 'https://cdn/project_modules/disp/abc.jpg',
+          imageSizes: {
+            size_disp: { url: 'https://cdn/project_modules/disp/abc.jpg', width: 600, height: 480 },
+            size_1400: null,
+            size_max_1200: { width: 1200, height: 960 },
+            allAvailable: [
+              { url: 'https://cdn/project_modules/source/abc.jpg', width: 1920, type: 'JPG' },
+              { url: 'https://cdn/project_modules/max_632/abc.jpg', width: 790, type: 'JPG' },
+            ],
+          },
+          caption: 'Detail',
+        },
+      ],
+    }
+    const normalized = normalizeProject(project)
+    expect(normalized.modules[0].src).toBe('https://cdn/project_modules/source/abc.jpg')
+  })
+
+  it('falls back to mod.src when no imageSizes are present (DOM scrape)', () => {
+    const project = {
+      ...rawProject,
+      modules: [{ __typename: 'ImageModule', src: 'https://cdn/dom-image.jpg', caption: '' }],
+    }
+    const normalized = normalizeProject(project)
+    expect(normalized.modules[0].src).toBe('https://cdn/dom-image.jpg')
+  })
 })
 
 describe('normalizeUser', () => {
