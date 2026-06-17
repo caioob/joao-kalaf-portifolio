@@ -66,13 +66,33 @@ export function formatDate(timestamp) {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`
 }
 
+// Behance URL segments can be percent-encoded (e.g. `%28`…%29` for parens) and
+// carry accents. Slugs become both filenames and dev-server module URLs, so
+// they must be filesystem- and URL-safe: an unsanitized `%28` 404s the eager
+// glob import in `vite dev` and blanks the page. Decode, strip accents, and
+// reduce to [A-Za-z0-9-].
+export function sanitizeSlug(value) {
+  let s = value
+  try {
+    s = decodeURIComponent(value)
+  } catch {
+    // leave as-is if it isn't valid percent-encoding
+  }
+  return s
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^A-Za-z0-9-]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
 export function extractSlug(url) {
   if (!url) return ''
   const trimmed = url.replace(/\/+$/, '')
   const segments = trimmed.split('/')
   const last = segments[segments.length - 1]
   if (last && /^[0-9]+$/.test(last)) return ''
-  return last || ''
+  return sanitizeSlug(last || '')
 }
 
 export function generateId(index) {

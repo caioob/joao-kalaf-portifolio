@@ -5,6 +5,7 @@ import {
   translateField,
   formatDate,
   extractSlug,
+  sanitizeSlug,
   generateId,
   extractVideoInfo,
   mapMediaModules,
@@ -144,6 +145,29 @@ describe('extractSlug', () => {
   it('returns empty string for null/undefined', () => {
     expect(extractSlug(null)).toBe('')
     expect(extractSlug(undefined)).toBe('')
+  })
+
+  it('sanitizes percent-encoded segments to filesystem/URL-safe slugs', () => {
+    // Regression: %28/%29 in a slug 404'd the eager-glob import in `vite dev`.
+    expect(extractSlug('https://www.behance.net/gallery/123/Irup-%28Vitoria-rgia%29')).toBe(
+      'Irup-Vitoria-rgia',
+    )
+  })
+})
+
+describe('sanitizeSlug', () => {
+  it('decodes percent-encoding and reduces to [A-Za-z0-9-]', () => {
+    expect(sanitizeSlug('Infusor-de-cha-Irup-%28Vitoria-rgia%29')).toBe(
+      'Infusor-de-cha-Irup-Vitoria-rgia',
+    )
+  })
+
+  it('strips accents and collapses separators', () => {
+    expect(sanitizeSlug('Café Açaí — Design')).toBe('Cafe-Acai-Design')
+  })
+
+  it('leaves an already-clean slug unchanged', () => {
+    expect(sanitizeSlug('brand-identity-cafe')).toBe('brand-identity-cafe')
   })
 })
 
