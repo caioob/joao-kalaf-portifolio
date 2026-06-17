@@ -38,7 +38,7 @@ Priority: CLI argument > env var > hardcoded default.
 Add as devDependencies (not runtime — this is a build tool):
 
 - `playwright` — headless browser automation, handles DataDome/Cloudflare and JS rendering
-- `sharp` — image resize + WebP conversion
+- `sharp` — image resize + AVIF/WebP conversion (shared with the build-time ladder, doc 08)
 
 These are **not** runtime dependencies of the portfolio site. They do not affect the build budget or the zero-deps constraint.
 
@@ -158,13 +158,14 @@ Example:
 
 All images are downloaded to the output directory during scraping, then converted.
 
-### 5.2 Conversion with sharp
+### 5.2 Conversion with sharp — same high-res strategy as the rest of the pipeline
 
-Per the content model (§04): thumbnails must be 16:10 ratio, ≥ 1200px wide, WebP format.
+The importer is **not** a special low-res path. It feeds the **shared image module** that also serves the Decap upload flow, so Behance-sourced images get the identical responsive treatment specified in `docs/08-responsive-images.md` (AVIF + WebP, the per-slot width ladder, intrinsic dimensions). The dump and the CMS are two callers of one optimizer.
 
-- **Thumbnails**: resize to 1600×1000 (cover crop), WebP quality 80
-- **Gallery images**: resize to max 1600px wide (maintain aspect ratio), WebP quality 80
-- Output filenames: `{slug}-thumb.webp` for thumbnails, `{slug}-{n}.webp` for gallery images (1-indexed, in module order)
+- **Canonical master (committed):** one WebP per image — `{slug}-thumb.webp` (16:10 cover crop, top thumbnail width) and `{slug}-{n}.webp` (gallery, top width, aspect preserved). This is the `src` stored in the JSON, exactly as before, just at the ladder's top width (gallery up to 2560px, `withoutEnlargement`).
+- **Derived ladder (build-time):** the smaller widths + every AVIF variant are produced by the shared step at build (`docs/02-architecture.md` §7), not committed — same policy for dump-sourced and CMS-sourced images. For local preview after a dump, `npm run images` runs the same step against the working tree.
+- **Intrinsic dimensions:** the importer records each master's `width`/`height` into the `Image` record (doc 04) so components reserve space (no CLS).
+- Output filenames: `{slug}-thumb.webp` / `{slug}-{n}.webp` (1-indexed, module order) for the canonical masters; derived variants follow the `…-<width>.{avif,webp}` convention in doc 08 §3.
 
 ### 5.3 Path rewriting
 

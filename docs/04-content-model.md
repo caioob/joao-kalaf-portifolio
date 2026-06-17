@@ -4,7 +4,7 @@ All schemas below are the single source of truth: the v1 JSON files, the reposit
 
 ## 1. `Project`
 
-Stored in `src/data/projects.json` as an array. Order in the file doesn't matter — the repository sorts by `date` descending.
+Stored as **one JSON file per project** under `content/projects/*.json` (v2 layout — see `docs/02-architecture.md`). The repository (`src/lib/projects.js`) globs and merges them, then sorts by `date` descending, so filenames and load order don't matter. (Pre-v2 this was a single `src/data/projects.json` array; the schema is unchanged.)
 
 | Field         | Type         | Required | Notes                                                                                                                         |
 | ------------- | ------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -13,7 +13,7 @@ Stored in `src/data/projects.json` as an array. Order in the file doesn't matter
 | `category`    | enum         | ✓        | One of `"video" \| "motion" \| "product" \| "graphic"` — the canonical enum, exported as `CATEGORIES` from `lib/projects.js`. |
 | `title`       | `{ pt, en }` | ✓        | Both languages required.                                                                                                      |
 | `description` | `{ pt, en }` | ✓        | 1–3 short paragraphs; plain text, `\n\n` = paragraph break.                                                                   |
-| `thumbnail`   | `Image`      | ✓        | Shown on the grid card. 16:10 crop, ≥ 1200 px wide, WebP.                                                                     |
+| `thumbnail`   | `Image`      | ✓        | Shown on the grid card. 16:10 crop; master ≥ 1600 px wide. Responsive variants generated per `docs/08-responsive-images.md`. |
 | `media`       | `Media[]`    | ✓ (≥ 1)  | Gallery shown in the detail modal, in array order.                                                                            |
 | `tools`       | string[]     | –        | e.g. `["After Effects", "Figma"]`. Display names, free text.                                                                  |
 | `date`        | string       | ✓        | `"YYYY-MM"`. Drives sort order and the displayed year.                                                                        |
@@ -23,10 +23,17 @@ Stored in `src/data/projects.json` as an array. Order in the file doesn't matter
 ### `Image`
 
 ```jsonc
-{ "src": "/images/projects/campanha-verao-thumb.webp", "alt": { "pt": "...", "en": "..." } }
+{
+  "src": "/images/projects/campanha-verao-thumb.webp",
+  "alt": { "pt": "...", "en": "..." },
+  "width": 1600,   // optional: intrinsic px of the master (CLS reservation)
+  "height": 1000   // optional
+}
 ```
 
-`alt` is **required** in both languages — accessibility is enforced at the schema level.
+- `alt` is **required** in both languages — accessibility is enforced at the schema level.
+- `src` remains the **single** stored path — the canonical largest WebP. The responsive AVIF/WebP variants (`<slug>-thumb-320.avif`, …) are derived from `src` by convention, not listed here. See `docs/08-responsive-images.md`.
+- `width`/`height` are **optional** intrinsic dimensions, populated by the image pipeline. When present, components render them to prevent layout shift; thumbnails don't need them (fixed 16:10 via the `aspect-thumb` token).
 
 ### `Media` (tagged union on `type`)
 

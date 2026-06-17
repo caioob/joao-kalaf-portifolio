@@ -19,13 +19,25 @@ Explicitly _not_ used in v1 — each is replaced by ~30 lines of our own code:
 - ❌ Redux/Zustand → `useState` + context covers everything.
 - ❌ framer-motion → CSS transitions satisfy the motion guidelines ([design §6](03-design-system.md)).
 
+**v2 carve-out (the admin CMS — [doc 07](07-admin-cms.md) — and image pipeline — [doc 08](08-responsive-images.md)).** The rule above governs the **public app bundle**, and v2 keeps it intact:
+
+- Decap (`decap-cms-app`) is a **devDependency**, vendored as static assets under `public/admin/`; it is never imported by `src/`, so it cannot enter the public bundle.
+- `sharp` stays a **devDependency** used only by the build-time image pipeline (shared with the Behance importer).
+- The OAuth proxy (`api/`) is a **dependency-free** Vercel function (uses `fetch`); it is server-side, not part of any client bundle.
+- Net effect on the shipped site: **zero** new runtime JS. `check:tokens` and the `< 150 kB` budget still apply and still pass.
+
 ## 2. Folder structure
 
 ```
 joaokalaf/
 ├── docs/                      # these specs
+├── content/                   # v2: content lives here, edited via Decap (doc 07)
+│   ├── projects/*.json        # ← one file per project (was src/data/projects.json)
+│   └── profile.json           # name, bio, socials
+├── api/                       # v2: GitHub OAuth proxy for Decap (doc 07 §4), dep-free
 ├── public/
-│   ├── images/projects/       # project thumbnails & gallery images
+│   ├── admin/                 # v2: vendored Decap editor (index.html + config.yml)
+│   ├── images/projects/       # project thumbnails & gallery images (+ AVIF/WebP ladder, doc 08)
 │   └── og-image.png
 ├── src/
 │   ├── components/            # presentational; one file per component from design §5
@@ -38,15 +50,14 @@ joaokalaf/
 │   │   ├── FilterBar.jsx
 │   │   ├── ProjectCard.jsx
 │   │   ├── ProjectDetail.jsx
+│   │   ├── Picture.jsx        # v2: <picture> srcset/sizes wrapper (doc 08 §8)
 │   │   ├── ServiceList.jsx
 │   │   ├── ContactSection.jsx
 │   │   └── Footer.jsx
-│   ├── data/
-│   │   ├── projects.json      # ← the only file edited to add a project (v1)
-│   │   └── profile.json       # name, bio, socials
 │   ├── lib/
-│   │   ├── projects.js        # repository: the ONLY module that reads projects.json
-│   │   └── projects.test.js
+│   │   ├── projects.js        # repository: the ONLY module that reads content/*.json
+│   │   ├── projects.test.js
+│   │   ├── images.js          # v2: responsive ladder constant + srcset builder (doc 08 §3)
 │   ├── i18n/
 │   │   ├── I18nContext.jsx    # provider + useI18n() hook
 │   │   ├── pt.json            # UI strings
@@ -87,7 +98,7 @@ export const CATEGORIES = ['video', 'motion', 'product', 'graphic']
 ```
 
 - The repository **validates** each record on load (required fields, known category, `{pt,en}` completeness) and throws in dev / skips-and-warns in prod, so a malformed JSON edit fails loudly instead of rendering broken cards.
-- **v2 migration:** these functions become async (`getProjects()` → fetch from Supabase/CMS) and gain `addProject` / `updateProject` / `deleteProject`. UI components already receive data via props from `App`, so the change is confined to `lib/` plus a loading state in `App`. Nothing else moves.
+- **v2 (Decap, git-based):** the functions stay **synchronous build-time imports** — only the source moves from a single `src/data/projects.json` to `import.meta.glob('/content/projects/*.json', { eager: true })`. Decap edits those same files and commits; a rebuild publishes. No async, no loading state, no fetch — the seam barely changes. (The earlier Supabase plan, which *would* have made these async, was not taken; see [roadmap v2](05-roadmap.md).)
 
 ## 4. i18n design
 
@@ -118,7 +129,12 @@ Nothing else is stateful. No effects for data (it's a static import).
 
 ## 7. Build & deployment
 
-- `npm run build` → fully static `dist/` (HTML/CSS/JS/images). No server code, no env vars.
+- `npm run build` → fully static `dist/` (HTML/CSS/JS/images). No server code for the public site.
 - **Decided & live: Vercel (Hobby plan, free — project is non-commercial).** The GitHub repo is connected via Vercel's Git integration: every push to `main` builds (`npm run build`, auto-detected Vite preset, zero config files) and deploys; other branches/PRs get preview URLs. Production URL: <https://joao-kalaf-portifolio.vercel.app/>. No `base` path needed (site is served from the domain root).
 - If a custom domain is attached later: add it in the Vercel dashboard and update the absolute URLs in `index.html` (`canonical`, `og:url`, `og:image` ×2).
-- v2 note: choosing Supabase later keeps the site static (client-side SDK); choosing a build-time CMS would add a rebuild webhook. The host choice is not a lock-in.
+
+### v2 additions to the build (Decap + images)
+
+- **Image generation step.** The build expands each high-res master into the responsive AVIF/WebP ladder + 16:10 crop ([doc 08](08-responsive-images.md)) via `sharp`. **Decision needed → resolved here: generate on the Vercel build, not committed to git.** Rationale: committing every variant (6 widths × 2 formats per image) would bloat the repo and every Decap save; build-time generation keeps git holding only masters + canonical WebP, and the step is idempotent (skips up-to-date variants). Cost: slightly longer builds — acceptable for a 15-project site.
+- **OAuth function.** `api/` deploys as a Vercel serverless function (the only server code, for Decap auth — [doc 07 §4](07-admin-cms.md)). `client_id`/`client_secret` are Vercel env vars; the public site itself still needs no env vars.
+- **Publish loop.** Decap commit → push to `main` → the same build runs (image step included) → live in ~1 min. No external rebuild webhook (git-based, unlike a hosted headless CMS).
