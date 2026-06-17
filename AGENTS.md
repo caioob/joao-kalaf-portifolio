@@ -5,10 +5,10 @@ Quick-reference for working in this repo. For full context, read `CLAUDE.md` and
 ## Verification (run in this order)
 
 ```bash
-npm run lint && npm run check:tokens && npm run test && npm run build
+npm run lint && npm run check:tokens && npm run test && npm run test:scripts && npm run build
 ```
 
-All four must pass. Build budget: < 150 kB gzip JS.
+All five must pass. Build budget: < 150 kB gzip JS.
 
 ## Token enforcement — the #1 thing you'll forget
 
@@ -28,6 +28,8 @@ Only `src/styles/theme.css` may define visual values. Components must use semant
 - `setup.js` also mocks `IntersectionObserver` (reports everything in-view), `matchMedia`, `<dialog>.showModal/close`, and creates `<meta name="description">` — don't re-mock these.
 - jsdom `url` is set to `http://localhost/` in `vite.config.js` so localStorage works.
 - Single test: `npx vitest run src/App.test.jsx` or `npx vitest run -t "test name"`.
+- **Two vitest configs:** `vite.config.js` (main, jsdom env, excludes `scripts/**`) and `vitest.scripts.config.js` (node env, no jsdom setup, for `scripts/lib/*.test.mjs`). Run script tests with `npm run test:scripts`.
+- **App tests use dynamic data:** `getProjects()`/`getProfile()` return real scraped data (15 projects, empty email, adobe-ccv videos). Don't hardcode project names, counts, or video providers in tests — derive them from the data functions.
 
 ## Architecture constraints that bite
 
@@ -36,6 +38,47 @@ Only `src/styles/theme.css` may define visual values. Components must use semant
 - **Layout:** sections compose `Section > Container` from `src/components/layout/`. Sections never set their own max-width or vertical rhythm.
 - **i18n:** content fields are `{ pt, en }` pairs; UI strings via `useI18n()` (`t()` for keys, `pick()` for content). No hardcoded user-visible strings. `en.json` and `pt.json` must have identical key sets (test-enforced).
 - **Spec-driven:** `docs/01–05` are source of truth. Read the relevant doc before implementing. Deviations must update docs and be noted in `docs/reports/`.
+
+## Data model — what's optional
+
+- **`project.description`**: may be `{ pt: "", en: "" }` — Behance projects often lack descriptions. The component renders nothing when empty. Don't make it required.
+- **`profile.email`**: may be `""` — Behance doesn't expose email. The contact CTA renders `mailto:` with no address. Don't make it required.
+- **`project.category`**: must be one of `video`, `motion`, `product`, `graphic`. The Behance import maps via tag heuristics and defaults to `graphic` when unmatched.
+
+## Video providers
+
+Three providers supported in `VIDEO_PROVIDERS` (`src/lib/projects.js`):
+
+| Provider | `videoId` format | Embed |
+|---|---|---|
+| `youtube` | YouTube video ID | `youtube.com/embed/{videoId}` |
+| `vimeo` | Vimeo video ID | `player.vimeo.com/video/{videoId}` |
+| `adobe-ccv` | Full embed URL from Behance | iframe `src` = `videoId` directly |
+
+Adobe CCV is used by Behance video modules. The `videoId` is the full URL (e.g. `https://www-ccv.adobe.io/v1/player/ccv/.../embed?api_key=behance1&...`).
+
+## Behance import script
+
+See `docs/06-behance-import.md` for the full spec. Quick reference:
+
+```bash
+node scripts/fetch-behance.mjs --profile https://www.behance.net/joaokalaf
+```
+
+- Uses Playwright (headless Chromium) to scrape Behance profile + project pages
+- Extracts data from `be-state` script tag (primary), network interception (fallback), DOM (last resort)
+- Downloads images, converts to WebP via sharp (16:10 thumbnails, max-1600px gallery)
+- Non-source language fields get `TRANSLATE:` prefix (grep-friendly for human review)
+- Category mapping via tag heuristics (`behance-map.mjs`), defaults to `graphic`
+- Output goes to `scripts/scripts/behance-dump/` (staging), then manually copied to `src/data/`
+- `CATEGORIES` is inlined in `behance-map.mjs` to avoid Node 26 `ERR_IMPORT_ATTRIBUTE_MISSING` with JSON imports
+- Real Behance data shapes: `beState.profile.user` (not `beState.user`), `raw.project.project` (double-nested), module types are `ImageModule`/`VideoModule`/`TextModule` (not lowercase), covers at `covers.size_original_webp.url` or `covers.allAvailable[]`
+
+## Deployment
+
+- **Vercel** auto-deploys from `main` branch. No GitHub Actions workflows.
+- GitHub Pages (`gh-pages` branch) is deprecated — do not use.
+- No `base` path in vite.config.js (Vercel serves from root).
 
 ## Style
 
@@ -50,3 +93,4 @@ Every completed roadmap step (`docs/05-roadmap.md`) requires a report at `docs/r
 ## Pending client input
 
 Name, bio, projects, accent color, and font are placeholders (marked in `theme.css`). Keep them swappable — don't bake in.
+Email is currently empty (Behance doesn't expose it) — needs manual entry.
