@@ -9,5 +9,6 @@ export default defineConfig({
     // localStorage needs a real origin — jsdom disables it on about:blank
     environmentOptions: { jsdom: { url: 'http://localhost/' } },
     setupFiles: './src/test/setup.js',
+    exclude: ['scripts/**', 'node_modules'],
   },
 })

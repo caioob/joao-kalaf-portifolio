@@ -31,26 +31,30 @@ describe('App', () => {
 
     await user.click(workGrid().getByRole('button', { name: 'Motion', pressed: false }))
 
-    expect(workGrid().getAllByRole('listitem')).toHaveLength(2)
+    expect(workGrid().getAllByRole('listitem')).toHaveLength(
+      getProjects().filter((p) => p.category === 'motion').length,
+    )
     expect(window.location.hash).toBe('#work/motion')
     expect(workGrid().getByRole('button', { name: 'Motion', pressed: true })).toBeInTheDocument()
-    expect(workGrid().queryByText('Showreel 2026')).not.toBeInTheDocument()
   })
 
   it('initializes the filter from a shared #work/<category> URL', () => {
     window.history.replaceState(null, '', '#work/graphic')
     render(<App />)
-    expect(workGrid().getAllByRole('listitem')).toHaveLength(2)
+    expect(workGrid().getAllByRole('listitem')).toHaveLength(
+      getProjects().filter((p) => p.category === 'graphic').length,
+    )
   })
 
   it('opens the project modal with details and closes it again', async () => {
     const user = userEvent.setup()
     render(<App />)
 
-    await user.click(screen.getByRole('button', { name: /showreel 2026/i }))
+    const project = getProjects().find((p) => p.media.some((m) => m.type === 'video'))
+    await user.click(screen.getByRole('button', { name: new RegExp(project.title.en, 'i') }))
 
     const dialog = screen.getByRole('dialog')
-    expect(within(dialog).getByRole('heading', { name: 'Showreel 2026' })).toBeInTheDocument()
+    expect(within(dialog).getByRole('heading', { name: project.title.en })).toBeInTheDocument()
 
     await user.click(within(dialog).getByRole('button', { name: 'Close' }))
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
@@ -61,13 +65,13 @@ describe('App', () => {
     render(<App />)
     expect(document.querySelector('iframe')).toBeNull()
 
-    await user.click(screen.getByRole('button', { name: /showreel 2026/i }))
+    const project = getProjects().find((p) => p.media.some((m) => m.type === 'video'))
+    await user.click(screen.getByRole('button', { name: new RegExp(project.title.en, 'i') }))
     const iframe = document.querySelector('iframe')
     expect(iframe).not.toBeNull()
-    expect(iframe.src).toContain('player.vimeo.com')
-    expect(iframe.src).toContain('dnt=1')
+    expect(iframe.src).toContain('ccv.adobe')
 
-    await user.click(screen.getByRole('button', { name: 'Close' }))
+    await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Close' }))
     expect(document.querySelector('iframe')).toBeNull()
   })
 
@@ -92,9 +96,8 @@ describe('App', () => {
   it('renders the four services and the contact CTA', () => {
     render(<App />)
     expect(within(document.getElementById('about')).getAllByRole('listitem')).toHaveLength(4)
-    expect(screen.getByRole('link', { name: "Let's talk" })).toHaveAttribute(
-      'href',
-      'mailto:contato@exemplo.com',
-    )
+    const cta = screen.getByRole('link', { name: "Let's talk" })
+    const email = getProfile().email
+    expect(cta).toHaveAttribute('href', email ? `mailto:${email}` : 'mailto:')
   })
 })

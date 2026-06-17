@@ -7,7 +7,9 @@ function VideoEmbed({ media }) {
   const src =
     media.provider === 'youtube'
       ? `https://www.youtube-nocookie.com/embed/${media.videoId}`
-      : `https://player.vimeo.com/video/${media.videoId}?dnt=1`
+      : media.provider === 'vimeo'
+        ? `https://player.vimeo.com/video/${media.videoId}?dnt=1`
+        : media.videoId
 
   return (
     <iframe

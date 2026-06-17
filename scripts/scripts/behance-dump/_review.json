@@ -1,0 +1,63 @@
+{
+  "profileUrl": "https://www.behance.net/joaokalaf",
+  "scrapedAt": "2026-06-17T21:58:53.953Z",
+  "projectCount": 15,
+  "warnings": [
+    {
+      "projectId": "p-001",
+      "slug": "Zoho-Event-Film-Motion-Brand-Content",
+      "field": "category",
+      "message": "No matching creative field; defaulted to 'graphic'",
+      "behanceFields": []
+    },
+    {
+      "projectId": "p-004",
+      "slug": "OVO",
+      "field": "category",
+      "message": "No matching creative field; defaulted to 'graphic'",
+      "behanceFields": [
+        "embalagem",
+        "design",
+        "egg"
+      ]
+    },
+    {
+      "projectId": "p-010",
+      "slug": "Dragoes-urbanos",
+      "field": "category",
+      "message": "No matching creative field; defaulted to 'graphic'",
+      "behanceFields": []
+    },
+    {
+      "projectId": "p-011",
+      "slug": "mao-figurativa",
+      "field": "category",
+      "message": "No matching creative field; defaulted to 'graphic'",
+      "behanceFields": []
+    },
+    {
+      "projectId": "p-012",
+      "slug": "estampa-para-moletom-e-camiseta",
+      "field": "category",
+      "message": "No matching creative field; defaulted to 'graphic'",
+      "behanceFields": [
+        "artwork",
+        "design",
+        "Drawing ",
+        "painting  ",
+        "t-shirt",
+        "vector"
+      ]
+    },
+    {
+      "projectId": "p-014",
+      "slug": "animacao-de-robo",
+      "field": "category",
+      "message": "No matching creative field; defaulted to 'graphic'",
+      "behanceFields": []
+    }
+  ],
+  "skippedModules": [],
+  "untranslatedFields": 144,
+  "missingImages": 0
+}

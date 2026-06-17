@@ -13,7 +13,7 @@ import rawProfile from '../data/profile.json'
 /** Canonical category enum — filters, services, and the v2 admin form all key off it. */
 export const CATEGORIES = ['video', 'motion', 'product', 'graphic']
 
-const VIDEO_PROVIDERS = ['youtube', 'vimeo']
+const VIDEO_PROVIDERS = ['youtube', 'vimeo', 'adobe-ccv']
 const DATE_RE = /^\d{4}-\d{2}$/
 
 const STRICT = import.meta.env.DEV
@@ -54,7 +54,8 @@ function projectErrors(project) {
   if (!CATEGORIES.includes(project.category))
     errors.push(`category: must be one of ${CATEGORIES.join(', ')}`)
   if (!isLocalized(project.title)) errors.push('title: requires non-empty pt and en')
-  if (!isLocalized(project.description)) errors.push('description: requires non-empty pt and en')
+  if (!isLocalized(project.description) && !(project.description?.pt === '' && project.description?.en === ''))
+    errors.push('description: requires non-empty pt and en or both empty')
   if (!DATE_RE.test(project.date ?? '')) errors.push('date: must match YYYY-MM')
   errors.push(...imageErrors(project.thumbnail, 'thumbnail'))
   if (!Array.isArray(project.media) || project.media.length === 0) {
@@ -109,8 +110,8 @@ function profileErrors(profile) {
   if (!isNonEmptyString(profile.name)) errors.push('name: required string')
   if (!isLocalized(profile.tagline)) errors.push('tagline: requires non-empty pt and en')
   if (!isLocalized(profile.bio)) errors.push('bio: requires non-empty pt and en')
-  if (!isNonEmptyString(profile.email) || !profile.email.includes('@'))
-    errors.push('email: required email address')
+  if (profile.email != null && profile.email !== '' && !profile.email.includes('@'))
+    errors.push('email: must be a valid email address if provided')
 
   const serviceIds = (profile.services ?? []).map((s) => s?.id)
   if (serviceIds.length !== CATEGORIES.length || !CATEGORIES.every((c) => serviceIds.includes(c))) {

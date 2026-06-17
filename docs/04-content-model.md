@@ -32,8 +32,10 @@ Stored in `src/data/projects.json` as an array. Order in the file doesn't matter
 
 ```jsonc
 { "type": "image", "src": "...", "alt": { "pt": "...", "en": "..." } }
-{ "type": "video", "provider": "youtube" | "vimeo", "videoId": "dQw4w9WgXcQ", "title": { "pt": "...", "en": "..." } }
+{ "type": "video", "provider": "youtube" | "vimeo" | "adobe-ccv", "videoId": "dQw4w9WgXcQ", "title": { "pt": "...", "en": "..." } }
 ```
+
+For `adobe-ccv`, `videoId` is the full embed URL (e.g. `https://www-ccv.adobe.io/v1/player/ccv/Sd_s7cN-5F-/embed?api_key=behance1`).
 
 Videos are stored as provider + id (never raw iframe HTML) — the `ProjectDetail` component builds a privacy-friendly lazy embed (`youtube-nocookie.com`, vimeo `dnt=1`).
 
