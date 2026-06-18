@@ -21,9 +21,19 @@ export const SIZES = {
   portrait: '(min-width: 768px) 360px, 80vw',
 }
 
+/**
+ * Any image src → its canonical WebP path. CMS uploads may be jpg/png; the build
+ * generator converts them to WebP, and the frontend always references the WebP
+ * form so a not-yet-normalized src still resolves.
+ * "…/foo.jpg" → "…/foo.webp"; "…/foo.webp" → "…/foo.webp".
+ */
+export function canonicalSrc(src) {
+  return src.replace(/\.[^./]+$/, '.webp')
+}
+
 /** "/images/projects/OVO-thumb.webp" + 800 → "/images/projects/OVO-thumb-800.webp" */
 export function variantSrc(src, width) {
-  return src.replace(/\.webp$/i, `-${width}.webp`)
+  return canonicalSrc(src).replace(/\.webp$/i, `-${width}.webp`)
 }
 
 /** Ladder widths strictly below the master's intrinsic width (those need a generated file). */
@@ -39,7 +49,8 @@ export function variantWidths(slot, intrinsicWidth) {
  */
 export function srcSetFor(src, slot, intrinsicWidth) {
   if (!intrinsicWidth) return ''
+  const base = canonicalSrc(src)
   const entries = variantWidths(slot, intrinsicWidth).map((w) => `${variantSrc(src, w)} ${w}w`)
-  entries.push(`${src} ${intrinsicWidth}w`)
+  entries.push(`${base} ${intrinsicWidth}w`)
   return entries.join(', ')
 }

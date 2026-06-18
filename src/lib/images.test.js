@@ -1,5 +1,17 @@
 import { describe, it, expect } from 'vitest'
-import { variantSrc, variantWidths, srcSetFor, SIZES, LADDERS } from './images.js'
+import { canonicalSrc, variantSrc, variantWidths, srcSetFor, SIZES, LADDERS } from './images.js'
+
+describe('canonicalSrc', () => {
+  it('maps any upload format to its WebP path', () => {
+    expect(canonicalSrc('/images/projects/photo.jpg')).toBe('/images/projects/photo.webp')
+    expect(canonicalSrc('/images/projects/photo.PNG')).toBe('/images/projects/photo.webp')
+    expect(canonicalSrc('/images/projects/already.webp')).toBe('/images/projects/already.webp')
+  })
+
+  it('only replaces the final extension', () => {
+    expect(canonicalSrc('/images/projects/pxl_123.mp.jpg')).toBe('/images/projects/pxl_123.mp.webp')
+  })
+})
 
 describe('variantSrc', () => {
   it('inserts the width before the .webp extension', () => {

@@ -64,8 +64,8 @@ These strings live next to the components (they are HTML attributes, not Tailwin
 
 ## 7. Build pipeline
 
-1. **Masters:** the Behance importer (`docs/06-behance-import.md` §5.2) and Decap uploads (doc 07 §6) each commit one top-width WebP master — the `src` in the JSON — with intrinsic `width`/`height` recorded.
-2. **`scripts/generate-images.mjs`** reads the masters referenced by `content/`, and for each writes the sub-intrinsic WebP rungs (§2) next to it via `sharp`. It is **idempotent** (skips existing variants) and shares `LADDERS`/`variantWidths`/`variantSrc` with the frontend.
+1. **Masters:** the Behance importer (`docs/06-behance-import.md` §5.2) commits top-width WebP masters with `width`/`height`. Decap uploads (doc 07 §6) commit a raw image of **any** format — `generate-images.mjs` normalizes it (see below).
+2. **`scripts/generate-images.mjs`** processes the masters referenced by `content/`. For each it ensures a **canonical WebP master** (`canonicalSrc`) — converting + capping a non-WebP/oversized upload to the slot ceiling (thumbnail 1600×1000, gallery ≤2560, portrait ≤960) via `sharp`, and rewriting that record's `src`→`.webp` + `width`/`height` — then writes the sub-intrinsic WebP rungs (§2). **Idempotent** (already-normalized masters with variants are a no-op) and shares `LADDERS`/`variantWidths`/`variantSrc`/`canonicalSrc` with the frontend.
 3. **Variants are committed** (`npm run images`, run once after a dump). The build runs the generator first (`build` = `node scripts/generate-images.mjs && vite build`); because variants exist it's a near-instant no-op, and a Decap-added master generates only its own few rungs on that deploy. This supersedes the earlier "generate at build, don't commit" note — committing keeps deploys fast and reliable (no multi-minute re-encode) at the cost of ~250 small files in git.
 
 ## 8. Component contract

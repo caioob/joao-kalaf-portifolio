@@ -82,7 +82,7 @@ Thereafter: edit in `/admin` → **Publish** → ~1 min later the change is live
 
 ## 6. Images
 
-The client uploads **one high-res master** per image in Decap's media widget. The Vercel build expands it into the responsive AVIF/WebP ladder and the 16:10 thumbnail crop and records intrinsic dimensions — see `docs/08-responsive-images.md`. The client never deals with sizes, crops, or formats.
+The client uploads **one image of any format** per slot in Decap's media widget. On deploy, `scripts/generate-images.mjs` converts it to a capped WebP master, records intrinsic dimensions into the JSON, and generates the responsive WebP ladder (`docs/08-responsive-images.md` §7). The client never deals with sizes, crops, or formats. *(Implemented in Step 5.)*
 
 ## 7. What does not change
 

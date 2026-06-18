@@ -1,4 +1,4 @@
-import { srcSetFor, SIZES } from '../lib/images.js'
+import { srcSetFor, canonicalSrc, SIZES } from '../lib/images.js'
 
 /**
  * Responsive <img> with a WebP `srcset`/`sizes` (docs/08). WebP-only, so no
@@ -11,7 +11,7 @@ export default function ResponsiveImage({ src, alt, slot, width, height, eager =
 
   return (
     <img
-      src={src}
+      src={canonicalSrc(src)}
       srcSet={srcSet || undefined}
       sizes={srcSet ? SIZES[slot] : undefined}
       alt={alt}
