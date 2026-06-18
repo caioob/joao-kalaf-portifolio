@@ -14,6 +14,7 @@
     "test": "NODE_OPTIONS=--no-experimental-webstorage vitest run",
     "test:watch": "NODE_OPTIONS=--no-experimental-webstorage vitest",
     "test:scripts": "vitest run --config vitest.scripts.config.js",
+    "test:e2e": "node scripts/e2e-render.mjs",
     "og:image": "rsvg-convert -w 1200 -h 630 public/og-image.svg -o public/og-image.png && rsvg-convert -w 180 -h 180 public/favicon.svg -o public/apple-touch-icon.png"
   },
   "dependencies": {

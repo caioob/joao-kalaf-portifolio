@@ -17,12 +17,13 @@ npm run check:tokens  # token enforcement — must pass before any commit
 npm run test          # Vitest, app/src single run (jsdom env, vite.config.js)
 npm run test:watch    # Vitest, watch mode
 npm run test:scripts  # Vitest for scripts/lib/*.test.mjs (node env, vitest.scripts.config.js)
+npm run test:e2e      # Playwright rendering battery vs `vite dev` (scripts/e2e-render.mjs)
 npx vitest run src/App.test.jsx        # single test file
 npx vitest run -t "renders the hero"   # single test by name
 npm run og:image      # regenerate og-image.png / apple-touch-icon.png from SVG (needs rsvg-convert)
 ```
 
-All of `lint`, `check:tokens`, `test`, `test:scripts`, `build` must pass before considering work done.
+All of `lint`, `check:tokens`, `test`, `test:scripts`, `build` must pass before considering work done. Run `test:e2e` too after any data/loader/component change — it catches dev-only rendering breaks (e.g. a URL-unsafe content filename 404ing the eager-glob fetch) that `test`/`build` miss because they bundle the content JSON instead of serving it.
 
 **Two vitest configs:** `vite.config.js` (jsdom env, excludes `scripts/**`, loads `src/test/setup.js`) and `vitest.scripts.config.js` (node env, no jsdom, for the Behance import unit tests in `scripts/lib/`). They run separately — `test` does not cover script tests.
 

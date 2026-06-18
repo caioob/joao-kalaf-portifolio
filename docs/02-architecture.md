@@ -125,7 +125,8 @@ Nothing else is stateful. No effects for data (it's a static import).
 - `i18n/i18n.test.js` — `t()` lookup + fallback; `pick()` fallback; language detection logic.
 - One smoke test: `App` renders, filter clicks change visible cards, modal opens/closes.
 - **Token enforcement:** `npm run check:tokens` — a small grep-based script that fails if any file under `src/` other than `styles/theme.css` contains a hex color, a Tailwind arbitrary value (`[...]` utility), or a raw palette class (`-(zinc|gray|neutral|stone|red|orange|amber|...)-\d`). Keeps the design-change runbook ([design §8](03-design-system.md)) honest.
-- CI-ready scripts: `npm run lint`, `npm run check:tokens`, `npm run test`, `npm run build`.
+- **E2E rendering battery:** `npm run test:e2e` (`scripts/e2e-render.mjs`) drives a headless browser against **`vite dev`** and asserts the app actually renders: hero, one card per `content/projects/*.json`, no failed `/content`·`/images` requests, no uncaught page errors, no broken thumbnails, plus filter / modal / language-toggle interactions. It targets the dev server on purpose — that's the strictest renderer (strict validation, content served over HTTP via the eager glob) and the only place a URL-unsafe content filename surfaces (`test`/`build` bundle the JSON and miss it). Run it after any data, loader, or component change. Uses the existing `playwright` dep — no new framework.
+- CI-ready scripts: `npm run lint`, `npm run check:tokens`, `npm run test`, `npm run test:scripts`, `npm run test:e2e`, `npm run build`.
 
 ## 7. Build & deployment
 
