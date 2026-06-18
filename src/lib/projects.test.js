@@ -88,6 +88,26 @@ describe('loadProjects — validation', () => {
   })
 })
 
+describe('loadProjects — description is optional copy', () => {
+  // A partial description (one language) is legitimate and must not break the
+  // build — pick() falls back. Regression for a CMS one-language edit.
+  it.each([
+    ['both empty', { pt: '', en: '' }],
+    ['only pt', { pt: 'Testando', en: '' }],
+    ['only en', { pt: '', en: 'Testing' }],
+    ['both filled', { pt: 'A', en: 'B' }],
+    ['absent', undefined],
+  ])('accepts %s', (_name, description) => {
+    expect(loadProjects([makeProject({ description })], strict)).toHaveLength(1)
+  })
+
+  it('rejects a malformed (non-string) description', () => {
+    expect(() => loadProjects([makeProject({ description: { pt: 5, en: 'x' } })], strict)).toThrow(
+      /description: pt and en must be strings/,
+    )
+  })
+})
+
 describe('loadProjects — ordering', () => {
   it('sorts newest-first by date', () => {
     const result = loadProjects(

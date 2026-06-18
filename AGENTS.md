@@ -10,6 +10,12 @@ npm run lint && npm run check:tokens && npm run test && npm run test:scripts && 
 
 All five must pass. Build budget: < 150 kB gzip JS.
 
+Run `npm run test:e2e` after any data/loader/component change — it catches dev-only rendering breaks (e.g. URL-unsafe content filename 404ing the eager-glob fetch) that `test`/`build` miss because they bundle the content JSON instead of serving it.
+
+## Build pipeline
+
+`npm run build` runs `generate-images.mjs && vite build`. The image script reads canonical WebP masters from content, writes responsive variants to `public/images/projects/` (idempotent — existing variants skipped). Variant widths come from `src/lib/images.js`, shared with the frontend `srcset` — a card never references a variant the generator didn't write.
+
 ## Token enforcement — the #1 thing you'll forget
 
 `npm run check:tokens` scans `src/` and rejects any file (except `src/styles/theme.css`) containing:
@@ -33,11 +39,12 @@ Only `src/styles/theme.css` may define visual values. Components must use semant
 
 ## Architecture constraints that bite
 
-- **Zero runtime deps beyond react/react-dom.** No router (filter state = URL hash), no i18n lib, no animation lib. Adding a dep is a spec change, not an implementation detail.
-- **Content seam:** components never import `src/data/*.json` directly. All data flows through `src/lib/projects.js` (validates + sorts). This is the v2 admin swap point.
+- **Zero runtime deps beyond react/react-dom.** No router (filter state = URL hash), no i18n lib, no animation lib. Adding a dep is a spec change, not an implementation detail. Decap CMS is served as static assets under `public/admin/` — never imported by `src/` — so the rule holds. ESLint ignores `public/admin` (`eslint.config.js`).
+- **Content lives in `content/`** (not `src/data/`). One JSON file per project in `content/projects/`, plus `content/profile.json`. Components never import JSON directly — all data flows through `src/lib/projects.js` (validates + sorts). This is the v2 admin swap point.
 - **Layout:** sections compose `Section > Container` from `src/components/layout/`. Sections never set their own max-width or vertical rhythm.
 - **i18n:** content fields are `{ pt, en }` pairs; UI strings via `useI18n()` (`t()` for keys, `pick()` for content). No hardcoded user-visible strings. `en.json` and `pt.json` must have identical key sets (test-enforced).
-- **Spec-driven:** `docs/01–05` are source of truth. Read the relevant doc before implementing. Deviations must update docs and be noted in `docs/reports/`.
+- **Spec-driven:** `docs/01–08` are source of truth. Read the relevant doc before implementing. Deviations must update docs and be noted in `docs/reports/`.
+- **Responsive images (docs/08):** `src/lib/images.js` defines ladder widths and `srcSetFor()` — shared between frontend and `scripts/generate-images.mjs`. WebP-only by decision.
 
 ## Data model — what's optional
 
@@ -70,9 +77,13 @@ node scripts/fetch-behance.mjs --profile https://www.behance.net/joaokalaf
 - Downloads images, converts to WebP via sharp (16:10 thumbnails, max-1600px gallery)
 - Non-source language fields get `TRANSLATE:` prefix (grep-friendly for human review)
 - Category mapping via tag heuristics (`behance-map.mjs`), defaults to `graphic`
-- Output goes to `scripts/scripts/behance-dump/` (staging), then manually copied to `src/data/`
+- Output stages to `scripts/scripts/behance-dump/`, then manually copied into `content/`
 - `CATEGORIES` is inlined in `behance-map.mjs` to avoid Node 26 `ERR_IMPORT_ATTRIBUTE_MISSING` with JSON imports
 - Real Behance data shapes: `beState.profile.user` (not `beState.user`), `raw.project.project` (double-nested), module types are `ImageModule`/`VideoModule`/`TextModule` (not lowercase), covers at `covers.size_original_webp.url` or `covers.allAvailable[]`
+
+## Local dev with Decap
+
+`npm run dev-local` runs `npm run dev` (Vite) and `npx decap-server` concurrently. Open `/admin/index.html` (not `/admin/` — the SPA fallback serves the React app for the bare path). `config.yml` has `local_backend: true` so Decap connects to the local backend on port 8081 with no GitHub round-trip.
 
 ## Deployment
 

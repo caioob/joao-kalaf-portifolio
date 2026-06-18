@@ -60,8 +60,14 @@ function projectErrors(project) {
   if (!CATEGORIES.includes(project.category))
     errors.push(`category: must be one of ${CATEGORIES.join(', ')}`)
   if (!isLocalized(project.title)) errors.push('title: requires non-empty pt and en')
-  if (!isLocalized(project.description) && !(project.description?.pt === '' && project.description?.en === ''))
-    errors.push('description: requires non-empty pt and en or both empty')
+  // Description is optional copy — any pt/en combination is allowed (both empty,
+  // one filled, or both). pick() falls back gracefully, so a partial translation
+  // from the CMS renders fine rather than breaking the build.
+  if (
+    project.description != null &&
+    (typeof project.description.pt !== 'string' || typeof project.description.en !== 'string')
+  )
+    errors.push('description: pt and en must be strings')
   if (!DATE_RE.test(project.date ?? '')) errors.push('date: must match YYYY-MM')
   errors.push(...imageErrors(project.thumbnail, 'thumbnail'))
   if (!Array.isArray(project.media) || project.media.length === 0) {

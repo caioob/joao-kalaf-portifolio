@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev-local": "npx concurrently \"npm run dev\" \"npx decap-server\"",
     "images": "node scripts/generate-images.mjs",
     "build": "node scripts/generate-images.mjs && vite build",
     "preview": "vite preview",
@@ -30,6 +31,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^6.0.2",
+    "concurrently": "^10.0.3",
     "eslint": "^10.4.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
