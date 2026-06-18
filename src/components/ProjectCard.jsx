@@ -1,6 +1,7 @@
 import { useI18n } from '../i18n/I18nContext.jsx'
+import ResponsiveImage from './ResponsiveImage.jsx'
 
-export default function ProjectCard({ project, onOpen }) {
+export default function ProjectCard({ project, onOpen, priority = false }) {
   const { t, pick } = useI18n()
   const year = project.date.slice(0, 4)
   const hasVideo = project.media.some((item) => item.type === 'video')
@@ -12,12 +13,13 @@ export default function ProjectCard({ project, onOpen }) {
       className="group block w-full text-left"
     >
       <span className="relative block overflow-hidden rounded-card border border-line">
-        <img
+        <ResponsiveImage
           src={project.thumbnail.src}
           alt={pick(project.thumbnail.alt)}
-          width="1600"
-          height="1000"
-          loading="lazy"
+          slot="thumbnail"
+          width={project.thumbnail.width ?? 1600}
+          height={project.thumbnail.height ?? 1000}
+          eager={priority}
           className="aspect-thumb w-full object-cover transition-transform duration-(--duration-slow) ease-standard group-hover:scale-102"
         />
         {hasVideo && (

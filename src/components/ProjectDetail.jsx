@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useI18n } from '../i18n/I18nContext.jsx'
+import ResponsiveImage from './ResponsiveImage.jsx'
 
 function VideoEmbed({ media }) {
   const { pick } = useI18n()
@@ -77,11 +78,13 @@ export default function ProjectDetail({ project, onClose }) {
             item.type === 'video' ? (
               <VideoEmbed key={index} media={item} />
             ) : (
-              <img
+              <ResponsiveImage
                 key={index}
                 src={item.src}
                 alt={pick(item.alt)}
-                loading="lazy"
+                slot="gallery"
+                width={item.width}
+                height={item.height}
                 className="w-full rounded-card border border-line"
               />
             ),

@@ -28,9 +28,9 @@ function WorkSection({ projects, onOpen }) {
         </div>
         {visible.length > 0 ? (
           <ul className="mt-8 grid gap-x-grid gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            {visible.map((project) => (
+            {visible.map((project, index) => (
               <li key={project.id}>
-                <ProjectCard project={project} onOpen={onOpen} />
+                <ProjectCard project={project} onOpen={onOpen} priority={index < 3} />
               </li>
             ))}
           </ul>

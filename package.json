@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "images": "node scripts/generate-images.mjs",
+    "build": "node scripts/generate-images.mjs && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
