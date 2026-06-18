@@ -46,11 +46,11 @@ export default async function handler(req, res) {
 <body>
 <script>
 (function() {
+  var provider = 'github';
   function receiveMessage(e) {
-    if (e.origin !== window.location.origin) return
-    if (e.data === 'authorizing') {
+    if (e.data === 'authorizing:' + provider) {
       window.opener.postMessage(
-        { type: 'netlify-cms', token: '${token}' },
+        'authorization:' + provider + ':success:' + JSON.stringify({token:'${token}'}),
         e.origin
       )
       window.removeEventListener('message', receiveMessage)
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
     }
   }
   window.addEventListener('message', receiveMessage)
-  window.opener.postMessage('authorizing', '*')
+  window.opener.postMessage('authorizing:' + provider, '*')
 })()
 </script>
 </body>
