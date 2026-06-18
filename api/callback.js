@@ -1,9 +1,10 @@
 const TOKEN_URL = 'https://github.com/login/oauth/access_token'
 
 export default async function handler(req, res) {
-  const { code } = new URL(req.url, `https://${req.headers.host}`).searchParams
-  const clientId = process.env.GITHUB_CLIENT_ID
-  const clientSecret = process.env.GITHUB_CLIENT_SECRET
+  const url = new URL(req.url, `https://${req.headers.host}`)
+  const code = url.searchParams.get('code') || ''
+  const clientId = (process.env.GITHUB_CLIENT_ID || '').trim()
+  const clientSecret = (process.env.GITHUB_CLIENT_SECRET || '').trim()
 
   if (!code || !clientId || !clientSecret) {
     res.statusCode = 400
