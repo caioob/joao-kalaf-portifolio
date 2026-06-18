@@ -4,16 +4,17 @@
  * Runbook: docs/03-design-system.md §8
  */
 @theme {
-  /* ── Color (design §2) ─────────────────────────────────── */
-  --color-surface: #fafaf8;
-  --color-surface-raised: #ffffff;
-  --color-ink: #1c1b1a;
-  --color-ink-muted: #6e6a66;
-  --color-line: #e8e5e1;
-  /* accent pending client approval; accent-strong must keep ≥4.5:1 on surface */
-  --color-accent: #e8590c;
-  --color-accent-strong: #c2410c;
-  --color-accent-ink: #ffffff;
+  /* ── Color (design §2) — "Gangster Green & Black" (dark) ─── */
+  --color-surface: #0a0f0a;
+  --color-surface-raised: #131a13;
+  --color-ink: #e6f2e6;
+  --color-ink-muted: #7b9a7e;
+  --color-line: #1e2b1e;
+  /* money green; accent-strong reserved for body-size text (keep ≥4.5:1 on surface) */
+  --color-accent: #2ed573;
+  --color-accent-strong: #00c853;
+  --color-accent-ink: #0a0f0a;
+  --color-overlay: #000000; /* modal backdrop scrim — dims the near-black page */
 
   /* ── Typography (design §3) ────────────────────────────── */
   --font-display: 'Rubik', system-ui, -apple-system, sans-serif;

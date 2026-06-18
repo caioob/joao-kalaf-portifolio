@@ -44,7 +44,7 @@ export default function ProjectDetail({ project, onClose }) {
       onCancel={onClose}
       onClick={(event) => event.target === dialogRef.current && onClose()}
       aria-labelledby="project-detail-title"
-      className="m-auto w-full max-w-modal rounded-card bg-surface-raised p-0 text-ink backdrop:bg-ink/40"
+      className="m-auto w-full max-w-modal rounded-card bg-surface-raised p-0 text-ink backdrop:bg-overlay/70"
     >
       <div className="p-6 md:p-10">
         <div className="flex items-start justify-between gap-4">
