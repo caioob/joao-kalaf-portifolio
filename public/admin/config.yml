@@ -1,0 +1,186 @@
+# Decap CMS configuration (docs/07). Maps the content model (docs/04) to editor
+# widgets. The public site keeps reading these same files via src/lib/projects.js.
+#
+# Local editing (no GitHub): run `npx decap-server` in one terminal and
+# `npm run dev` in another, then open http://localhost:5173/admin/.
+# Production auth (GitHub OAuth proxy) is wired in Step 4 (docs/07 §4).
+
+backend:
+  name: github
+  repo: caioob/joao-kalaf-portifolio
+  branch: main
+  base_url: https://joao-kalaf-portifolio.vercel.app # OAuth proxy origin (Step 4)
+  auth_endpoint: /api/auth
+
+# When true, Decap talks to the local `npx decap-server` proxy and edits the
+# working tree directly — no GitHub round-trip. Harmless in production (only
+# active when the local proxy is reachable).
+local_backend: true
+
+# Image uploads land next to the existing masters; the build generator
+# (scripts/generate-images.mjs) produces their responsive ladder. Full
+# upload→optimize wiring is Step 5 (docs/07 §6).
+media_folder: public/images/projects
+public_folder: /images/projects
+
+collections:
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: content/projects
+    extension: json
+    format: json
+    create: true
+    slug: '{{fields.slug}}'
+    identifier_field: slug
+    summary: '{{fields.title.pt}}'
+    fields:
+      - { name: id, label: ID, widget: string, hint: 'Stable unique id, e.g. p-016' }
+      - name: slug
+        label: Slug
+        widget: string
+        hint: 'Filename + URL. Letters, numbers and hyphens only.'
+        pattern: ['^[A-Za-z0-9-]+$', 'Only letters, numbers and hyphens']
+      - { name: category, label: Category, widget: select, options: [video, motion, product, graphic] }
+      - name: date
+        label: Date
+        widget: string
+        hint: 'Year and month, e.g. 2026-06'
+        pattern: ['^\d{4}-\d{2}$', 'Use the format YYYY-MM']
+      - { name: featured, label: Featured?, widget: boolean, default: false, required: false }
+      - name: title
+        label: Title
+        widget: object
+        fields:
+          - { name: pt, label: Português, widget: string }
+          - { name: en, label: English, widget: string }
+      - name: description
+        label: Description
+        widget: object
+        required: false
+        fields:
+          - { name: pt, label: Português, widget: text, required: false }
+          - { name: en, label: English, widget: text, required: false }
+      - name: thumbnail
+        label: Thumbnail
+        widget: object
+        fields:
+          - { name: src, label: Image, widget: image }
+          - name: alt
+            label: Alt text
+            widget: object
+            fields:
+              - { name: pt, label: Português, widget: string }
+              - { name: en, label: English, widget: string }
+          - { name: width, label: Width (px), widget: number, required: false, value_type: int }
+          - { name: height, label: Height (px), widget: number, required: false, value_type: int }
+      - name: media
+        label: Media (gallery)
+        label_singular: Item
+        widget: list
+        types:
+          - name: image
+            label: Image
+            widget: object
+            summary: '{{fields.src}}'
+            fields:
+              - { name: src, label: Image, widget: image }
+              - name: alt
+                label: Alt text
+                widget: object
+                fields:
+                  - { name: pt, label: Português, widget: string }
+                  - { name: en, label: English, widget: string }
+              - { name: width, label: Width (px), widget: number, required: false, value_type: int }
+              - { name: height, label: Height (px), widget: number, required: false, value_type: int }
+          - name: video
+            label: Video
+            widget: object
+            summary: '{{fields.provider}} · {{fields.videoId}}'
+            fields:
+              - { name: provider, label: Provider, widget: select, options: [youtube, vimeo, adobe-ccv] }
+              - name: videoId
+                label: Video ID / embed URL
+                widget: string
+                hint: 'YouTube/Vimeo id, or the full embed URL for adobe-ccv'
+              - name: title
+                label: Title
+                widget: object
+                fields:
+                  - { name: pt, label: Português, widget: string }
+                  - { name: en, label: English, widget: string }
+      - name: tools
+        label: Tools
+        widget: list
+        required: false
+        field: { name: tool, label: Tool, widget: string }
+      - name: links
+        label: Links
+        widget: list
+        required: false
+        fields:
+          - name: label
+            label: Label
+            widget: object
+            fields:
+              - { name: pt, label: Português, widget: string }
+              - { name: en, label: English, widget: string }
+          - { name: url, label: URL, widget: string }
+
+  - name: profile
+    label: Profile
+    files:
+      - name: profile
+        label: Profile
+        file: content/profile.json
+        fields:
+          - { name: name, label: Name, widget: string }
+          - name: tagline
+            label: Tagline
+            widget: object
+            fields:
+              - { name: pt, label: Português, widget: string }
+              - { name: en, label: English, widget: string }
+          - name: bio
+            label: Bio
+            widget: object
+            fields:
+              - { name: pt, label: Português, widget: text }
+              - { name: en, label: English, widget: text }
+          - { name: email, label: Email, widget: string, required: false }
+          - name: services
+            label: Services
+            widget: list
+            fields:
+              - { name: id, label: Category, widget: select, options: [video, motion, product, graphic] }
+              - name: name
+                label: Name
+                widget: object
+                fields:
+                  - { name: pt, label: Português, widget: string }
+                  - { name: en, label: English, widget: string }
+              - name: blurb
+                label: Blurb
+                widget: object
+                fields:
+                  - { name: pt, label: Português, widget: string }
+                  - { name: en, label: English, widget: string }
+          - name: socials
+            label: Socials
+            widget: list
+            required: false
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: url, label: URL, widget: string }
+          - name: photo
+            label: Photo
+            widget: object
+            required: false
+            fields:
+              - { name: src, label: Image, widget: image }
+              - name: alt
+                label: Alt text
+                widget: object
+                fields:
+                  - { name: pt, label: Português, widget: string }
+                  - { name: en, label: English, widget: string }

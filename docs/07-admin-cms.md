@@ -18,7 +18,9 @@ Decap → GitHub API: commit to content/*.json + public/images/...
 push to main → Vercel build (image pipeline, doc 08) → live
 ```
 
-**Bundle isolation.** Decap is served as static assets under `public/admin/` and is **never imported by `src/`**, so it cannot enter the public app bundle — the "zero runtime deps" rule (`docs/02-architecture.md` §1) holds. The Decap bundle is vendored (a pinned `decap-cms-app` build copied into `public/admin/`), not loaded from a runtime CDN.
+**Bundle isolation.** Decap is served as static assets under `public/admin/` and is **never imported by `src/`**, so it cannot enter the public app bundle — the "zero runtime deps" rule (`docs/02-architecture.md` §1) holds. The bundle is vendored — a pinned **`decap-cms`** build (the auto-initializing package that loads `config.yml` itself; *not* `decap-cms-app`, which needs a manual `CMS.init()`) committed at `public/admin/decap-cms.js`, not loaded from a runtime CDN. ESLint ignores `public/admin` (`eslint.config.js`).
+
+**Local access (dev):** Vite dev's SPA history-fallback serves the React app for a bare `/admin/`, so open **`/admin/index.html`** locally (run `npx decap-server` for the local backend). On Vercel (static hosting) `/admin/` resolves to `/admin/index.html` automatically.
 
 ## 2. Content layout (set in Step 1)
 
