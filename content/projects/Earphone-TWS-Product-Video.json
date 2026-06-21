@@ -1,24 +1,4 @@
 {
-  "id": "p-003",
-  "slug": "Earphone-TWS-Product-Video",
-  "category": "video",
-  "title": {
-    "pt": "Earphone TWS - Product Video",
-    "en": "Earphone TWS - Product Video"
-  },
-  "description": {
-    "pt": "",
-    "en": ""
-  },
-  "thumbnail": {
-    "src": "/images/projects/Earphone-TWS-Product-Video-thumb.webp",
-    "alt": {
-      "pt": "Earphone TWS - Product Video",
-      "en": "Earphone TWS - Product Video"
-    },
-    "width": 1600,
-    "height": 1000
-  },
   "media": [
     {
       "type": "image",
@@ -89,16 +69,22 @@
       }
     }
   ],
-  "tools": [
-    "Adobe After Effects",
-    "Blender",
-    "Adobe Premiere Pro",
-    "Adobe Audition",
-    "Adobe Photoshop",
-    "Keyshot"
-  ],
-  "date": "2024-05",
+  "slug": "Earphone-TWS-Product-Video",
+  "thumbnail": {
+    "src": "/images/projects/Earphone-TWS-Product-Video-thumb.webp",
+    "alt": {
+      "pt": "Earphone TWS - Product Video",
+      "en": "Earphone TWS - Product Video"
+    },
+    "width": 1600,
+    "height": 1000
+  },
   "featured": false,
+  "date": "2024-05",
+  "title": {
+    "pt": "Earphone TWS - Product Video",
+    "en": "Earphone TWS - Product Video"
+  },
   "links": [
     {
       "label": {
@@ -107,5 +93,19 @@
       },
       "url": "https://www.behance.net/gallery/199521835/Earphone-TWS-Product-Video"
     }
-  ]
+  ],
+  "id": "p-003",
+  "tools": [
+    "Adobe After Effects",
+    "Blender",
+    "Adobe Premiere Pro",
+    "Adobe Audition",
+    "Adobe Photoshop",
+    "Keyshot"
+  ],
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "category": "motion"
 }
