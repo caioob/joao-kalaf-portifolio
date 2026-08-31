@@ -148,6 +148,12 @@ try {
     const dialog = page.locator('dialog[open]')
     await dialog.waitFor({ state: 'visible', timeout: 5000 })
     assert((await dialog.locator('h2').first().innerText()).trim().length > 0, 'modal has no title')
+    const box = await dialog.boundingBox()
+    const vp = page.viewportSize()
+    assert(
+      box && Math.abs(box.width - vp.width) < 2 && Math.abs(box.height - vp.height) < 2,
+      `detail stage should span the viewport (got ${box?.width}×${box?.height}, expected ${vp.width}×${vp.height})`,
+    )
     await page.keyboard.press('Escape')
     await dialog.waitFor({ state: 'hidden', timeout: 5000 })
   })

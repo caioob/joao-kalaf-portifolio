@@ -39,6 +39,8 @@
   --spacing-section: clamp(2rem, 5vw, 3rem);
   --spacing-grid: 1.5rem;
   --radius-card: 0;
+  /* detail stage frosted-glass blur (issue #7) */
+  --blur-modal: 12px;
   /* project-card rectangle heights — cycle by card index % 3; 4/3 of the
      original 22/16/11rem (quarter-rem rounded) for more visible project area */
   --rect-h-1: 29.25rem;
