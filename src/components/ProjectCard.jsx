@@ -3,11 +3,15 @@ import ResponsiveImage from './ResponsiveImage.jsx'
 
 const RECT_CLASSES = ['h-(--rect-h-1)', 'h-(--rect-h-2)', 'h-(--rect-h-3)']
 
-export default function ProjectCard({ project, onOpen, priority = false, index = 0 }) {
+export default function ProjectCard({ project, onOpen, priority = false, index = 0, transitioningId = null }) {
   const { t, pick } = useI18n()
   const year = project.date.slice(0, 4)
   const hasVideo = project.media.some((item) => item.type === 'video')
   const rectClass = RECT_CLASSES[index % 3]
+  // The shared `detail-hero` name is carried by exactly one card at a time
+  // (the one being morphed into the detail). View Transitions require the name
+  // to be unique per snapshot; the detail hero carries it in the new state.
+  const morphing = transitioningId === project.id
 
   return (
     <button
@@ -15,7 +19,10 @@ export default function ProjectCard({ project, onOpen, priority = false, index =
       onClick={() => onOpen(project.id)}
       className="group block w-full text-left"
     >
-      <span className="relative block overflow-hidden border border-line">
+      <span
+        className="relative block overflow-hidden border border-line"
+        style={{ viewTransitionName: morphing ? 'detail-hero' : undefined }}
+      >
         <ResponsiveImage
           src={project.thumbnail.src}
           alt={pick(project.thumbnail.alt)}

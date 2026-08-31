@@ -26,13 +26,31 @@ function VideoEmbed({ media }) {
 export default function ProjectDetail({ project, onClose }) {
   const { t, pick } = useI18n()
   const dialogRef = useRef(null)
+  // The element that had focus when the modal opened — usually the clicked
+  // card button. The dialog is unmounted (not .close()'d) on exit, so native
+  // focus return never fires; restore it explicitly on unmount (issue #8).
+  const openerRef = useRef(null)
 
-  // Native <dialog>: focus trap, Esc (onCancel) and inert background for free.
+  // showModal() runs in a callback ref so it fires during React's commit —
+  // inside any flushSync() that wrapped the open. That puts the dialog in the
+  // top layer before a View Transition captures the "new" state, and captures
+  // the opener while focus is still on the card.
+  function openDialog(el) {
+    dialogRef.current = el
+    if (el && !el.open) {
+      openerRef.current = document.activeElement
+      el.showModal()
+    }
+  }
+
+  // Native <dialog> still owns the focus trap and the inert background.
   useEffect(() => {
-    dialogRef.current.showModal()
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = ''
+      if (openerRef.current && typeof openerRef.current.focus === 'function') {
+        openerRef.current.focus()
+      }
     }
   }, [])
 
@@ -40,14 +58,37 @@ export default function ProjectDetail({ project, onClose }) {
 
   return (
     <dialog
-      ref={dialogRef}
-      onCancel={onClose}
+      ref={openDialog}
+      onCancel={(event) => {
+        // Suppress the native close so the view transition can drive the exit;
+        // we unmount via onClose instead. Without this, Escape's default action
+        // can race the transition's old-state snapshot.
+        event.preventDefault()
+        onClose()
+      }}
       onClick={(event) => event.target === dialogRef.current && onClose()}
       aria-labelledby="project-detail-title"
       className="fixed inset-0 w-screen h-dvh max-w-none max-h-none overflow-y-auto bg-surface-raised/90 backdrop-blur-(--blur-modal) p-0 text-ink backdrop:bg-overlay/20"
     >
       <div className="mx-auto w-full max-w-modal p-6 md:p-10">
-        <div className="flex items-start justify-between gap-4">
+        {/* Hero — the shared-element morph target. Its `detail-hero` name
+            matches the clicked card's thumbnail for the View Transition
+            (issue #8). It is the project cover shown large; the rest of the
+            detail content cross-fades in as the transition's root group. */}
+        <div
+          className="overflow-hidden border border-line"
+          style={{ viewTransitionName: 'detail-hero' }}
+        >
+          <ResponsiveImage
+            src={project.thumbnail.src}
+            alt={pick(project.thumbnail.alt)}
+            slot="thumbnail"
+            width={project.thumbnail.width ?? 1600}
+            height={project.thumbnail.height ?? 1000}
+            className="w-full object-cover"
+          />
+        </div>
+        <div className="mt-6 flex items-start justify-between gap-4">
           <h2 id="project-detail-title" className="font-display text-h2">
             {pick(project.title)}
           </h2>

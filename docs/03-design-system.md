@@ -71,16 +71,26 @@ Same inventory as the light system. Only behavior that depends on color:
 - `ProjectCard` hover — title gains `accent-strong`; thumbnail scales 1.02.
 - `:focus-visible` ring — 2px `accent` (`#2ED573`), 2px offset. The bright green ring reads strongly on black.
 - `ProjectDetail` stage — full-screen frosted glass: the panel is `surface-raised/90` + `backdrop-blur-(--blur-modal)` so the home page ghosts softly behind it; the scrim drops to `bg-overlay/20` (`overlay` (`#000`) stays the only token darker than the page). Content keeps its centered `--container-modal` column inside the stage.
+- `ProjectCard` → `ProjectDetail` morph — clicking a card animates its thumbnail into the detail's hero via the View Transitions API; closing reverses it. The clicked card's thumbnail wrapper and the detail hero share one `view-transition-name` (`detail-hero`), carried by exactly one element per snapshot so a fixed name stays unique. Unsupported browsers and `prefers-reduced-motion` fall back to the instant open/close.
 
 ## 6. Motion
-
-Unchanged.
 
 | Token             | Value                                   | Usage                           |
 | ----------------- | --------------------------------------- | ------------------------------- |
 | `--duration-fast` | `150ms`                                 | Hover, focus, color changes     |
 | `--duration-slow` | `250ms`                                 | Modal enter/exit, scroll reveal |
 | `--ease-standard` | `cubic-bezier(0, 0, 0.2, 1)` (ease-out) | All transitions                 |
+
+### Card → detail transition (issue #8)
+
+A shared-element morph: the clicked `ProjectCard` thumbnail grows into the `ProjectDetail` hero on open and collapses back on close.
+
+- **Mechanism:** the native View Transitions API (`document.startViewTransition`), feature-detected. No animation library — zero runtime deps is unchanged.
+- **Shared name:** `view-transition-name: detail-hero`. The clicked card's thumbnail wrapper carries it in the old state; the detail hero carries it in the new state. Exactly one element per snapshot, so a fixed name needs no per-item bookkeeping.
+- **Timing:** the morph duration/easing reuse the tokens above (`--duration-slow` / `--ease-standard`) via `::view-transition-group(old|new)(detail-hero)` rules in `src/styles/index.css`.
+- **Coordination:** `ReactDOM.flushSync` inside the transition callback forces React to commit (and the dialog's callback ref to call `showModal()`) before the new-state snapshot, so the `<dialog>` is in the top layer when it's captured.
+- **Fallback:** no `startViewTransition`, or `prefers-reduced-motion: reduce` → instant open/close (the previous behavior). A reduced-motion rule on the transition pseudos is a belt-and-suspenders guard.
+- **A11y preserved:** the native `<dialog>` still owns the focus trap, Esc (`onCancel`, `preventDefault`-ed so the transition drives the exit), click-outside, and body scroll lock. Focus returns to the opener card on close via an explicit restore (the dialog is unmounted, not `.close()`'d).
 
 ## 7. Accessibility rules
 
@@ -104,6 +114,7 @@ Unchanged.
 | "Rounder / sharper cards"           | `--radius-card`                                                 | 1 line          |
 | "Softer / sharper stage blur"       | `--blur-modal`                                                  | 1 line          |
 | "Snappier / smoother animations"    | `--duration-fast`, `--duration-slow`                            | 2 lines          |
+| "Card morph faster / slower"        | `--duration-slow` (the `::view-transition-*(detail-hero)` duration in `index.css`) | 1 line           |
 | "Different heading font"            | ① drop woff2 in `public/fonts/` ② swap `@font-face` in `index.css` ③ update `--font-display` | 3 steps, 2 files |
 
 ---
