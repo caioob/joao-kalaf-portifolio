@@ -15,7 +15,7 @@ export default function Hero({ profile }) {
         <p className="mt-6 max-w-prose text-body text-ink-muted">{pick(profile.tagline)}</p>
         <a
           href="#work"
-          className="mt-10 inline-block rounded-full bg-accent px-7 py-3 text-small font-medium text-accent-ink transition-colors duration-(--duration-fast) ease-standard hover:bg-accent-strong"
+          className="mt-10 inline-block bg-accent px-7 py-3 text-small font-medium text-accent-ink transition-colors duration-(--duration-fast) ease-standard hover:bg-accent-strong"
         >
           {t('hero.cta')}
         </a>

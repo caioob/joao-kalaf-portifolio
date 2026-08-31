@@ -27,10 +27,15 @@ function WorkSection({ projects, onOpen }) {
           <FilterBar active={category} onChange={setCategory} />
         </div>
         {visible.length > 0 ? (
-          <ul className="mt-8 grid gap-x-grid gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 flex flex-col gap-grid">
             {visible.map((project, index) => (
               <li key={project.id}>
-                <ProjectCard project={project} onOpen={onOpen} priority={index < 3} />
+                <ProjectCard
+                  project={project}
+                  onOpen={onOpen}
+                  priority={index < 3}
+                  index={index}
+                />
               </li>
             ))}
           </ul>
@@ -95,7 +100,7 @@ function Page() {
     <>
       <a
         href="#main"
-        className="sr-only rounded-full bg-accent px-4 py-2 text-small font-medium text-accent-ink focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-20"
+        className="sr-only bg-accent px-4 py-2 text-small font-medium text-accent-ink focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-20"
       >
         {t('a11y.skipToContent')}
       </a>

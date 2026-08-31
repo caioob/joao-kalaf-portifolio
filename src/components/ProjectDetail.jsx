@@ -55,7 +55,7 @@ export default function ProjectDetail({ project, onClose }) {
             type="button"
             onClick={onClose}
             aria-label={t('detail.close')}
-            className="flex size-10 shrink-0 items-center justify-center rounded-full border border-line text-ink-muted transition-colors duration-(--duration-fast) ease-standard hover:text-ink"
+            className="flex size-10 shrink-0 items-center justify-center border border-line text-ink-muted transition-colors duration-(--duration-fast) ease-standard hover:text-ink"
           >
             ✕
           </button>

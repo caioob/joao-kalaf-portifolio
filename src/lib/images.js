@@ -9,14 +9,17 @@
 
 /** Widths generated per slot. The master (its intrinsic width) is the top rung. */
 export const LADDERS = {
-  thumbnail: [400, 800, 1200, 1600],
+  thumbnail: [400, 800, 1200, 1600, 2400],
   gallery: [640, 1280, 1920, 2560],
   portrait: [320, 480, 640, 960],
 }
 
-/** `sizes` per slot — derived from the layout (docs/08 §4). */
+/** `sizes` per slot — derived from the layout (docs/08 §4). Thumbnail cards are
+ * now full-width bands: the container is max-w-site (1200px) with 24px/side
+ * padding below the md breakpoint and 48px/side at md+, so the band renders at
+ * min(1200px, 100vw) − 96px (≈1104px on desktop). */
 export const SIZES = {
-  thumbnail: '(min-width: 1024px) min(380px, 31vw), (min-width: 640px) 47vw, 92vw',
+  thumbnail: '(min-width: 768px) min(1104px, calc(100vw - 96px)), calc(100vw - 48px)',
   gallery: '(min-width: 768px) min(880px, 90vw), 92vw',
   portrait: '(min-width: 768px) 360px, 80vw',
 }

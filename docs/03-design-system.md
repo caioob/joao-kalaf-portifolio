@@ -54,8 +54,12 @@ Unchanged.
 | `--container-modal` | `55rem` (880px)   | Project detail modal width     |
 | `--spacing-section` | `clamp(2rem, 5vw, 3rem)` | Vertical rhythm         |
 | `--spacing-grid`    | `1.5rem` (24px)   | Work grid gap                   |
-| `--radius-card`     | `0.75rem`         | Cards, modal, thumbnails       |
-| `--aspect-thumb`    | `16 / 10`         | Project thumbnails             |
+| `--radius-card`     | `0`               | Cards, modal, thumbnails (sharp edges across the whole design) |
+| `--rect-h-1`        | `29.25rem`        | Project card — tall rectangle (cycle index 0, 3, …) |
+| `--rect-h-2`        | `21.25rem`        | Project card — medium rectangle (cycle index 1, 4, …) |
+| `--rect-h-3`        | `14.75rem`        | Project card — short rectangle (cycle index 2, 5, …) |
+
+Heights are 4/3 of the original `22/16/11rem` (quarter-rem rounded) so the full-width bands crop less vertically and show more of each project.
 
 ## 5. Component notes (dark-mode deltas)
 
