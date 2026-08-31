@@ -50,7 +50,7 @@ These strings live next to the components (they are HTML attributes, not Tailwin
 ## 5. Quality, CLS, and LCP
 
 - **Quality:** WebP `quality 80` (the shared value in `scripts/generate-images.mjs` and the dump's `convertToWebP`).
-- **No layout shift (CLS):** every `<img>` carries intrinsic `width`/`height`. Thumbnails are a fixed 16:10 (the `aspect-thumb` token already reserves space). Gallery images vary, so the dump records each master's intrinsic `width`/`height` into the `Image` record (doc 04) and `ResponsiveImage` renders them.
+- **No layout shift (CLS):** every `<img>` carries intrinsic `width`/`height`. Thumbnails are a fixed height (`--rect-h-1/2/3` tokens, cycling per card index), reserved via `object-cover` on a sized box. Gallery images vary, so the dump records each master's intrinsic `width`/`height` into the `Image` record (doc 04) and `ResponsiveImage` renders them.
 - **LCP:** the first three above-the-fold cards load with `fetchpriority="high"` and **without** `loading="lazy"` (`ProjectCard priority` prop, set for `index < 3` in `App`); every other image stays `loading="lazy" decoding="async"`. The hero is text, so the LCP element is the first card.
 
 ## 6. Performance budget
