@@ -12,13 +12,15 @@ WebP only, served via a plain `<img srcset sizes>` (no `<picture>` element neede
 
 ## 2. Width ladders
 
-A "ladder" is the set of widths generated per image; `sizes` (§4) decides which rung the browser downloads. Four widths per slot — the single source of truth is `LADDERS` in `src/lib/images.js`.
+A "ladder" is the set of widths generated per image; `sizes` (§4) decides which rung the browser downloads. Four widths per slot (five for thumbnails — see the note under the table) — the single source of truth is `LADDERS` in `src/lib/images.js`.
 
 | Slot | Aspect | Ladder (px wide) | Master min |
 | --- | --- | --- | --- |
-| **thumbnail** (grid card) | 16:10 (cropped) | 400, 800, 1200, **1600** | ≥ 1600 |
+| **thumbnail** (full-width card band) | 16:10 (cropped) | 400, 800, 1200, **1600**, **2400**\* | ≥ 1600 |
 | **gallery** (detail modal) | native (no crop) | 640, 1280, 1920, **2560** | ≥ 2048 |
 | **portrait** (About photo) | native | 320, 480, 640, **960** | ≥ 960 |
+
+\*The 2400 rung only exists for masters whose intrinsic width exceeds it (the full-width-card pass re-derived one cover at 2400×1500 from its committed gallery master). The generator still caps *new* thumbnail uploads at 1600×1000 — raising the generator/importer caps is flagged as follow-up work.
 
 The committed master **is the top rung** (at its own intrinsic width); the generator only writes the rungs strictly *below* the intrinsic width (`variantWidths()`), so nothing is ever upscaled and a small master simply yields a shorter ladder.
 
@@ -37,11 +39,11 @@ Both masters **and** variants are committed (see §7). The ladder widths live in
 
 ## 4. The `sizes` contract (the part that protects performance)
 
-`sizes` tells the browser the slot's rendered width *before* layout, so it picks the right rung. These are derived from the grid (`src/App.jsx`: `sm:grid-cols-2 lg:grid-cols-3`, `gap-grid`) and `max-w-site`:
+`sizes` tells the browser the slot's rendered width *before* layout, so it picks the right rung. Thumbnails are full-width bands: one per project inside `max-w-site` (1200px), with 24px per-side padding below the `md` breakpoint (768px) and 48px at `md+` — so a band renders at `min(1200px, 100vw) − 96px` ≈ **1104px on desktop**:
 
 | Slot | `sizes` |
 | --- | --- |
-| **card** | `(min-width: 1024px) min(380px, 31vw), (min-width: 640px) 47vw, 92vw` |
+| **thumbnail** (full-width band) | `(min-width: 768px) min(1104px, calc(100vw - 96px)), calc(100vw - 48px)` |
 | **gallery** | `(min-width: 768px) min(880px, 90vw), 92vw` |
 | **portrait** | `(min-width: 768px) 360px, 80vw` |
 
@@ -57,7 +59,7 @@ These strings live next to the components (they are HTML attributes, not Tailwin
 
 "Higher res" must not regress speed, so the budget is part of the spec:
 
-- Largest realistically-downloaded **card** image (≈380px slot @2 DPR → 800px rung): **≤ 70 kB** (WebP).
+- Largest realistically-downloaded **thumbnail** (≈1104px band @2 DPR → 2208px wanted; the browser picks the 1600 master, or the 2400 rung where it exists): **≤ 425 kB** worst case — two dense illustrations encode at 401–423 kB at q80; most cards sit ≤ 75 kB and the re-derived 2400 master is 136 kB. Re-encoding those outliers is flagged as follow-up work.
 - Largest **gallery** image actually served at the 2560 rung: **≤ 400 kB** (WebP).
 - **Lighthouse Performance ≥ 90** (the v1 exit criterion, `docs/05-roadmap.md`) on a throttled mobile run with the grid populated.
 - The JS bundle budget (`< 150 kB gzip`) is unaffected — image work adds **zero** runtime JS; `srcset`/`sizes` are static markup.
