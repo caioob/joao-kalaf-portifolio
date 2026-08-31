@@ -9,3 +9,6 @@ dist
 !.vscode/extensions.json
 .vercel
 .env*
+# nix
+result
+result-*
