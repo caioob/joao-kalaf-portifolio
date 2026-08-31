@@ -70,7 +70,7 @@ Same inventory as the light system. Only behavior that depends on color:
 - `FilterBar` — active pill = `accent-strong` text + `accent` hairline underline.
 - `ProjectCard` hover — title gains `accent-strong`; thumbnail scales 1.02.
 - `:focus-visible` ring — 2px `accent` (`#2ED573`), 2px offset. The bright green ring reads strongly on black.
-- `ProjectDetail` stage — full-screen frosted glass: the panel is `surface-raised/95` + `backdrop-blur-(--blur-modal)` so the home page ghosts softly behind it; the scrim drops to `bg-overlay/20` (`overlay` (`#000`) stays the only token darker than the page). Content keeps its centered `--container-modal` column inside the stage.
+- `ProjectDetail` stage — full-screen frosted glass: the panel is `surface-raised/90` + `backdrop-blur-(--blur-modal)` so the home page ghosts softly behind it; the scrim drops to `bg-overlay/20` (`overlay` (`#000`) stays the only token darker than the page). Content keeps its centered `--container-modal` column inside the stage.
 
 ## 6. Motion
 

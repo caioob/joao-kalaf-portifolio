@@ -9,7 +9,7 @@
 | Area | Delivered |
 | --- | --- |
 | Full-screen stage | The detail `<dialog>` spans the viewport (`w-screen h-dvh max-w-none max-h-none fixed inset-0 overflow-y-auto`): the UA dialog `max-width`/`max-height` clamps are explicitly uncapped, `dvh` keeps mobile browser chrome honest, and taller projects scroll inside the stage |
-| Frosted glass (Q1-a) | Panel is `surface-raised/95` + `backdrop-blur-(--blur-modal)` — the page ghosts softly behind; scrim reduced `overlay/70` → `overlay/20` since the panel itself now dims |
+| Frosted glass (Q1-a) | Panel is `surface-raised/90` + `backdrop-blur-(--blur-modal)` — the page ghosts softly behind; scrim reduced `overlay/70` → `overlay/20` since the panel itself now dims |
 | Content column (Q2-a) | Unchanged layout, now centered: the inner container gains `mx-auto w-full max-w-modal` so the text measure and gallery stay at `--container-modal` (55rem) inside the stage |
 | New token | `--blur-modal: 12px` (modest, GPU-friendly) — the blur is load-bearing in a signature component, so it's a token per the brief; runbook §8 gains the 1-line "softer / sharper stage blur" edit |
 | Sharp corners | `rounded-card` dropped from the stage (not just token-zeroed) so a future radius change can't round a viewport panel |
@@ -44,7 +44,7 @@ None material. Two micro-decisions worth recording:
 
 ## 5. Decisions of record
 
-- **Frosted glass over plain transparency:** the page shows as a soft ghost (blur + 5% translucency) — preserves text contrast by construction and matches the Navbar's established "translucent surface + blur" language.
+- **Frosted glass over plain transparency:** the page shows as a soft ghost (blur + 10% translucency) — preserves text contrast by construction and matches the Navbar's established "translucent surface + blur" language.
 - **Stage is a backdrop, content keeps its column:** `--container-modal` survives as the content column width; the visual change is confined to the stage.
 - **Blur is a token** (`--blur-modal`), editable in one line per the §8 runbook.
 
