@@ -144,6 +144,18 @@ try {
 
   test('project detail modal opens and closes', async () => {
     await page.goto(baseURL, { waitUntil: 'networkidle' })
+    // Spy on document.startViewTransition so the battery proves the card→detail
+    // morph actually runs the View Transitions path (the instant fallback would
+    // call it zero times). The app reads the property fresh at call time, so the
+    // override is picked up even though it was installed after module load.
+    await page.evaluate(() => {
+      window.__vtCalls = 0
+      const orig = document.startViewTransition.bind(document)
+      document.startViewTransition = function (cb) {
+        window.__vtCalls++
+        return orig.call(document, cb)
+      }
+    })
     await page.locator('#work li button').first().click()
     const dialog = page.locator('dialog[open]')
     await dialog.waitFor({ state: 'visible', timeout: 5000 })
@@ -154,8 +166,21 @@ try {
       box && Math.abs(box.width - vp.width) < 2 && Math.abs(box.height - vp.height) < 2,
       `detail stage should span the viewport (got ${box?.width}×${box?.height}, expected ${vp.width}×${vp.height})`,
     )
+    // The open detail hero carries the shared `detail-hero` morph name, and
+    // opening started a view transition (not the instant fallback).
+    const heroNamed = await dialog.evaluate((dl) => {
+      for (const el of dl.querySelectorAll('*')) {
+        if (getComputedStyle(el).viewTransitionName === 'detail-hero') return true
+      }
+      return false
+    })
+    assert(heroNamed, 'detail hero should carry view-transition-name "detail-hero"')
+    const openCalls = await page.evaluate(() => window.__vtCalls)
+    assert(openCalls >= 1, `opening should start a view transition (got ${openCalls} call(s))`)
     await page.keyboard.press('Escape')
     await dialog.waitFor({ state: 'hidden', timeout: 5000 })
+    const closeCalls = await page.evaluate(() => window.__vtCalls)
+    assert(closeCalls >= 2, `closing should start a view transition (got ${closeCalls} call(s))`)
   })
 
   test('language toggle flips the document language', async () => {
