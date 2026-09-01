@@ -8,7 +8,7 @@ export default function LanguageToggle() {
     <div
       role="group"
       aria-label={t('toggle.label')}
-      className="flex items-center gap-1 rounded-full border border-line p-1"
+      className="flex items-center gap-1 border border-line p-1"
     >
       {LANGS.map((code) => (
         <button
@@ -16,7 +16,7 @@ export default function LanguageToggle() {
           type="button"
           aria-pressed={lang === code}
           onClick={() => setLang(code)}
-          className={`rounded-full px-3 py-1 text-small uppercase transition-colors duration-(--duration-fast) ease-standard ${
+          className={`px-3 py-1 text-small uppercase transition-colors duration-(--duration-fast) ease-standard ${
             lang === code
               ? 'bg-line font-semibold text-ink'
               : 'font-medium text-ink-muted hover:text-ink'

@@ -56,3 +56,28 @@
     }
   }
 }
+
+/*
+  Card → detail shared-element morph (issue #8). The shared name `detail-hero`
+  is carried by exactly one element per snapshot (the clicked card in the old
+  state, the detail hero in the new state), so no per-item name is needed. The
+  JS in App.jsx skips the transition entirely under prefers-reduced-motion; the
+  rule below is a belt-and-suspenders guard so a transition that does start can
+  never animate under reduced motion. Durations/easings reuse the §6 tokens.
+*/
+@supports (view-transition-name: none) {
+  ::view-transition-group(detail-hero),
+  ::view-transition-old(detail-hero),
+  ::view-transition-new(detail-hero) {
+    animation-duration: var(--duration-slow);
+    animation-timing-function: var(--ease-standard);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(detail-hero),
+    ::view-transition-old(detail-hero),
+    ::view-transition-new(detail-hero) {
+      animation: none;
+    }
+  }
+}

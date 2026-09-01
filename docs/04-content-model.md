@@ -33,7 +33,7 @@ Stored as **one JSON file per project** under `content/projects/*.json` (v2 layo
 
 - `alt` is **required** in both languages — accessibility is enforced at the schema level.
 - `src` remains the **single** stored path — the canonical largest WebP. The responsive AVIF/WebP variants (`<slug>-thumb-320.avif`, …) are derived from `src` by convention, not listed here. See `docs/08-responsive-images.md`.
-- `width`/`height` are **optional** intrinsic dimensions, populated by the image pipeline. When present, components render them to prevent layout shift; thumbnails don't need them (fixed 16:10 via the `aspect-thumb` token).
+- `width`/`height` are **optional** intrinsic dimensions, populated by the image pipeline. When present, components render them to prevent layout shift; thumbnails don't need them (fixed height via the `--rect-h-1/2/3` tokens — see `docs/03-design-system.md` §4).
 
 ### `Media` (tagged union on `type`)
 

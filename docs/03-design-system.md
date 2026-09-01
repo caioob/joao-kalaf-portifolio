@@ -24,7 +24,7 @@ A dark, mob-money aesthetic: near-black surfaces with a green undertone, a singl
 | `--color-accent`         | `#2ED573` (money green)          | Large text, icons, hover, focus ring             | ~9:1 ✓              |
 | `--color-accent-strong`  | `#00C853` (deep money green)     | Body-size accent text — ≥ 4.5:1 on surface ✓   | ~8.7:1 ✓            |
 | `--color-accent-ink`     | `#0A0F0A` (dark on green)        | Text on accent backgrounds (dark-on-bright ✓)   | —                   |
-| `--color-overlay`        | `#000000` (black)                | Modal backdrop scrim (`bg-overlay/70`)          | —                   |
+| `--color-overlay`        | `#000000` (black)                | Faint scrim under the full-screen detail stage (`bg-overlay/20`) | —                   |
 
 `accent` and `accent-strong` form a pair. On this dark surface **both** pass 4.5:1, but `accent-strong` is still reserved for body-size accent text by convention. When the accent changes, re-derive `accent-strong` so it keeps ≥ 4.5:1 on `surface` (check with any contrast tool). No other hex value may appear anywhere in the codebase.
 
@@ -51,11 +51,16 @@ Unchanged.
 | Token               | Value             | Usage                          |
 | ------------------- | ----------------- | ------------------------------ |
 | `--container-site`  | `75rem` (1200px)  | Content max-width              |
-| `--container-modal` | `55rem` (880px)   | Project detail modal width     |
+| `--container-modal` | `55rem` (880px)   | Project detail content column (centered in the full-screen stage) |
+| `--blur-modal`      | `12px`            | Detail stage frosted-glass `backdrop-blur`     |
 | `--spacing-section` | `clamp(2rem, 5vw, 3rem)` | Vertical rhythm         |
 | `--spacing-grid`    | `1.5rem` (24px)   | Work grid gap                   |
-| `--radius-card`     | `0.75rem`         | Cards, modal, thumbnails       |
-| `--aspect-thumb`    | `16 / 10`         | Project thumbnails             |
+| `--radius-card`     | `0`               | Cards, modal, thumbnails (sharp edges across the whole design) |
+| `--rect-h-1`        | `29.25rem`        | Project card — tall rectangle (cycle index 0, 3, …) |
+| `--rect-h-2`        | `21.25rem`        | Project card — medium rectangle (cycle index 1, 4, …) |
+| `--rect-h-3`        | `14.75rem`        | Project card — short rectangle (cycle index 2, 5, …) |
+
+Heights are 4/3 of the original `22/16/11rem` (quarter-rem rounded) so the full-width bands crop less vertically and show more of each project.
 
 ## 5. Component notes (dark-mode deltas)
 
@@ -65,17 +70,27 @@ Same inventory as the light system. Only behavior that depends on color:
 - `FilterBar` — active pill = `accent-strong` text + `accent` hairline underline.
 - `ProjectCard` hover — title gains `accent-strong`; thumbnail scales 1.02.
 - `:focus-visible` ring — 2px `accent` (`#2ED573`), 2px offset. The bright green ring reads strongly on black.
-- `ProjectDetail` backdrop — `bg-overlay/70` (not `ink`-based): the page is already near-black, so the scrim must be darker than `surface` to dim it. `overlay` (`#000`) is the only token darker than the page.
+- `ProjectDetail` stage — full-screen frosted glass: the panel is `surface-raised/90` + `backdrop-blur-(--blur-modal)` so the home page ghosts softly behind it; the scrim drops to `bg-overlay/20` (`overlay` (`#000`) stays the only token darker than the page). Content keeps its centered `--container-modal` column inside the stage.
+- `ProjectCard` → `ProjectDetail` morph — clicking a card animates its thumbnail into the detail's hero via the View Transitions API; closing reverses it. The clicked card's thumbnail wrapper and the detail hero share one `view-transition-name` (`detail-hero`), carried by exactly one element per snapshot so a fixed name stays unique. Unsupported browsers and `prefers-reduced-motion` fall back to the instant open/close.
 
 ## 6. Motion
-
-Unchanged.
 
 | Token             | Value                                   | Usage                           |
 | ----------------- | --------------------------------------- | ------------------------------- |
 | `--duration-fast` | `150ms`                                 | Hover, focus, color changes     |
 | `--duration-slow` | `250ms`                                 | Modal enter/exit, scroll reveal |
 | `--ease-standard` | `cubic-bezier(0, 0, 0.2, 1)` (ease-out) | All transitions                 |
+
+### Card → detail transition (issue #8)
+
+A shared-element morph: the clicked `ProjectCard` thumbnail grows into the `ProjectDetail` hero on open and collapses back on close.
+
+- **Mechanism:** the native View Transitions API (`document.startViewTransition`), feature-detected. No animation library — zero runtime deps is unchanged.
+- **Shared name:** `view-transition-name: detail-hero`. The clicked card's thumbnail wrapper carries it in the old state; the detail hero carries it in the new state. Exactly one element per snapshot, so a fixed name needs no per-item bookkeeping.
+- **Timing:** the morph duration/easing reuse the tokens above (`--duration-slow` / `--ease-standard`) via `::view-transition-group(old|new)(detail-hero)` rules in `src/styles/index.css`.
+- **Coordination:** `ReactDOM.flushSync` inside the transition callback forces React to commit (and the dialog's callback ref to call `showModal()`) before the new-state snapshot, so the `<dialog>` is in the top layer when it's captured.
+- **Fallback:** no `startViewTransition`, or `prefers-reduced-motion: reduce` → instant open/close (the previous behavior). A reduced-motion rule on the transition pseudos is a belt-and-suspenders guard.
+- **A11y preserved:** the native `<dialog>` still owns the focus trap, Esc (`onCancel`, `preventDefault`-ed so the transition drives the exit), click-outside, and body scroll lock. Focus returns to the opener card on close via an explicit restore (the dialog is unmounted, not `.close()`'d).
 
 ## 7. Accessibility rules
 
@@ -97,7 +112,9 @@ Unchanged.
 | "More / less white space"           | `--spacing-section`                                             | 1 line           |
 | "Site feels too narrow / wide"      | `--container-site`                                              | 1 line           |
 | "Rounder / sharper cards"           | `--radius-card`                                                 | 1 line          |
+| "Softer / sharper stage blur"       | `--blur-modal`                                                  | 1 line          |
 | "Snappier / smoother animations"    | `--duration-fast`, `--duration-slow`                            | 2 lines          |
+| "Card morph faster / slower"        | `--duration-slow` (the `::view-transition-*(detail-hero)` duration in `index.css`) | 1 line           |
 | "Different heading font"            | ① drop woff2 in `public/fonts/` ② swap `@font-face` in `index.css` ③ update `--font-display` | 3 steps, 2 files |
 
 ---

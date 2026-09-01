@@ -38,8 +38,14 @@
   /* applied per side of each <Section>: 32→48px, i.e. 64–96px between sections */
   --spacing-section: clamp(2rem, 5vw, 3rem);
   --spacing-grid: 1.5rem;
-  --radius-card: 0.75rem;
-  --aspect-thumb: 16 / 10;
+  --radius-card: 0;
+  /* detail stage frosted-glass blur (issue #7) */
+  --blur-modal: 12px;
+  /* project-card rectangle heights — cycle by card index % 3; 4/3 of the
+     original 22/16/11rem (quarter-rem rounded) for more visible project area */
+  --rect-h-1: 29.25rem;
+  --rect-h-2: 21.25rem;
+  --rect-h-3: 14.75rem;
 
   /* ── Motion (design §6) ────────────────────────────────── */
   --ease-standard: cubic-bezier(0, 0, 0.2, 1);

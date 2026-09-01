@@ -11,7 +11,7 @@ export default function ContactSection({ profile }) {
         <h2 className="max-w-prose font-display text-h2 text-ink">{t('contact.line')}</h2>
         <a
           href={`mailto:${profile.email}`}
-          className="mt-8 inline-block rounded-full bg-accent px-7 py-3 text-small font-medium text-accent-ink transition-colors duration-(--duration-fast) ease-standard hover:bg-accent-strong"
+          className="mt-8 inline-block bg-accent px-7 py-3 text-small font-medium text-accent-ink transition-colors duration-(--duration-fast) ease-standard hover:bg-accent-strong"
         >
           {t('contact.cta')}
         </a>
