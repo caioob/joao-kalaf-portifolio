@@ -71,24 +71,7 @@ export default function ProjectDetail({ project, onClose }) {
       className="fixed inset-0 w-screen h-dvh max-w-none max-h-none overflow-y-auto bg-surface-raised/90 backdrop-blur-(--blur-modal) p-0 text-ink backdrop:bg-overlay/20"
     >
       <div className="mx-auto w-full max-w-modal p-6 md:p-10">
-        {/* Hero — the shared-element morph target. Its `detail-hero` name
-            matches the clicked card's thumbnail for the View Transition
-            (issue #8). It is the project cover shown large; the rest of the
-            detail content cross-fades in as the transition's root group. */}
-        <div
-          className="overflow-hidden border border-line"
-          style={{ viewTransitionName: 'detail-hero' }}
-        >
-          <ResponsiveImage
-            src={project.thumbnail.src}
-            alt={pick(project.thumbnail.alt)}
-            slot="thumbnail"
-            width={project.thumbnail.width ?? 1600}
-            height={project.thumbnail.height ?? 1000}
-            className="w-full object-cover"
-          />
-        </div>
-        <div className="mt-6 flex items-start justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <h2 id="project-detail-title" className="font-display text-h2">
             {pick(project.title)}
           </h2>
@@ -103,6 +86,23 @@ export default function ProjectDetail({ project, onClose }) {
         </div>
 
         <p className="mt-2 text-small text-ink-muted">{meta.join(' · ')}</p>
+
+        {/* Hero — the shared-element morph target. Its `detail-hero` name
+            matches the clicked card's thumbnail for the View Transition
+            (issue #8). Sits under the title block, above the description. */}
+        <div
+          className="mt-6 overflow-hidden border border-line"
+          style={{ viewTransitionName: 'detail-hero' }}
+        >
+          <ResponsiveImage
+            src={project.thumbnail.src}
+            alt={pick(project.thumbnail.alt)}
+            slot="thumbnail"
+            width={project.thumbnail.width ?? 1600}
+            height={project.thumbnail.height ?? 1000}
+            className="w-full object-cover"
+          />
+        </div>
 
         <div className="mt-6 space-y-4">
           {pick(project.description)
