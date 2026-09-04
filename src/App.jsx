@@ -7,8 +7,6 @@ import Hero from './components/Hero.jsx'
 import FilterBar from './components/FilterBar.jsx'
 import ProjectCard from './components/ProjectCard.jsx'
 import ProjectDetail from './components/ProjectDetail.jsx'
-import ServiceList from './components/ServiceList.jsx'
-import ContactSection from './components/ContactSection.jsx'
 import Footer from './components/Footer.jsx'
 import { I18nProvider, useI18n } from './i18n/I18nContext.jsx'
 import { useCategoryFilter } from './lib/categoryFilter.js'
@@ -67,30 +65,6 @@ function WorkSection({ projects, onOpen, transitioningId }) {
             </button>
           </div>
         )}
-      </Container>
-    </Section>
-  )
-}
-
-function AboutSection({ profile }) {
-  const { t, pick } = useI18n()
-
-  return (
-    <Section id="about">
-      <Container>
-        <h2 className="font-display text-h2 text-ink">{t('about.title')}</h2>
-        <div className="mt-6 space-y-4">
-          {pick(profile.bio)
-            .split('\n\n')
-            .map((paragraph, index) => (
-              <p key={index} className="max-w-prose text-body text-ink-muted">
-                {paragraph}
-              </p>
-            ))}
-        </div>
-        <div className="mt-12">
-          <ServiceList services={profile.services} />
-        </div>
       </Container>
     </Section>
   )
@@ -165,8 +139,6 @@ function Page() {
       <main id="main">
         <Hero profile={profile} />
         <WorkSection projects={projects} onOpen={handleOpen} transitioningId={transitioningId} />
-        <AboutSection profile={profile} />
-        <ContactSection profile={profile} />
       </main>
       <Footer profile={profile} />
       {openProject && <ProjectDetail project={openProject} onClose={handleClose} />}

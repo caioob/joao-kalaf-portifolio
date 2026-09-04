@@ -86,18 +86,17 @@ describe('App', () => {
     await user.click(navbar.getByRole('button', { name: 'pt' }))
 
     expect(screen.getByRole('heading', { name: 'Trabalhos selecionados' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Ver trabalhos' })).toBeInTheDocument()
     expect(document.title).toContain('Vídeo, Motion, Produto')
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toContain(
       'Portfólio de João Kalaf',
     )
   })
 
-  it('renders the four services and the contact CTA', () => {
+  it('keeps the removed sections out of the page', () => {
     render(<App />)
-    expect(within(document.getElementById('about')).getAllByRole('listitem')).toHaveLength(4)
-    const cta = screen.getByRole('link', { name: "Let's talk" })
-    const email = getProfile().email
-    expect(cta).toHaveAttribute('href', email ? `mailto:${email}` : 'mailto:')
+    expect(document.getElementById('about')).toBeNull()
+    expect(document.getElementById('contact')).toBeNull()
+    expect(screen.queryByRole('link', { name: "Let's talk" })).not.toBeInTheDocument()
+    expect(screen.queryByText(getProfile().tagline.en)).not.toBeInTheDocument()
   })
 })

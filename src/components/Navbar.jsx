@@ -15,9 +15,9 @@ export default function Navbar() {
   }, [])
 
   const links = [
-    ['#work', t('nav.work')],
-    ['#about', t('nav.about')],
-    ['#contact', t('nav.contact')],
+    // ['#work', t('nav.work')],
+    // ['#about', t('nav.about')],
+    // ['#contact', t('nav.contact')],
   ]
 
   return (

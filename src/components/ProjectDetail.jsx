@@ -68,7 +68,7 @@ export default function ProjectDetail({ project, onClose }) {
       }}
       onClick={(event) => event.target === dialogRef.current && onClose()}
       aria-labelledby="project-detail-title"
-      className="fixed inset-0 w-screen h-dvh max-w-none max-h-none overflow-y-auto bg-surface-raised/90 backdrop-blur-(--blur-modal) p-0 text-ink backdrop:bg-overlay/20"
+      className="fixed inset-0 w-screen h-dvh max-w-none max-h-none overflow-y-auto bg-surface-raised/90 backdrop-blur-(--blur-modal) p-0 text-surface backdrop:bg-overlay/20"
     >
       <div className="mx-auto w-full max-w-modal p-6 md:p-10">
         <div className="flex items-start justify-between gap-4">
@@ -79,19 +79,19 @@ export default function ProjectDetail({ project, onClose }) {
             type="button"
             onClick={onClose}
             aria-label={t('detail.close')}
-            className="flex size-10 shrink-0 items-center justify-center border border-line text-ink-muted transition-colors duration-(--duration-fast) ease-standard hover:text-ink"
+            className="flex size-10 shrink-0 items-center justify-center border border-surface/25 text-surface/70 transition-colors duration-(--duration-fast) ease-standard hover:text-surface"
           >
             ✕
           </button>
         </div>
 
-        <p className="mt-2 text-small text-ink-muted">{meta.join(' · ')}</p>
+        <p className="mt-2 text-small text-surface/70">{meta.join(' · ')}</p>
 
         {/* Hero — the shared-element morph target. Its `detail-hero` name
             matches the clicked card's thumbnail for the View Transition
             (issue #8). Sits under the title block, above the description. */}
         <div
-          className="mt-6 overflow-hidden border border-line"
+          className="mt-6 overflow-hidden border border-surface/25"
           style={{ viewTransitionName: 'detail-hero' }}
         >
           <ResponsiveImage
@@ -104,15 +104,19 @@ export default function ProjectDetail({ project, onClose }) {
           />
         </div>
 
-        <div className="mt-6 space-y-4">
-          {pick(project.description)
-            .split('\n\n')
-            .map((paragraph, index) => (
-              <p key={index} className="max-w-prose text-body text-ink-muted">
-                {paragraph}
-              </p>
-            ))}
-        </div>
+        {/* description is optional (docs/04) — absent or empty renders nothing */}
+        {pick(project.description) && (
+          <div className="mt-6 space-y-4">
+            {pick(project.description)
+              .split('\n\n')
+              .filter(Boolean)
+              .map((paragraph, index) => (
+                <p key={index} className="max-w-prose text-body text-surface/70">
+                  {paragraph}
+                </p>
+              ))}
+          </div>
+        )}
 
         <div className="mt-8 space-y-6">
           {project.media.map((item, index) =>
@@ -126,7 +130,7 @@ export default function ProjectDetail({ project, onClose }) {
                 slot="gallery"
                 width={item.width}
                 height={item.height}
-                className="w-full rounded-card border border-line"
+                className="w-full rounded-card border border-surface/25"
               />
             ),
           )}
@@ -140,7 +144,7 @@ export default function ProjectDetail({ project, onClose }) {
                   href={link.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-small font-medium text-accent-strong underline underline-offset-4 transition-colors duration-(--duration-fast) ease-standard hover:text-ink"
+                  className="text-small font-medium text-surface underline underline-offset-4 transition-colors duration-(--duration-fast) ease-standard hover:text-surface/70"
                 >
                   {pick(link.label)}
                 </a>

@@ -18,7 +18,7 @@ export default function LanguageToggle() {
           onClick={() => setLang(code)}
           className={`px-3 py-1 text-small uppercase transition-colors duration-(--duration-fast) ease-standard ${
             lang === code
-              ? 'bg-line font-semibold text-ink'
+              ? 'bg-accent font-semibold text-accent-ink'
               : 'font-medium text-ink-muted hover:text-ink'
           }`}
         >

@@ -61,3 +61,17 @@ Vercel auto-deploys from `main` (no GitHub Actions; no `base` path in `vite.conf
 ## Pending client input
 
 Real name/brand, bio, accent color, and font approval are pending (checklist in `README.md`). Current values in `theme.css` marked "pending client approval" are placeholders — keep them swappable, don't bake them in. `profile.email` is currently empty (Behance doesn't expose it) and needs manual entry.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in this repo's GitHub Issues (use the `gh` CLI). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Five canonical roles with label string = role name (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root (created lazily by `/domain-modeling`). See `docs/agents/domain.md`.
