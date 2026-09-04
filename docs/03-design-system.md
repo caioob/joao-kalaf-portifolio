@@ -16,15 +16,15 @@ A dark, mob-money aesthetic: near-black surfaces with a green undertone, a singl
 
 | Token                    | Value                            | Usage                                           | Contrast on surface |
 | ------------------------ | -------------------------------- | ----------------------------------------------- | ------------------- |
-| `--color-surface`        | `#0A0F0A` (green-tinted black)   | Page background                                 | —                   |
-| `--color-surface-raised` | `#131A13` (raised green-black)   | Cards, modal                                    | —                   |
-| `--color-ink`            | `#E6F2E6` (off-white, green tint)| Headings, body                                  | ~16:1 ✓             |
-| `--color-ink-muted`      | `#7B9A7E` (muted sage)           | Secondary text, captions                        | ~6.4:1 ✓            |
-| `--color-line`           | `#1E2B1E` (dark green hairline)  | Hairline borders, dividers                      | —                   |
-| `--color-accent`         | `#2ED573` (money green)          | Large text, icons, hover, focus ring             | ~9:1 ✓              |
-| `--color-accent-strong`  | `#00C853` (deep money green)     | Body-size accent text — ≥ 4.5:1 on surface ✓   | ~8.7:1 ✓            |
-| `--color-accent-ink`     | `#0A0F0A` (dark on green)        | Text on accent backgrounds (dark-on-bright ✓)   | —                   |
-| `--color-overlay`        | `#000000` (black)                | Faint scrim under the full-screen detail stage (`bg-overlay/20`) | —                   |
+| `--color-surface`        | `#fff5f5` (white)   | Page background                                 | —                   |
+| `--color-surface-raised` | `#333132` (black)   | Cards, modal                                    | —                   |
+| `--color-ink`            | `#d60302` (blood red)      | Headings, body                                  | ~16:1 ✓             |
+| `--color-ink-muted`      | `#333132` (black)           | Secondary text, captions                        | ~6.4:1 ✓            |
+| `--color-line`           | `#333132` (black)  | Hairline borders, dividers                      | —                   |
+| `--color-accent`         | `#333132` (black)          | Large text, icons, hover, focus ring             | ~9:1 ✓              |
+| `--color-accent-strong`  | `#333132` (black)     | Body-size accent text — ≥ 4.5:1 on surface ✓   | ~8.7:1 ✓            |
+| `--color-accent-ink`     | `#333132` (black)        | Text on accent backgrounds (dark-on-bright ✓)   | —                   |
+| `--color-overlay`        | `#333132` (black)                | Faint scrim under the full-screen detail stage (`bg-overlay/20`) | —                   |
 
 `accent` and `accent-strong` form a pair. On this dark surface **both** pass 4.5:1, but `accent-strong` is still reserved for body-size accent text by convention. When the accent changes, re-derive `accent-strong` so it keeps ≥ 4.5:1 on `surface` (check with any contrast tool). No other hex value may appear anywhere in the codebase.
 
@@ -36,8 +36,8 @@ Unchanged from the light system — same faces and scale. Type carries the brand
 
 | Token            | Value                                             | Use                          |
 | ---------------- | ------------------------------------------------- | ---------------------------- |
-| `--font-display` | **Rubik**                                         | Display headings             |
-| `--font-sans`    | **Inter** (variable)                              | UI & body                    |
+| `--font-display` | **Neue Montreal**                                         | Display headings             |
+| `--font-sans`    | **DM Sans** (variable)                              | UI & body                    |
 | `--text-display` | `clamp(2.5rem, 6vw, 4rem)`, lh 1.05, tracking −1% | Hero name                    |
 | `--text-h2`      | `clamp(1.75rem, 4vw, 2.25rem)`, lh 1.15           | Section titles               |
 | `--text-h3`      | `clamp(1.1875rem, 2vw, 1.375rem)`, lh 1.3         | Card/modal titles            |
