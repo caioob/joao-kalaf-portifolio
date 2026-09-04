@@ -56,7 +56,7 @@ content/
 | `featured` | `boolean` | optional. |
 | `links` | `list` of object { label: {pt,en}, url: string } | optional. |
 
-**`profile`** is a `files` collection with a single `content/profile.json` document mapping `name`, `tagline`, `bio`, `services[4]`, `email`, `socials`, `photo`.
+**`profile`** is a `files` collection with a single `content/profile.json` document mapping `name`, `tagline`, `bio`, `services[4]`, `email`, `socials`. Three fields are deliberately not CMS-editable: `photo` (Decap's `image` widget is mandatory, which blocked saving a profile without a photo), and `tagline`/`bio` (no longer rendered since the page trim; Decap text widgets force non-empty values — blanking bio produced `' '` and broke strict validation). The data model and the strict loader contract are unchanged: `tagline`/`bio` remain required in `content/profile.json`, managed directly in the file.
 
 **Validation parity.** Decap field validation (required, `pattern`, select options) mirrors the v1 rules so the client gets inline feedback; `lib/projects.js` remains the build-time backstop (throws in dev, skips-and-warns in prod), and a test asserts every `content/projects/*.json` loads (Step 5). The `{pt,en}` "both required" rule is enforced by the loader, not Decap, since Decap can't express cross-subfield requirements cleanly.
 

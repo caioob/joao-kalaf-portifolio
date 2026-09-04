@@ -135,18 +135,11 @@ collections:
         file: content/profile.json
         fields:
           - { name: name, label: Name, widget: string }
-          - name: tagline
-            label: Tagline
-            widget: object
-            fields:
-              - { name: pt, label: Português, widget: string }
-              - { name: en, label: English, widget: string }
-          - name: bio
-            label: Bio
-            widget: object
-            fields:
-              - { name: pt, label: Português, widget: text }
-              - { name: en, label: English, widget: text }
+          # tagline/bio are NOT editable here: they're no longer rendered anywhere
+          # since the page trim, and Decap text widgets force non-empty values
+          # (blanking bio produced ' ' and broke strict validation — overridden in
+          # content). Values are managed in content/profile.json; docs/04 keeps
+          # them required.
           - { name: email, label: Email, widget: string, required: false }
           - name: services
             label: Services
@@ -172,15 +165,6 @@ collections:
             fields:
               - { name: label, label: Label, widget: string }
               - { name: url, label: URL, widget: string }
-          - name: photo
-            label: Photo
-            widget: object
-            required: false
-            fields:
-              - { name: src, label: Image, widget: image }
-              - name: alt
-                label: Alt text
-                widget: object
-                fields:
-                  - { name: pt, label: Português, widget: string }
-                  - { name: en, label: English, widget: string }
+          # profile.photo (optional About portrait) is intentionally NOT editable
+          # here: Decap's image widget is mandatory, which blocked saving a profile
+          # without a photo. The data model (docs/04) still accepts photo: null.
