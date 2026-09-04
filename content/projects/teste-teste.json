@@ -8,6 +8,15 @@
         "pt": "asdasd",
         "en": "asdasd"
       }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/NkMducbveJp/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": "asdasd",
+        "en": "asdasdas"
+      }
     }
   ],
   "slug": "teste-teste",
