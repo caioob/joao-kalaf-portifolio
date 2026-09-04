@@ -1,0 +1,47 @@
+{
+  "featured": false,
+  "id": "p16",
+  "media": [
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/LTStbSX3ESS/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": " ",
+        "en": " "
+      }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/-t4VqZ27cir/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": " ",
+        "en": " "
+      }
+    },
+    {
+      "type": "video",
+      "provider": "adobe-ccv",
+      "videoId": "https://www-ccv.adobe.io/v1/player/ccv/W4aL6bXYxge/embed?api_key=behance1&bgcolor=%23191919",
+      "title": {
+        "pt": " ",
+        "en": " "
+      }
+    }
+  ],
+  "category": "video",
+  "title": {
+    "pt": "Social Media Content",
+    "en": "Social Media Content"
+  },
+  "date": "2026-09",
+  "slug": "Social-Media-Content",
+  "thumbnail": {
+    "src": "/images/projects/whatsapp-image-2026-09-03-at-23.58.32.jpeg",
+    "alt": {
+      "pt": "SOCIAL MIDIA CONTENT",
+      "en": "SOCIAL MIDIA CONTENT"
+    }
+  }
+}
