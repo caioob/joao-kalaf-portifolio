@@ -1,18 +1,36 @@
 @import 'tailwindcss';
 @import './theme.css';
 
-/* Self-hosted variable fonts (design §3) — files in public/fonts/ */
+/* Self-hosted fonts (design §3) — files in public/fonts/.
+   Neue Montreal ships as static OTFs (400/500/700); DM Sans is a
+   variable woff2 covering 100–900 for UI/body weights. */
 @font-face {
-  font-family: 'Rubik';
-  src: url('/fonts/Rubik-Regular.ttf');
-  font-weight: 100 900;
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-Regular.otf') format('opentype');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/dm-sans-latin-wght-normal.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;

@@ -35,7 +35,7 @@ export default function ProjectCard({ project, onOpen, priority = false, index =
         {hasVideo && (
           <span
             aria-hidden="true"
-            className="absolute right-3 bottom-3 flex size-8 items-center justify-center bg-surface-raised/90 text-small text-ink"
+            className="absolute right-3 bottom-3 flex size-8 items-center justify-center bg-surface-raised/90 text-small text-surface"
           >
             ▶
           </span>

@@ -4,23 +4,25 @@
  * Runbook: docs/03-design-system.md §8
  */
 @theme {
-  /* ── Color (design §2) — "Gangster Green & Black" (dark) ─── */
-  --color-surface: #0a0f0a;
-  --color-surface-raised: #131a13;
-  --color-ink: #e6f2e6;
-  --color-ink-muted: #7b9a7e;
-  --color-line: #1e2b1e;
-  /* money green; accent-strong reserved for body-size text (keep ≥4.5:1 on surface) */
-  --color-accent: #2ed573;
-  --color-accent-strong: #00c853;
-  --color-accent-ink: #0a0f0a;
-  --color-overlay: #000000; /* modal backdrop scrim — dims the near-black page */
+  /* ── Color (design §2) — "Blood Red & Black" (light paper) ─── */
+  --color-surface: #fff5f5;
+  --color-surface-raised: #333132;
+  --color-ink: #d60302;
+  --color-ink-muted: #333132;
+  --color-line: #333132;
+  /* black chrome; accent-strong reserved for body-size accent text (keep ≥4.5:1 on surface) */
+  --color-accent: #333132;
+  --color-accent-strong: #333132;
+  /* derived: table value equaled the accent fill (invisible text on accent backgrounds);
+     re-derived to surface white per design §2 convention — 12.1:1 on the black accent */
+  --color-accent-ink: #fff5f5;
+  --color-overlay: #333132; /* modal backdrop scrim — dims the paper-white page */
 
   /* ── Typography (design §3) ────────────────────────────── */
-  --font-display: 'Rubik', system-ui, -apple-system, sans-serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Neue Montreal', system-ui, -apple-system, sans-serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
 
-  --text-display: clamp(2.5rem, 6vw, 4rem);
+  --text-display: clamp(3rem, 8vw, 6rem);
   --text-display--line-height: 1.05;
   --text-display--letter-spacing: -0.01em;
   --text-h2: clamp(1.75rem, 4vw, 2.25rem);
