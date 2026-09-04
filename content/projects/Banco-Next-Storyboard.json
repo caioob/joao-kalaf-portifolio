@@ -1,24 +1,4 @@
 {
-  "id": "p-015",
-  "slug": "Banco-Next-Storyboard",
-  "category": "graphic",
-  "title": {
-    "pt": "Banco Next - Storyboard",
-    "en": "Banco Next - Storyboard"
-  },
-  "description": {
-    "pt": "",
-    "en": ""
-  },
-  "thumbnail": {
-    "src": "/images/projects/Banco-Next-Storyboard-thumb.webp",
-    "alt": {
-      "pt": "Banco Next - Storyboard",
-      "en": "Banco Next - Storyboard"
-    },
-    "width": 1600,
-    "height": 1000
-  },
   "media": [
     {
       "type": "image",
@@ -191,9 +171,22 @@
       "height": 1080
     }
   ],
-  "tools": [],
+  "slug": "Banco-Next-Storyboard",
+  "thumbnail": {
+    "src": "/images/projects/Banco-Next-Storyboard-thumb.webp",
+    "alt": {
+      "pt": "Banco Next - Storyboard",
+      "en": "Banco Next - Storyboard"
+    },
+    "width": 1600,
+    "height": 1000
+  },
+  "featured": true,
   "date": "2022-05",
-  "featured": false,
+  "title": {
+    "pt": "Banco Next - Storyboard",
+    "en": "Banco Next - Storyboard"
+  },
   "links": [
     {
       "label": {
@@ -202,5 +195,12 @@
       },
       "url": "https://www.behance.net/gallery/143058293/Banco-Next-Storyboard"
     }
-  ]
+  ],
+  "id": "p-015",
+  "tools": [],
+  "description": {
+    "pt": "",
+    "en": ""
+  },
+  "category": "graphic"
 }
