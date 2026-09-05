@@ -35,32 +35,33 @@ Only `src/styles/theme.css` may define visual values. Components must use semant
 - jsdom `url` is set to `http://localhost/` in `vite.config.js` so localStorage works.
 - Single test: `npx vitest run src/App.test.jsx` or `npx vitest run -t "test name"`.
 - **Two vitest configs:** `vite.config.js` (main, jsdom env, excludes `scripts/**`) and `vitest.scripts.config.js` (node env, no jsdom setup, for `scripts/lib/*.test.mjs`). Run script tests with `npm run test:scripts`.
-- **App tests use dynamic data:** `getProjects()`/`getProfile()` return real scraped data (15 projects, empty email, adobe-ccv videos). Don't hardcode project names, counts, or video providers in tests — derive them from the data functions.
+- **App tests use dynamic data:** `getProjects()`/`getProfile()` return the committed portfolio content. Don't hardcode project names or counts in tests — derive them from repository functions.
 
 ## Architecture constraints that bite
 
 - **Zero runtime deps beyond react/react-dom.** No router (filter state = URL hash), no i18n lib, no animation lib. Adding a dep is a spec change, not an implementation detail. Decap CMS is served as static assets under `public/admin/` — never imported by `src/` — so the rule holds. ESLint ignores `public/admin` (`eslint.config.js`).
-- **Content lives in `content/`** (not `src/data/`). One JSON file per project in `content/projects/`, plus `content/profile.json`. Components never import JSON directly — all data flows through `src/lib/projects.js` (validates + sorts). This is the v2 admin swap point.
+- **Content lives in `content/`** (not `src/data/`). One JSON file per project in `content/projects/`, plus `content/profile.json` and the ordered `content/disciplines.json` catalog. Components never import JSON directly — all data flows through `src/lib/projects.js` (validates + ranks). `content/archive/projects/` is excluded from production input.
 - **Layout:** sections compose `Section > Container` from `src/components/layout/`. Sections never set their own max-width or vertical rhythm.
 - **i18n:** content fields are `{ pt, en }` pairs; UI strings via `useI18n()` (`t()` for keys, `pick()` for content). No hardcoded user-visible strings. `en.json` and `pt.json` must have identical key sets (test-enforced).
 - **Spec-driven:** `docs/01–08` are source of truth. Read the relevant doc before implementing. Deviations must update docs and be noted in `docs/reports/`.
 - **Responsive images (docs/08):** `src/lib/images.js` defines ladder widths and `srcSetFor()` — shared between frontend and `scripts/generate-images.mjs`. WebP-only by decision.
 
-## Data model — what's optional
+## Data model — important rules
 
-- **`project.description`**: may be `{ pt: "", en: "" }` — Behance projects often lack descriptions. The component renders nothing when empty. Don't make it required.
-- **`profile.email`**: may be `""` — Behance doesn't expose email. The contact CTA renders `mailto:` with no address. Don't make it required.
-- **`project.category`**: must be one of `video`, `motion`, `product`, `graphic`. The Behance import maps via tag heuristics and defaults to `graphic` when unmatched.
+- **`project.description`** is optional as a whole; when present it needs non-empty PT-BR and EN values.
+- **`project.coverMediaId`** must point to an image in its ordered gallery. Videos cannot be covers. Image alt text and video titles require both languages.
+- **Disciplines are dynamic.** Projects reference active catalog IDs with one primary and optional secondary IDs; never add a static category enum to public code.
+- **Preview is lenient; production is strict.** `VITE_PORTFOLIO_MODE=preview` renders a checklist for incomplete work, while production rejects it.
 
 ## Video providers
 
 Three providers supported in `VIDEO_PROVIDERS` (`src/lib/projects.js`):
 
-| Provider | `videoId` format | Embed |
-|---|---|---|
-| `youtube` | YouTube video ID | `youtube.com/embed/{videoId}` |
-| `vimeo` | Vimeo video ID | `player.vimeo.com/video/{videoId}` |
-| `adobe-ccv` | Full embed URL from Behance | iframe `src` = `videoId` directly |
+| Provider    | `videoId` format            | Embed                              |
+| ----------- | --------------------------- | ---------------------------------- |
+| `youtube`   | YouTube video ID            | `youtube.com/embed/{videoId}`      |
+| `vimeo`     | Vimeo video ID              | `player.vimeo.com/video/{videoId}` |
+| `adobe-ccv` | Full embed URL from Behance | iframe `src` = `videoId` directly  |
 
 Adobe CCV is used by Behance video modules. The `videoId` is the full URL (e.g. `https://www-ccv.adobe.io/v1/player/ccv/.../embed?api_key=behance1&...`).
 
@@ -87,7 +88,7 @@ node scripts/fetch-behance.mjs --profile https://www.behance.net/joaokalaf
 
 ## Deployment
 
-- **Vercel** auto-deploys from `main` branch. No GitHub Actions workflows.
+- **Vercel** deploys protected `main` to production and `content-preview` as a restricted editing preview. No GitHub Actions workflows.
 - GitHub Pages (`gh-pages` branch) is deprecated — do not use.
 - No `base` path in vite.config.js (Vercel serves from root).
 
@@ -103,5 +104,4 @@ Every completed roadmap step (`docs/05-roadmap.md`) requires a report at `docs/r
 
 ## Pending client input
 
-Name, bio, projects, accent color, and font are placeholders (marked in `theme.css`). Keep them swappable — don't bake in.
-Email is currently empty (Behance doesn't expose it) — needs manual entry.
+The final logo asset, its background token treatment, accent color, and font remain swappable. Keep them out of hardcoded component values.

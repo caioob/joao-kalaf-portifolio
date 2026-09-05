@@ -11,7 +11,6 @@
 export const LADDERS = {
   thumbnail: [400, 800, 1200, 1600, 2400],
   gallery: [640, 1280, 1920, 2560],
-  portrait: [320, 480, 640, 960],
 }
 
 /** `sizes` per slot — derived from the layout (docs/08 §4). Thumbnail cards are
@@ -21,7 +20,6 @@ export const LADDERS = {
 export const SIZES = {
   thumbnail: '(min-width: 768px) min(1104px, calc(100vw - 96px)), calc(100vw - 48px)',
   gallery: '(min-width: 768px) min(880px, 90vw), 92vw',
-  portrait: '(min-width: 768px) 360px, 80vw',
 }
 
 /**

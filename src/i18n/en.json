@@ -22,6 +22,10 @@
   "detail.tools": "Tools",
   "detail.links": "Links",
   "detail.close": "Close",
+  "detail.clientOrBrand": "Client or brand",
+  "detail.role": "Role",
+  "preview.ready": "Preview ready for final review.",
+  "preview.blocked": "This preview contains incomplete items.",
   "about.title": "About",
   "contact.line": "Let's make something together?",
   "contact.cta": "Let's talk"

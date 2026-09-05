@@ -21,10 +21,14 @@ import { chromium } from 'playwright'
 const projects = readdirSync('content/projects')
   .filter((f) => f.endsWith('.json'))
   .map((f) => JSON.parse(readFileSync(`content/projects/${f}`, 'utf8')))
-const countByCategory = projects.reduce((acc, p) => {
-  acc[p.category] = (acc[p.category] || 0) + 1
+const disciplineCatalog = JSON.parse(readFileSync('content/disciplines.json', 'utf8')).disciplines
+const countByDiscipline = projects.reduce((acc, project) => {
+  acc[project.primaryDisciplineId] = (acc[project.primaryDisciplineId] || 0) + 1
   return acc
 }, {})
+const visibleDisciplines = disciplineCatalog.filter(
+  (discipline) => !discipline.archived && countByDiscipline[discipline.id] > 0,
+)
 
 // --- dev server lifecycle -----------------------------------------------------
 function startDevServer() {
@@ -118,24 +122,22 @@ try {
     assert(pageErrors.length === 0, `page errors:\n  ${pageErrors.join('\n  ')}`)
   })
 
-  test('every project thumbnail decodes (no broken images)', async () => {
+  test('every project cover decodes (no broken images)', async () => {
     const broken = await page.$$eval('#work li img', (imgs) =>
       imgs.filter((i) => i.complete && i.naturalWidth === 0).map((i) => i.currentSrc || i.src),
     )
     assert(broken.length === 0, `broken thumbnails:\n  ${broken.join('\n  ')}`)
   })
 
-  test('category filter narrows the grid and resets', async () => {
+  test('discipline filter narrows the grid and resets', async () => {
     await page.goto(baseURL, { waitUntil: 'networkidle' })
-    const buttons = page.locator('#work [role="group"] button') // [all, video, motion, product, graphic]
-    // Pick the first category that actually has projects.
-    const order = ['video', 'motion', 'product', 'graphic']
-    const cat = order.find((c) => countByCategory[c] > 0)
-    await buttons.nth(order.indexOf(cat) + 1).click()
+    const buttons = page.locator('#work [role="group"] button')
+    const discipline = visibleDisciplines[0]
+    await buttons.nth(1).click()
     const filtered = await page.locator('#work li').count()
     assert(
-      filtered === countByCategory[cat],
-      `filter "${cat}": expected ${countByCategory[cat]} cards, got ${filtered}`,
+      filtered === countByDiscipline[discipline.id],
+      `filter "${discipline.id}": expected ${countByDiscipline[discipline.id]} cards, got ${filtered}`,
     )
     await buttons.nth(0).click() // "all"
     const all = await page.locator('#work li').count()

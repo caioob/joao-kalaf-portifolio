@@ -32,7 +32,7 @@ describe('App', () => {
     await user.click(workGrid().getByRole('button', { name: 'Motion', pressed: false }))
 
     expect(workGrid().getAllByRole('listitem')).toHaveLength(
-      getProjects().filter((p) => p.category === 'motion').length,
+      getProjects().filter((p) => p.primaryDisciplineId === 'motion').length,
     )
     expect(window.location.hash).toBe('#work/motion')
     expect(workGrid().getByRole('button', { name: 'Motion', pressed: true })).toBeInTheDocument()
@@ -42,7 +42,7 @@ describe('App', () => {
     window.history.replaceState(null, '', '#work/graphic')
     render(<App />)
     expect(workGrid().getAllByRole('listitem')).toHaveLength(
-      getProjects().filter((p) => p.category === 'graphic').length,
+      getProjects().filter((p) => p.primaryDisciplineId === 'graphic').length,
     )
   })
 
@@ -58,6 +58,25 @@ describe('App', () => {
 
     await user.click(within(dialog).getByRole('button', { name: 'Close' }))
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('opens project detail from a stable project deep link', () => {
+    const project = getProjects()[0]
+    window.history.replaceState(null, '', `#project/${project.slug}`)
+
+    render(<App />)
+
+    expect(screen.getByRole('dialog')).toHaveAccessibleName(project.title.en)
+  })
+
+  it('writes a project deep link when a card is opened', async () => {
+    const user = userEvent.setup()
+    const project = getProjects()[0]
+    render(<App />)
+
+    await user.click(screen.getByRole('button', { name: new RegExp(project.title.en, 'i') }))
+
+    expect(window.location.hash).toBe(`#project/${project.slug}`)
   })
 
   it('mounts video embeds only while the modal is open (lazy embeds)', async () => {
@@ -97,6 +116,6 @@ describe('App', () => {
     expect(document.getElementById('about')).toBeNull()
     expect(document.getElementById('contact')).toBeNull()
     expect(screen.queryByRole('link', { name: "Let's talk" })).not.toBeInTheDocument()
-    expect(screen.queryByText(getProfile().tagline.en)).not.toBeInTheDocument()
+    expect(screen.queryByText('Motion Designer / Videomaker / Artist')).not.toBeInTheDocument()
   })
 })

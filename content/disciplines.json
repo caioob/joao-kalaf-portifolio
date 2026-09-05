@@ -1,0 +1,40 @@
+{
+  "disciplines": [
+    {
+      "id": "video",
+      "label": {
+        "pt": "Vídeo",
+        "en": "Video"
+      },
+      "rank": 1,
+      "archived": false
+    },
+    {
+      "id": "motion",
+      "label": {
+        "pt": "Motion",
+        "en": "Motion"
+      },
+      "rank": 2,
+      "archived": false
+    },
+    {
+      "id": "product",
+      "label": {
+        "pt": "Produto",
+        "en": "Product"
+      },
+      "rank": 3,
+      "archived": false
+    },
+    {
+      "id": "graphic",
+      "label": {
+        "pt": "Gráfico",
+        "en": "Graphic"
+      },
+      "rank": 4,
+      "archived": false
+    }
+  ]
+}

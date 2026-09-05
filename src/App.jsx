@@ -7,37 +7,43 @@ import Hero from './components/Hero.jsx'
 import FilterBar from './components/FilterBar.jsx'
 import ProjectCard from './components/ProjectCard.jsx'
 import ProjectDetail from './components/ProjectDetail.jsx'
+import PreviewChecklist from './components/PreviewChecklist.jsx'
 import Footer from './components/Footer.jsx'
 import { I18nProvider, useI18n } from './i18n/I18nContext.jsx'
-import { useCategoryFilter } from './lib/categoryFilter.js'
-import { getProjects, getProfile } from './lib/projects.js'
+import { useDisciplineFilter } from './lib/disciplineFilter.js'
+import {
+  closeProjectDeepLink,
+  openProjectDeepLink,
+  useProjectDeepLink,
+} from './lib/projectDeepLink.js'
+import { getPortfolio, getProfile, isRenderableProject } from './lib/projects.js'
 
 // Card → detail shared-element morph (issue #8). We drive the native View
 // Transitions API by hand: it is feature-detected, so unsupported browsers and
 // `prefers-reduced-motion` fall back to the current instant open/close.
 const supportsVT =
-  typeof document !== 'undefined' &&
-  typeof document.startViewTransition === 'function'
+  typeof document !== 'undefined' && typeof document.startViewTransition === 'function'
 
 function prefersReducedMotion() {
   return (
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   )
 }
 
-function WorkSection({ projects, onOpen, transitioningId }) {
+function WorkSection({ projects, disciplines, onOpen, transitioningId }) {
   const { t } = useI18n()
-  const [category, setCategory] = useCategoryFilter()
+  const [discipline, setDiscipline] = useDisciplineFilter(disciplines)
   const visible =
-    category === 'all' ? projects : projects.filter((project) => project.category === category)
+    discipline === 'all'
+      ? projects
+      : projects.filter((project) => project.primaryDisciplineId === discipline)
 
   return (
     <Section id="work">
       <Container>
         <h2 className="font-display text-h2 text-ink">{t('work.title')}</h2>
         <div className="mt-6">
-          <FilterBar active={category} onChange={setCategory} />
+          <FilterBar active={discipline} disciplines={disciplines} onChange={setDiscipline} />
         </div>
         {visible.length > 0 ? (
           <ul className="mt-8 flex flex-col gap-grid">
@@ -45,6 +51,7 @@ function WorkSection({ projects, onOpen, transitioningId }) {
               <li key={project.id}>
                 <ProjectCard
                   project={project}
+                  disciplines={disciplines}
                   onOpen={onOpen}
                   priority={index < 3}
                   index={index}
@@ -58,7 +65,7 @@ function WorkSection({ projects, onOpen, transitioningId }) {
             <p className="text-body text-ink-muted">{t('work.empty')}</p>
             <button
               type="button"
-              onClick={() => setCategory('all')}
+              onClick={() => setDiscipline('all')}
               className="mt-4 text-small font-medium text-accent-strong underline underline-offset-4 transition-colors duration-(--duration-fast) ease-standard hover:text-ink"
             >
               {t('work.showAll')}
@@ -73,10 +80,16 @@ function WorkSection({ projects, onOpen, transitioningId }) {
 function Page() {
   const { t, lang } = useI18n()
   const profile = getProfile()
-  const projects = getProjects()
-  const [openId, setOpenId] = useState(null)
+  const portfolio = getPortfolio()
+  const {
+    projects,
+    disciplines: catalog,
+    visibleDisciplines: disciplines,
+    previewChecklist,
+  } = portfolio
+  const renderableProjects = projects.filter((project) => isRenderableProject(project, catalog))
   const [transitioningId, setTransitioningId] = useState(null)
-  const openProject = projects.find((project) => project.id === openId)
+  const openProject = useProjectDeepLink(renderableProjects)
 
   // Open the detail inside a view transition. The clicked card carries the
   // shared name (`detail-hero`) in the OLD snapshot; the detail hero carries it
@@ -86,14 +99,16 @@ function Page() {
   // transition callback, so the dialog is already in the top layer when the
   // new-state snapshot is taken.
   function handleOpen(id) {
+    const project = renderableProjects.find((item) => item.id === id)
+    if (project == null) return
     if (!supportsVT || prefersReducedMotion()) {
-      setOpenId(id)
+      openProjectDeepLink(project)
       return
     }
     flushSync(() => setTransitioningId(id))
     const vt = document.startViewTransition(() => {
       flushSync(() => {
-        setOpenId(id)
+        openProjectDeepLink(project)
         setTransitioningId(null)
       })
     })
@@ -103,15 +118,15 @@ function Page() {
   // Close reverses the morph: OLD snapshot has the open detail hero named,
   // NEW snapshot has the originating card named (the hero has unmounted).
   function handleClose() {
-    if (!supportsVT || prefersReducedMotion() || openId == null) {
-      setOpenId(null)
+    if (!supportsVT || prefersReducedMotion() || openProject == null) {
+      closeProjectDeepLink()
       setTransitioningId(null)
       return
     }
-    const id = openId
+    const id = openProject.id
     const vt = document.startViewTransition(() => {
       flushSync(() => {
-        setOpenId(null)
+        closeProjectDeepLink()
         setTransitioningId(id)
       })
     })
@@ -136,12 +151,23 @@ function Page() {
         {t('a11y.skipToContent')}
       </a>
       <Navbar />
+      <PreviewChecklist
+        enabled={import.meta.env.VITE_PORTFOLIO_MODE === 'preview'}
+        checklist={previewChecklist}
+      />
       <main id="main">
         <Hero profile={profile} />
-        <WorkSection projects={projects} onOpen={handleOpen} transitioningId={transitioningId} />
+        <WorkSection
+          projects={renderableProjects}
+          disciplines={disciplines}
+          onOpen={handleOpen}
+          transitioningId={transitioningId}
+        />
       </main>
       <Footer profile={profile} />
-      {openProject && <ProjectDetail project={openProject} onClose={handleClose} />}
+      {openProject && (
+        <ProjectDetail project={openProject} disciplines={disciplines} onClose={handleClose} />
+      )}
     </>
   )
 }

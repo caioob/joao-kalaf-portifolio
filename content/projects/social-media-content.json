@@ -1,8 +1,28 @@
 {
-  "featured": false,
   "id": "p-016",
+  "slug": "social-media-content",
+  "rank": 1,
+  "primaryDisciplineId": "motion",
+  "secondaryDisciplineIds": [],
+  "title": {
+    "pt": "Social Media Content",
+    "en": "Social Media Content"
+  },
+  "coverMediaId": "cover",
   "media": [
     {
+      "id": "cover",
+      "type": "image",
+      "src": "/images/projects/whatsapp-image-2026-09-03-at-23.58.32.webp",
+      "alt": {
+        "pt": "SOCIAL MIDIA CONTENT",
+        "en": "SOCIAL MIDIA CONTENT"
+      },
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "media-1",
       "type": "video",
       "provider": "adobe-ccv",
       "videoId": "https://www-ccv.adobe.io/v1/player/ccv/LTStbSX3ESS/embed?api_key=behance1&bgcolor=%23191919",
@@ -12,6 +32,7 @@
       }
     },
     {
+      "id": "media-2",
       "type": "video",
       "provider": "adobe-ccv",
       "videoId": "https://www-ccv.adobe.io/v1/player/ccv/-t4VqZ27cir/embed?api_key=behance1&bgcolor=%23191919",
@@ -21,6 +42,7 @@
       }
     },
     {
+      "id": "media-3",
       "type": "video",
       "provider": "adobe-ccv",
       "videoId": "https://www-ccv.adobe.io/v1/player/ccv/W4aL6bXYxge/embed?api_key=behance1&bgcolor=%23191919",
@@ -29,21 +51,5 @@
         "en": "Social Media Content"
       }
     }
-  ],
-  "category": "motion",
-  "title": {
-    "pt": "Social Media Content",
-    "en": "Social Media Content"
-  },
-  "date": "2026-09",
-  "slug": "Social-Media-Content",
-  "thumbnail": {
-    "src": "/images/projects/whatsapp-image-2026-09-03-at-23.58.32.webp",
-    "alt": {
-      "pt": "SOCIAL MIDIA CONTENT",
-      "en": "SOCIAL MIDIA CONTENT"
-    },
-    "width": 1600,
-    "height": 1000
-  }
+  ]
 }

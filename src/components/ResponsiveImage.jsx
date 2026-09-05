@@ -6,7 +6,16 @@ import { srcSetFor, canonicalSrc, SIZES } from '../lib/images.js'
  * the intrinsic `width`/`height` (for CLS). `eager` marks an above-the-fold LCP
  * image (eager load + high fetch priority); everything else lazy-loads.
  */
-export default function ResponsiveImage({ src, alt, slot, width, height, eager = false, className }) {
+export default function ResponsiveImage({
+  src,
+  alt,
+  slot,
+  width,
+  height,
+  eager = false,
+  className,
+  style,
+}) {
   const srcSet = srcSetFor(src, slot, width)
 
   return (
@@ -21,6 +30,7 @@ export default function ResponsiveImage({ src, alt, slot, width, height, eager =
       fetchPriority={eager ? 'high' : undefined}
       decoding="async"
       className={className}
+      style={style}
     />
   )
 }

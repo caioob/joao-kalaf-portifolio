@@ -1,6 +1,28 @@
 {
+  "id": "p-015",
+  "slug": "banco-next-storyboard",
+  "rank": 13,
+  "primaryDisciplineId": "graphic",
+  "secondaryDisciplineIds": [],
+  "title": {
+    "pt": "Banco Next - Storyboard",
+    "en": "Banco Next - Storyboard"
+  },
+  "coverMediaId": "cover",
   "media": [
     {
+      "id": "cover",
+      "type": "image",
+      "src": "/images/projects/Banco-Next-Storyboard-thumb.webp",
+      "alt": {
+        "pt": "Banco Next - Storyboard",
+        "en": "Banco Next - Storyboard"
+      },
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "media-1",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-1.webp",
       "alt": {
@@ -11,6 +33,7 @@
       "height": 1080
     },
     {
+      "id": "media-2",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-2.webp",
       "alt": {
@@ -21,6 +44,7 @@
       "height": 1080
     },
     {
+      "id": "media-3",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-3.webp",
       "alt": {
@@ -31,6 +55,7 @@
       "height": 1181
     },
     {
+      "id": "media-4",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-4.webp",
       "alt": {
@@ -41,6 +66,7 @@
       "height": 1080
     },
     {
+      "id": "media-5",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-5.webp",
       "alt": {
@@ -51,6 +77,7 @@
       "height": 1080
     },
     {
+      "id": "media-6",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-6.webp",
       "alt": {
@@ -61,6 +88,7 @@
       "height": 1080
     },
     {
+      "id": "media-7",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-7.webp",
       "alt": {
@@ -71,6 +99,7 @@
       "height": 1080
     },
     {
+      "id": "media-8",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-8.webp",
       "alt": {
@@ -81,6 +110,7 @@
       "height": 1080
     },
     {
+      "id": "media-9",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-9.webp",
       "alt": {
@@ -91,6 +121,7 @@
       "height": 1080
     },
     {
+      "id": "media-10",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-10.webp",
       "alt": {
@@ -101,6 +132,7 @@
       "height": 1080
     },
     {
+      "id": "media-11",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-11.webp",
       "alt": {
@@ -111,6 +143,7 @@
       "height": 1080
     },
     {
+      "id": "media-12",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-12.webp",
       "alt": {
@@ -121,6 +154,7 @@
       "height": 1080
     },
     {
+      "id": "media-13",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-13.webp",
       "alt": {
@@ -131,6 +165,7 @@
       "height": 1080
     },
     {
+      "id": "media-14",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-14.webp",
       "alt": {
@@ -141,6 +176,7 @@
       "height": 1080
     },
     {
+      "id": "media-15",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-15.webp",
       "alt": {
@@ -151,6 +187,7 @@
       "height": 1080
     },
     {
+      "id": "media-16",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-16.webp",
       "alt": {
@@ -161,6 +198,7 @@
       "height": 1080
     },
     {
+      "id": "media-17",
       "type": "image",
       "src": "/images/projects/Banco-Next-Storyboard-17.webp",
       "alt": {
@@ -171,22 +209,6 @@
       "height": 1080
     }
   ],
-  "slug": "Banco-Next-Storyboard",
-  "thumbnail": {
-    "src": "/images/projects/Banco-Next-Storyboard-thumb.webp",
-    "alt": {
-      "pt": "Banco Next - Storyboard",
-      "en": "Banco Next - Storyboard"
-    },
-    "width": 1600,
-    "height": 1000
-  },
-  "featured": true,
-  "date": "2022-05",
-  "title": {
-    "pt": "Banco Next - Storyboard",
-    "en": "Banco Next - Storyboard"
-  },
   "links": [
     {
       "label": {
@@ -195,12 +217,5 @@
       },
       "url": "https://www.behance.net/gallery/143058293/Banco-Next-Storyboard"
     }
-  ],
-  "id": "p-015",
-  "tools": [],
-  "description": {
-    "pt": "",
-    "en": ""
-  },
-  "category": "graphic"
+  ]
 }

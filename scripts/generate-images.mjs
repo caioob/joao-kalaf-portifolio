@@ -18,7 +18,6 @@ import { canonicalSrc, variantSrc, variantWidths } from '../src/lib/images.js'
 
 const PUBLIC = 'public'
 const PROJECTS_DIR = 'content/projects'
-const PROFILE = 'content/profile.json'
 const WEBP = { quality: 80 }
 
 // How a canonical master is sized when (re)generated from a raw upload.
@@ -62,7 +61,10 @@ async function processImage(image, slot) {
       counts.skipped++
       continue
     }
-    await sharp(canonicalPath).resize(w, null, { withoutEnlargement: true }).webp(WEBP).toFile(outPath)
+    await sharp(canonicalPath)
+      .resize(w, null, { withoutEnlargement: true })
+      .webp(WEBP)
+      .toFile(outPath)
     counts.generated++
   }
   return changed
@@ -72,16 +74,12 @@ for (const file of readdirSync(PROJECTS_DIR).filter((f) => f.endsWith('.json')))
   const path = `${PROJECTS_DIR}/${file}`
   const project = JSON.parse(readFileSync(path, 'utf8'))
   let changed = false
-  if (project.thumbnail?.src) changed = (await processImage(project.thumbnail, 'thumbnail')) || changed
+  const cover = project.media?.find((item) => item.id === project.coverMediaId)
+  if (cover?.type === 'image') changed = (await processImage(cover, 'thumbnail')) || changed
   for (const item of project.media ?? []) {
     if (item.type === 'image') changed = (await processImage(item, 'gallery')) || changed
   }
   if (changed) writeFileSync(path, JSON.stringify(project, null, 2) + '\n')
-}
-
-const profile = JSON.parse(readFileSync(PROFILE, 'utf8'))
-if (profile.photo?.src && (await processImage(profile.photo, 'portrait'))) {
-  writeFileSync(PROFILE, JSON.stringify(profile, null, 2) + '\n')
 }
 
 console.log(

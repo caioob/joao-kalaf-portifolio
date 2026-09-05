@@ -1,111 +1,131 @@
 # 04 — Content Model
 
-All schemas below are the single source of truth: the v1 JSON files, the repository validation in `src/lib/projects.js`, and the v2 admin form fields all derive from them.
+`src/lib/projects.js` is the only repository that reads content. It validates the model below and supplies presentational components with ranked data. `src/lib/types.js` mirrors this vocabulary for editor tooling.
 
-## 1. `Project`
+## Files
 
-Stored as **one JSON file per project** under `content/projects/*.json` (v2 layout — see `docs/02-architecture.md`). The repository (`src/lib/projects.js`) globs and merges them, then sorts by `date` descending, so filenames and load order don't matter. (Pre-v2 this was a single `src/data/projects.json` array; the schema is unchanged.)
+```
+content/
+├── profile.json
+├── disciplines.json
+├── projects/*.json
+└── archive/projects/*.json
+```
 
-| Field         | Type         | Required | Notes                                                                                                                         |
-| ------------- | ------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `id`          | string       | ✓        | Stable unique id, e.g. `"p-001"`. Never reused after deletion.                                                                |
-| `slug`        | string       | ✓        | Kebab-case, unique, e.g. `"campanha-verao-2026"`. Used in share URLs later.                                                   |
-| `category`    | enum         | ✓        | One of `"video" \| "motion" \| "product" \| "graphic"` — the canonical enum, exported as `CATEGORIES` from `lib/projects.js`. |
-| `title`       | `{ pt, en }` | ✓        | Both languages required.                                                                                                      |
-| `description` | `{ pt, en }` | ✓        | 1–3 short paragraphs; plain text, `\n\n` = paragraph break.                                                                   |
-| `thumbnail`   | `Image`      | ✓        | Shown on the grid card. 16:10 crop; master ≥ 1600 px wide. Responsive variants generated per `docs/08-responsive-images.md`. |
-| `media`       | `Media[]`    | ✓ (≥ 1)  | Gallery shown in the detail modal, in array order.                                                                            |
-| `tools`       | string[]     | –        | e.g. `["After Effects", "Figma"]`. Display names, free text.                                                                  |
-| `date`        | string       | ✓        | `"YYYY-MM"`. Drives sort order and the displayed year.                                                                        |
-| `featured`    | boolean      | –        | Default `false`. Featured cards may be emphasized on the grid.                                                                |
-| `links`       | `Link[]`     | –        | External: live site, full video, Behance case, etc.                                                                           |
+Only `content/projects/*.json` is production input. The archive is intentionally outside that glob, so archived work and its assets cannot ship accidentally.
 
-### `Image`
+## Localized values
 
-```jsonc
+All public-facing copy uses this object and requires both non-empty values unless the enclosing field is absent:
+
+```json
+{ "pt": "Português (Brasil)", "en": "English" }
+```
+
+## `profile.json`
+
+```json
+{ "name": "João Kalaf", "logo": "/images/logo.webp" }
+```
+
+| Field  | Required | Meaning                                                                                       |
+| ------ | -------- | --------------------------------------------------------------------------------------------- |
+| `name` | yes      | Public name in the hero and footer.                                                           |
+| `logo` | no       | Optional public logo path. Its background treatment is a design token, not dashboard content. |
+
+No bio, email, social, services, or contact data belongs here in v1.
+
+## `disciplines.json`
+
+This is the single ordered catalog file. Decap's list order is the editorial display order; its pre-save hook writes `rank` from that order and generates an immutable ID for a newly added item.
+
+```json
 {
-  "src": "/images/projects/campanha-verao-thumb.webp",
-  "alt": { "pt": "...", "en": "..." },
-  "width": 1600,   // optional: intrinsic px of the master (CLS reservation)
-  "height": 1000   // optional
+  "disciplines": [
+    {
+      "id": "discipline-uuid",
+      "label": { "pt": "Motion", "en": "Motion" },
+      "rank": 1,
+      "archived": false
+    }
+  ]
 }
 ```
 
-- `alt` is **required** in both languages — accessibility is enforced at the schema level.
-- `src` remains the **single** stored path — the canonical largest WebP. The responsive AVIF/WebP variants (`<slug>-thumb-320.avif`, …) are derived from `src` by convention, not listed here. See `docs/08-responsive-images.md`.
-- `width`/`height` are **optional** intrinsic dimensions, populated by the image pipeline. When present, components render them to prevent layout shift; thumbnails don't need them (fixed height via the `--rect-h-1/2/3` tokens — see `docs/03-design-system.md` §4).
+| Field      | Required | Rules                                                                                            |
+| ---------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `id`       | yes      | System-generated stable ID; never repurpose it.                                                  |
+| `label`    | yes      | Both languages.                                                                                  |
+| `rank`     | yes      | Non-negative integer and unique; generated from catalog ordering.                                |
+| `archived` | yes      | An archived discipline may not be referenced by any active project. Reassign all projects first. |
 
-### `Media` (tagged union on `type`)
+The public filter contains only active disciplines used as a project's primary discipline. Secondary disciplines never create a filter.
 
-```jsonc
-{ "type": "image", "src": "...", "alt": { "pt": "...", "en": "..." } }
-{ "type": "video", "provider": "youtube" | "vimeo" | "adobe-ccv", "videoId": "dQw4w9WgXcQ", "title": { "pt": "...", "en": "..." } }
-```
+## Project
 
-For `adobe-ccv`, `videoId` is the full embed URL (e.g. `https://www-ccv.adobe.io/v1/player/ccv/Sd_s7cN-5F-/embed?api_key=behance1`).
+Each project is one `content/projects/*.json` document. Filenames are an implementation detail; the record has the immutable `id` and public `slug`.
 
-Videos are stored as provider + id (never raw iframe HTML) — the `ProjectDetail` component builds a privacy-friendly lazy embed (`youtube-nocookie.com`, vimeo `dnt=1`).
-
-### `Link`
-
-```jsonc
-{ "label": { "pt": "Ver no Behance", "en": "View on Behance" }, "url": "https://..." }
-```
-
-### Validation (enforced by `lib/projects.js` on load)
-
-- Unique `id` and `slug`; `category` ∈ enum; `date` matches `^\d{4}-\d{2}$`.
-- Every `{ pt, en }` field has both keys non-empty.
-- `media` non-empty; every image has `alt`; every video has `provider` + `videoId`.
-- Dev: invalid record throws with a message naming the `id` and field. Prod build: record is skipped with a console warning.
-
-## 2. `Profile`
-
-Stored in `src/data/profile.json` (single object).
-
-| Field      | Type               | Notes                                                                                                                                      |
-| ---------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`     | string             | Display name / brand. **Pending** (README checklist).                                                                                      |
-| `tagline`  | `{ pt, en }`       | One sentence under the hero name.                                                                                                          |
-| `bio`      | `{ pt, en }`       | 2–3 paragraphs for the About section.                                                                                                      |
-| `services` | `Service[4]`       | Exactly four: `{ id: category-enum value, name: {pt,en}, blurb: {pt,en} }`. Reuses the category enum so services and filters stay aligned. |
-| `email`    | string             | Contact CTA target.                                                                                                                        |
-| `socials`  | `{ label, url }[]` | Behance, Instagram, LinkedIn, Vimeo…                                                                                                       |
-| `photo`    | `Image` \| null    | Optional About-section portrait.                                                                                                           |
-
-## 3. UI string dictionaries
-
-`src/i18n/pt.json` and `en.json` — flat keys, identical key sets (a test asserts parity):
-
-```jsonc
+```json
 {
-  "nav.work": "Trabalhos",
-  "nav.about": "Sobre",
-  "nav.contact": "Contato",
-  "filter.all": "Todos",
-  "filter.video": "Vídeo",
-  "filter.motion": "Motion",
-  "filter.product": "Produto",
-  "filter.graphic": "Gráfico",
-  "work.empty": "Nenhum projeto nesta categoria ainda.",
-  "work.showAll": "Ver todos",
-  "detail.tools": "Ferramentas",
-  "detail.close": "Fechar",
-  "contact.cta": "Vamos conversar",
-  // ... final list grows during implementation; keys never hold content, only UI copy
+  "id": "project-uuid",
+  "slug": "nome-do-projeto",
+  "rank": 17,
+  "primaryDisciplineId": "discipline-uuid",
+  "secondaryDisciplineIds": ["discipline-uuid-2"],
+  "title": { "pt": "Nome do projeto", "en": "Project name" },
+  "description": { "pt": "Texto opcional.", "en": "Optional text." },
+  "coverMediaId": "media-uuid",
+  "media": [],
+  "context": {
+    "clientOrBrand": "Marca",
+    "role": { "pt": "Direção de arte", "en": "Art direction" }
+  },
+  "tools": ["After Effects"],
+  "links": [
+    { "label": { "pt": "Ver projeto", "en": "View project" }, "url": "https://example.com" }
+  ]
 }
 ```
 
-**Rule of thumb:** if the text describes _the designer or their work_ → it's content (`{pt,en}` in data JSON). If it describes _the interface_ → it's a dictionary key.
+| Field                    | Required | Rules                                                                                                                      |
+| ------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `id`                     | yes      | System-generated, stable, unique, immutable.                                                                               |
+| `slug`                   | yes      | System-generated from the initial PT-BR title, unique, lowercase kebab-case, immutable. Powers `#project/<slug>`.          |
+| `rank`                   | yes      | João's unique global showcase position; lowest value is first. New projects receive a bottom rank.                         |
+| `primaryDisciplineId`    | yes      | Must reference one active catalog item.                                                                                    |
+| `secondaryDisciplineIds` | yes      | Ordered zero-or-more active catalog IDs; cannot repeat the primary discipline.                                             |
+| `title`                  | yes      | PT-BR and EN.                                                                                                              |
+| `description`            | no       | Optional as a whole; when present it must be complete in both languages. Plain text, with blank lines creating paragraphs. |
+| `coverMediaId`           | yes      | Must point to an image in `media`; never to a video.                                                                       |
+| `media`                  | yes      | Ordered non-empty gallery.                                                                                                 |
+| `context`                | no       | Optional as a whole; when present client/brand and bilingual role are all required.                                        |
+| `tools`                  | no       | Ordered non-empty free-text labels.                                                                                        |
+| `links`                  | no       | Bilingual labels and HTTPS URLs only.                                                                                      |
 
-## 4. Adding a project in v1 (manual workflow)
+### Gallery media
 
-Written so the designer can do it with light guidance:
+```json
+{
+  "id": "media-uuid",
+  "type": "image",
+  "src": "/images/projects/master.webp",
+  "alt": { "pt": "Descrição da imagem", "en": "Image description" },
+  "focalPoint": { "x": 50, "y": 35 },
+  "width": 1600,
+  "height": 1000
+}
+```
 
-1. Export a thumbnail at 1600×1000 (16:10) as WebP → drop into `public/images/projects/`.
-2. Open `src/data/projects.json`, copy the last project object, paste it at the top.
-3. Fill in every field (new `id`, new `slug`, both `pt` and `en` texts, correct `category` and `date`).
-4. Run `npm run dev` — if anything is malformed, the page shows a clear validation error naming the field.
-5. Commit & push → host auto-deploys.
+- Image `alt` is required in both languages. `focalPoint` is optional; when supplied `x` and `y` are percentages in the inclusive `0–100` range.
+- Image `src` is a single canonical master. The build creates sibling responsive WebP variants; see [08](08-responsive-images.md).
+- A video is `{ id, type: "video", provider, videoId, title }`. Supported providers are `youtube`, `vimeo`, and `adobe-ccv`; `title` is bilingual. Adobe CCV uses a full embed URL as `videoId`.
 
-This same field list, in the same order, becomes the v2 admin form — meaning v2 changes _where_ the data lives, never _what_ it looks like.
+## Validation and preview
+
+- Production validates every profile, discipline, project reference, localized field, cover, media item, and external URL. A violation throws and fails the build.
+- Preview validates leniently so João can save an incomplete draft. Invalid projects are listed in `previewChecklist`; only structurally renderable projects appear in the preview grid.
+- The production branch must have an empty `previewChecklist`. Tests assert this against the committed content.
+
+## Archive and restore
+
+To archive, move the project JSON to `content/archive/projects/` on `content-preview`, retain its images, and merge only after the normal gate. To restore, move it back to `content/projects/`, repair references if needed, and publish through a new PR. There is no permanent delete in v1.

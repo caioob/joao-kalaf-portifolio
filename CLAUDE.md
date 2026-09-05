@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Bilingual (PT-BR/EN) portfolio one-pager for a multidisciplinary designer. Vite + React 19 + Tailwind CSS v4. **Spec-driven:** the documents in `docs/` (01-product-spec → 06-behance-import) are the source of truth for scope, architecture, design, and content schemas — read the relevant doc before implementing, and update it if implementation must deviate (see the deviations section of any report in `docs/reports/` for the expected format).
+Bilingual PT-BR/EN showcase portfolio for João Kalaf. Vite + React 19 + Tailwind CSS v4. **Spec-driven:** docs 01–08 are the source of truth for scope, architecture, design, content schemas, authoring, and images — read the relevant doc before implementing, and update it if implementation must deviate.
 
 ## Commands
 
@@ -35,8 +35,8 @@ Every completed roadmap step (`docs/05-roadmap.md`) **must** produce a report at
 
 - **Tokens or nothing.** Every visual value (color, type size, spacing, radius, motion) is a token in `src/styles/theme.css` — the only file edited for design changes (runbook: `docs/03-design-system.md` §8). Components use semantic utilities only (`bg-surface`, `text-display`, `max-w-site`, `gap-grid`); hex colors, arbitrary values (`text-[17px]`), and raw palette classes (`text-zinc-500`) are forbidden in `src/` and enforced by `scripts/check-tokens.mjs`.
 - **Zero runtime deps beyond react/react-dom.** No router (URL hash for filter state), no i18n library (small context + JSON dictionaries), no state/animation libraries. Adding a runtime dependency is a spec change, not an implementation detail.
-- **Content flows through one seam.** Components never import JSON; all project data goes through `src/lib/projects.js` (validates against schemas in `docs/04-content-model.md`). This module is the v2 swap point for the future admin UI — don't let data access leak elsewhere. `getProjects()`/`getProfile()` return the real scraped data (15 projects); tests derive counts/names/providers from these functions rather than hardcoding.
-- **Some content fields are optional.** `project.description` may be `{ pt: '', en: '' }` and `profile.email` may be `''` (Behance exposes neither) — components render nothing / an empty `mailto:` and must not require them. `project.category` must be one of `video`, `motion`, `product`, `graphic` (`CATEGORIES` in `projects.js`); video providers are `youtube`, `vimeo`, `adobe-ccv` (`VIDEO_PROVIDERS`), where adobe-ccv's `videoId` is the full Behance embed URL used directly as the iframe `src`.
+- **Content flows through one seam.** Components never import JSON; all portfolio data goes through `src/lib/projects.js` and follows `docs/04-content-model.md`. The repository owns strict production validation and lenient preview checklists; do not let data access leak elsewhere.
+- **Model essentials.** `description` and `context` are optional as a whole but bilingual when supplied. Every project has one primary active discipline plus optional active secondaries, and a cover-selected gallery image. Disciplines are dynamic catalog data, not a static category enum. Video providers remain `youtube`, `vimeo`, and `adobe-ccv`, where Adobe CCV's `videoId` is the full embed URL.
 - **Layout composes `Section > Container`** (`src/components/layout/`) — sections never apply their own rhythm or max-width.
 - **Bilingual by schema.** Content fields are `{ pt, en }` pairs (both required); UI strings come from `src/i18n/` dictionaries via `useI18n()` (`t()` for UI keys, `pick()` for content fields). No hardcoded user-visible copy in components. The pt/en dictionaries must have identical key sets — test-enforced.
 - **Tests run without injected globals** — import `describe/it/expect` from `vitest`; Testing Library cleanup is registered explicitly in `src/test/setup.js`. The `test` scripts set `NODE_OPTIONS=--no-experimental-webstorage` because Node 26's experimental global `localStorage` shadows jsdom's; always use `window.localStorage` (never bare `localStorage`) in source and tests.
@@ -56,11 +56,11 @@ node scripts/fetch-behance.mjs --profile https://www.behance.net/joaokalaf
 
 ## Deployment
 
-Vercel auto-deploys from `main` (no GitHub Actions; no `base` path in `vite.config.js`). The old `gh-pages` branch is deprecated — do not use it.
+Vercel deploys protected `main` to production and `content-preview` to a restricted preview (no GitHub Actions; no `base` path in `vite.config.js`). The old `gh-pages` branch is deprecated.
 
 ## Pending client input
 
-Real name/brand, bio, accent color, and font approval are pending (checklist in `README.md`). Current values in `theme.css` marked "pending client approval" are placeholders — keep them swappable, don't bake them in. `profile.email` is currently empty (Behance doesn't expose it) and needs manual entry.
+The final logo asset, its background token treatment, accent color, and font approval remain pending. Current visual placeholders in `theme.css` must stay swappable.
 
 ## Agent skills
 

@@ -1,11 +1,22 @@
 import { useI18n } from '../i18n/I18nContext.jsx'
 import ResponsiveImage from './ResponsiveImage.jsx'
+import { getCoverMedia } from '../lib/projects.js'
 
 const RECT_CLASSES = ['h-(--rect-h-1)', 'h-(--rect-h-2)', 'h-(--rect-h-3)']
 
-export default function ProjectCard({ project, onOpen, priority = false, index = 0, transitioningId = null }) {
-  const { t, pick } = useI18n()
-  const year = project.date.slice(0, 4)
+export default function ProjectCard({
+  project,
+  disciplines,
+  onOpen,
+  priority = false,
+  index = 0,
+  transitioningId = null,
+}) {
+  const { pick } = useI18n()
+  const cover = getCoverMedia(project)
+  const primaryDiscipline = disciplines.find(
+    (discipline) => discipline.id === project.primaryDisciplineId,
+  )
   const hasVideo = project.media.some((item) => item.type === 'video')
   const rectClass = RECT_CLASSES[index % 3]
   // The shared `detail-hero` name is carried by exactly one card at a time
@@ -24,13 +35,18 @@ export default function ProjectCard({ project, onOpen, priority = false, index =
         style={{ viewTransitionName: morphing ? 'detail-hero' : undefined }}
       >
         <ResponsiveImage
-          src={project.thumbnail.src}
-          alt={pick(project.thumbnail.alt)}
+          src={cover.src}
+          alt={pick(cover.alt)}
           slot="thumbnail"
-          width={project.thumbnail.width ?? 1600}
-          height={project.thumbnail.height ?? 1000}
+          width={cover.width ?? 1600}
+          height={cover.height ?? 1000}
           eager={priority}
           className={`${rectClass} w-full object-cover transition-transform duration-(--duration-slow) ease-standard group-hover:scale-102`}
+          style={
+            cover.focalPoint
+              ? { objectPosition: `${cover.focalPoint.x}% ${cover.focalPoint.y}%` }
+              : undefined
+          }
         />
         {hasVideo && (
           <span
@@ -45,16 +61,7 @@ export default function ProjectCard({ project, onOpen, priority = false, index =
         {pick(project.title)}
       </span>
       <span className="mt-1.5 flex items-center gap-2 text-small text-ink-muted">
-        <span className="border border-line px-2.5 py-0.5">
-          {t(`filter.${project.category}`)}
-        </span>
-        <span>{year}</span>
-        {project.featured && (
-          <span className="flex items-center gap-1.5">
-            <span aria-hidden="true" className="size-1.5 bg-accent" />
-            {t('card.featured')}
-          </span>
-        )}
+        <span className="border border-line px-2.5 py-0.5">{pick(primaryDiscipline.label)}</span>
       </span>
     </button>
   )

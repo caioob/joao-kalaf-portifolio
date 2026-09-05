@@ -1,26 +1,28 @@
 {
   "id": "p-011",
   "slug": "mao-figurativa",
-  "category": "graphic",
+  "rank": 16,
+  "primaryDisciplineId": "graphic",
+  "secondaryDisciplineIds": [],
   "title": {
     "pt": "mão figurativa",
     "en": "mão figurativa"
   },
-  "description": {
-    "pt": "",
-    "en": ""
-  },
-  "thumbnail": {
-    "src": "/images/projects/mao-figurativa-thumb.webp",
-    "alt": {
-      "pt": "mão figurativa",
-      "en": "mão figurativa"
-    },
-    "width": 1600,
-    "height": 1000
-  },
+  "coverMediaId": "cover",
   "media": [
     {
+      "id": "cover",
+      "type": "image",
+      "src": "/images/projects/mao-figurativa-thumb.webp",
+      "alt": {
+        "pt": "mão figurativa",
+        "en": "mão figurativa"
+      },
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "media-1",
       "type": "image",
       "src": "/images/projects/mao-figurativa-1.webp",
       "alt": {
@@ -31,6 +33,7 @@
       "height": 1707
     },
     {
+      "id": "media-2",
       "type": "image",
       "src": "/images/projects/mao-figurativa-2.webp",
       "alt": {
@@ -41,9 +44,6 @@
       "height": 1707
     }
   ],
-  "tools": [],
-  "date": "2020-02",
-  "featured": false,
   "links": [
     {
       "label": {

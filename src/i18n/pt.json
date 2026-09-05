@@ -22,6 +22,10 @@
   "detail.tools": "Ferramentas",
   "detail.links": "Links",
   "detail.close": "Fechar",
+  "detail.clientOrBrand": "Cliente ou marca",
+  "detail.role": "Função",
+  "preview.ready": "Prévia pronta para a revisão final.",
+  "preview.blocked": "Esta prévia contém itens incompletos.",
   "about.title": "Sobre",
   "contact.line": "Vamos criar algo juntos?",
   "contact.cta": "Vamos conversar"

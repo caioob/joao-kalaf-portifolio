@@ -1,26 +1,28 @@
 {
   "id": "p-006",
-  "slug": "Infusor-de-cha-Irup-Vitoria-rgia",
-  "category": "product",
+  "slug": "infusor-de-cha-irup-vitoria-rgia",
+  "rank": 10,
+  "primaryDisciplineId": "product",
+  "secondaryDisciplineIds": [],
   "title": {
     "pt": "Infusor de chá Irupé (Vitória-régia)",
     "en": "Infusor de chá Irupé (Vitória-régia)"
   },
-  "description": {
-    "pt": "",
-    "en": ""
-  },
-  "thumbnail": {
-    "src": "/images/projects/Infusor-de-cha-Irup-Vitoria-rgia-thumb.webp",
-    "alt": {
-      "pt": "Infusor de chá Irupé (Vitória-régia)",
-      "en": "Infusor de chá Irupé (Vitória-régia)"
-    },
-    "width": 1600,
-    "height": 1000
-  },
+  "coverMediaId": "cover",
   "media": [
     {
+      "id": "cover",
+      "type": "image",
+      "src": "/images/projects/Infusor-de-cha-Irup-Vitoria-rgia-thumb.webp",
+      "alt": {
+        "pt": "Infusor de chá Irupé (Vitória-régia)",
+        "en": "Infusor de chá Irupé (Vitória-régia)"
+      },
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "media-1",
       "type": "image",
       "src": "/images/projects/Infusor-de-cha-Irup-Vitoria-rgia-1.webp",
       "alt": {
@@ -31,6 +33,7 @@
       "height": 1080
     },
     {
+      "id": "media-2",
       "type": "image",
       "src": "/images/projects/Infusor-de-cha-Irup-Vitoria-rgia-2.webp",
       "alt": {
@@ -41,6 +44,7 @@
       "height": 1080
     },
     {
+      "id": "media-3",
       "type": "image",
       "src": "/images/projects/Infusor-de-cha-Irup-Vitoria-rgia-3.webp",
       "alt": {
@@ -51,6 +55,7 @@
       "height": 1080
     },
     {
+      "id": "media-4",
       "type": "image",
       "src": "/images/projects/Infusor-de-cha-Irup-Vitoria-rgia-4.webp",
       "alt": {
@@ -61,6 +66,7 @@
       "height": 617
     },
     {
+      "id": "media-5",
       "type": "image",
       "src": "/images/projects/Infusor-de-cha-Irup-Vitoria-rgia-5.webp",
       "alt": {
@@ -71,6 +77,7 @@
       "height": 1080
     },
     {
+      "id": "media-6",
       "type": "image",
       "src": "/images/projects/Infusor-de-cha-Irup-Vitoria-rgia-6.webp",
       "alt": {
@@ -81,6 +88,7 @@
       "height": 1080
     },
     {
+      "id": "media-7",
       "type": "video",
       "provider": "adobe-ccv",
       "videoId": "https://www-ccv.adobe.io/v1/player/ccv/-Y2Lih6UW_v/embed?api_key=behance1&bgcolor=%23191919",
@@ -90,9 +98,6 @@
       }
     }
   ],
-  "tools": [],
-  "date": "2022-12",
-  "featured": false,
   "links": [
     {
       "label": {

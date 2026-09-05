@@ -1,26 +1,28 @@
 {
   "id": "p-012",
   "slug": "estampa-para-moletom-e-camiseta",
-  "category": "graphic",
+  "rank": 12,
+  "primaryDisciplineId": "graphic",
+  "secondaryDisciplineIds": [],
   "title": {
     "pt": "estampa para moletom e camiseta",
     "en": "estampa para moletom e camiseta"
   },
-  "description": {
-    "pt": "",
-    "en": ""
-  },
-  "thumbnail": {
-    "src": "/images/projects/estampa-para-moletom-e-camiseta-thumb.webp",
-    "alt": {
-      "pt": "estampa para moletom e camiseta",
-      "en": "estampa para moletom e camiseta"
-    },
-    "width": 2400,
-    "height": 1500
-  },
+  "coverMediaId": "cover",
   "media": [
     {
+      "id": "cover",
+      "type": "image",
+      "src": "/images/projects/estampa-para-moletom-e-camiseta-thumb.webp",
+      "alt": {
+        "pt": "estampa para moletom e camiseta",
+        "en": "estampa para moletom e camiseta"
+      },
+      "width": 2400,
+      "height": 1500
+    },
+    {
+      "id": "media-1",
       "type": "image",
       "src": "/images/projects/estampa-para-moletom-e-camiseta-1.webp",
       "alt": {
@@ -31,6 +33,7 @@
       "height": 2240
     },
     {
+      "id": "media-2",
       "type": "image",
       "src": "/images/projects/estampa-para-moletom-e-camiseta-2.webp",
       "alt": {
@@ -41,6 +44,7 @@
       "height": 2560
     },
     {
+      "id": "media-3",
       "type": "image",
       "src": "/images/projects/estampa-para-moletom-e-camiseta-3.webp",
       "alt": {
@@ -51,6 +55,7 @@
       "height": 2560
     },
     {
+      "id": "media-4",
       "type": "image",
       "src": "/images/projects/estampa-para-moletom-e-camiseta-4.webp",
       "alt": {
@@ -61,6 +66,7 @@
       "height": 1080
     },
     {
+      "id": "media-5",
       "type": "image",
       "src": "/images/projects/estampa-para-moletom-e-camiseta-5.webp",
       "alt": {
@@ -71,9 +77,6 @@
       "height": 1080
     }
   ],
-  "tools": [],
-  "date": "2022-08",
-  "featured": false,
   "links": [
     {
       "label": {

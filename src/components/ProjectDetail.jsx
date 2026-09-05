@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useI18n } from '../i18n/I18nContext.jsx'
+import { getCoverMedia } from '../lib/projects.js'
 import ResponsiveImage from './ResponsiveImage.jsx'
 
 function VideoEmbed({ media }) {
@@ -23,7 +24,7 @@ function VideoEmbed({ media }) {
   )
 }
 
-export default function ProjectDetail({ project, onClose }) {
+export default function ProjectDetail({ project, disciplines, onClose }) {
   const { t, pick } = useI18n()
   const dialogRef = useRef(null)
   // The element that had focus when the modal opened — usually the clicked
@@ -54,7 +55,18 @@ export default function ProjectDetail({ project, onClose }) {
     }
   }, [])
 
-  const meta = [t(`filter.${project.category}`), project.date.slice(0, 4), ...(project.tools ?? [])]
+  const cover = getCoverMedia(project)
+  const primaryDiscipline = disciplines.find(
+    (discipline) => discipline.id === project.primaryDisciplineId,
+  )
+  const secondaryDisciplines = project.secondaryDisciplineIds
+    .map((id) => disciplines.find((discipline) => discipline.id === id))
+    .filter(Boolean)
+  const meta = [
+    pick(primaryDiscipline.label),
+    ...secondaryDisciplines.map((discipline) => pick(discipline.label)),
+    ...(project.tools ?? []),
+  ]
 
   return (
     <dialog
@@ -95,12 +107,17 @@ export default function ProjectDetail({ project, onClose }) {
           style={{ viewTransitionName: 'detail-hero' }}
         >
           <ResponsiveImage
-            src={project.thumbnail.src}
-            alt={pick(project.thumbnail.alt)}
+            src={cover.src}
+            alt={pick(cover.alt)}
             slot="thumbnail"
-            width={project.thumbnail.width ?? 1600}
-            height={project.thumbnail.height ?? 1000}
+            width={cover.width ?? 1600}
+            height={cover.height ?? 1000}
             className="w-full object-cover"
+            style={
+              cover.focalPoint
+                ? { objectPosition: `${cover.focalPoint.x}% ${cover.focalPoint.y}%` }
+                : undefined
+            }
           />
         </div>
 
@@ -118,22 +135,37 @@ export default function ProjectDetail({ project, onClose }) {
           </div>
         )}
 
+        {project.context && (
+          <dl className="mt-6 grid gap-2 text-small text-surface/70 sm:grid-cols-2">
+            <div>
+              <dt className="font-medium text-surface">{t('detail.clientOrBrand')}</dt>
+              <dd>{project.context.clientOrBrand}</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-surface">{t('detail.role')}</dt>
+              <dd>{pick(project.context.role)}</dd>
+            </div>
+          </dl>
+        )}
+
         <div className="mt-8 space-y-6">
-          {project.media.map((item, index) =>
-            item.type === 'video' ? (
-              <VideoEmbed key={index} media={item} />
-            ) : (
-              <ResponsiveImage
-                key={index}
-                src={item.src}
-                alt={pick(item.alt)}
-                slot="gallery"
-                width={item.width}
-                height={item.height}
-                className="w-full rounded-card border border-surface/25"
-              />
-            ),
-          )}
+          {project.media
+            .filter((item) => item.id !== project.coverMediaId)
+            .map((item) =>
+              item.type === 'video' ? (
+                <VideoEmbed key={item.id} media={item} />
+              ) : (
+                <ResponsiveImage
+                  key={item.id}
+                  src={item.src}
+                  alt={pick(item.alt)}
+                  slot="gallery"
+                  width={item.width}
+                  height={item.height}
+                  className="w-full rounded-card border border-surface/25"
+                />
+              ),
+            )}
         </div>
 
         {project.links?.length > 0 && (

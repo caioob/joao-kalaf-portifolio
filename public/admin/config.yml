@@ -1,170 +1,208 @@
-# Decap CMS configuration (docs/07). Maps the content model (docs/04) to editor
-# widgets. The public site keeps reading these same files via src/lib/projects.js.
-#
-# Local editing (no GitHub): run `npx decap-server` in one terminal and
-# `npm run dev` in another, then open http://localhost:5173/admin/.
-# Production auth (GitHub OAuth proxy) is wired in Step 4 (docs/07 §4).
-
 backend:
   name: github
   repo: caioob/joao-kalaf-portifolio
-  branch: main
-  base_url: https://joao-kalaf-portifolio.vercel.app # OAuth proxy origin (Step 4)
+  branch: content-preview
+  base_url: https://joao-kalaf-portifolio.vercel.app
   auth_endpoint: /api/auth
 
-# When true, Decap talks to the local `npx decap-server` proxy and edits the
-# working tree directly — no GitHub round-trip. Harmless in production (only
-# active when the local proxy is reachable).
 local_backend: true
-
-# Image uploads land next to the existing masters; the build generator
-# (scripts/generate-images.mjs) produces their responsive ladder. Full
-# upload→optimize wiring is Step 5 (docs/07 §6).
+locale: pt
+editor:
+  preview: false
 media_folder: public/images/projects
 public_folder: /images/projects
 
 collections:
   - name: projects
-    label: Projects
-    label_singular: Project
+    label: Projetos
+    label_singular: Projeto
     folder: content/projects
     extension: json
     format: json
     create: true
-    slug: '{{fields.slug}}'
+    delete: false
+    slug: '{{fields.title.pt}}'
     identifier_field: slug
     summary: '{{fields.title.pt}}'
+    preview_path: '#project/{{slug}}'
     fields:
-      - { name: id, label: ID, widget: string, hint: 'Stable unique id, e.g. p-016' }
-      - name: slug
-        label: Slug
-        widget: string
-        hint: 'Filename + URL. Letters, numbers and hyphens only.'
-        pattern: ['^[A-Za-z0-9-]+$', 'Only letters, numbers and hyphens']
-      - { name: category, label: Category, widget: select, options: [video, motion, product, graphic] }
-      - name: date
-        label: Date
-        widget: string
-        hint: 'Year and month, e.g. 2026-06'
-        pattern: ['^\d{4}-\d{2}$', 'Use the format YYYY-MM']
-      - { name: featured, label: Featured?, widget: boolean, default: false, required: false }
+      - { name: id, widget: hidden, default: '' }
+      - { name: slug, widget: hidden, default: '' }
+      - {
+          name: rank,
+          label: Posição no showcase,
+          widget: number,
+          value_type: int,
+          min: 0,
+          required: false,
+        }
       - name: title
-        label: Title
+        label: Título
         widget: object
         fields:
-          - { name: pt, label: Português, widget: string }
-          - { name: en, label: English, widget: string }
+          - { name: pt, label: Português (Brasil), widget: string }
+          - { name: en, label: Inglês, widget: string }
+      - name: primaryDisciplineId
+        label: Disciplina principal
+        widget: relation
+        collection: discipline_catalog
+        file: disciplines
+        search_fields: ['disciplines.*.label.pt', 'disciplines.*.label.en']
+        display_fields: ['disciplines.*.label.pt', 'disciplines.*.label.en']
+        value_field: disciplines.*.id
+      - name: secondaryDisciplineIds
+        label: Disciplinas secundárias
+        widget: relation
+        required: false
+        multiple: true
+        collection: discipline_catalog
+        file: disciplines
+        search_fields: ['disciplines.*.label.pt', 'disciplines.*.label.en']
+        display_fields: ['disciplines.*.label.pt', 'disciplines.*.label.en']
+        value_field: disciplines.*.id
       - name: description
-        label: Description
+        label: Narrativa do projeto
         widget: object
         required: false
         fields:
-          - { name: pt, label: Português, widget: text, required: false }
-          - { name: en, label: English, widget: text, required: false }
-      - name: thumbnail
-        label: Thumbnail
-        widget: object
-        fields:
-          - { name: src, label: Image, widget: image }
-          - name: alt
-            label: Alt text
-            widget: object
-            fields:
-              - { name: pt, label: Português, widget: string }
-              - { name: en, label: English, widget: string }
-          - { name: width, label: Width (px), widget: number, required: false, value_type: int }
-          - { name: height, label: Height (px), widget: number, required: false, value_type: int }
+          - { name: pt, label: Português (Brasil), widget: text, required: false }
+          - { name: en, label: Inglês, widget: text, required: false }
+      - { name: coverMediaId, widget: hidden, default: '' }
       - name: media
-        label: Media (gallery)
+        label: Galeria
         label_singular: Item
         widget: list
         types:
           - name: image
-            label: Image
+            label: Imagem
             widget: object
             summary: '{{fields.src}}'
             fields:
-              - { name: src, label: Image, widget: image }
+              - { name: id, widget: hidden, default: '' }
+              - { name: type, widget: hidden, default: image }
+              - { name: src, label: Arquivo de imagem, widget: image }
               - name: alt
-                label: Alt text
+                label: Texto alternativo
                 widget: object
                 fields:
-                  - { name: pt, label: Português, widget: string }
-                  - { name: en, label: English, widget: string }
-              - { name: width, label: Width (px), widget: number, required: false, value_type: int }
-              - { name: height, label: Height (px), widget: number, required: false, value_type: int }
+                  - { name: pt, label: Português (Brasil), widget: string }
+                  - { name: en, label: Inglês, widget: string }
+              - name: focalPoint
+                label: Ponto focal (opcional)
+                widget: object
+                required: false
+                fields:
+                  - {
+                      name: x,
+                      label: Horizontal (%),
+                      widget: number,
+                      value_type: float,
+                      min: 0,
+                      max: 100,
+                      required: false,
+                    }
+                  - {
+                      name: y,
+                      label: Vertical (%),
+                      widget: number,
+                      value_type: float,
+                      min: 0,
+                      max: 100,
+                      required: false,
+                    }
+              - {
+                  name: isCover,
+                  label: Usar como capa do projeto,
+                  widget: boolean,
+                  required: false,
+                  default: false,
+                }
+              - { name: width, widget: hidden, default: '' }
+              - { name: height, widget: hidden, default: '' }
           - name: video
-            label: Video
+            label: Vídeo hospedado
             widget: object
             summary: '{{fields.provider}} · {{fields.videoId}}'
             fields:
-              - { name: provider, label: Provider, widget: select, options: [youtube, vimeo, adobe-ccv] }
-              - name: videoId
-                label: Video ID / embed URL
-                widget: string
-                hint: 'YouTube/Vimeo id, or the full embed URL for adobe-ccv'
+              - { name: id, widget: hidden, default: '' }
+              - { name: type, widget: hidden, default: video }
+              - {
+                  name: provider,
+                  label: Plataforma,
+                  widget: select,
+                  options: [youtube, vimeo, adobe-ccv],
+                }
+              - { name: videoId, label: ID do vídeo ou URL de incorporação, widget: string }
               - name: title
-                label: Title
+                label: Título acessível
                 widget: object
                 fields:
-                  - { name: pt, label: Português, widget: string }
-                  - { name: en, label: English, widget: string }
+                  - { name: pt, label: Português (Brasil), widget: string }
+                  - { name: en, label: Inglês, widget: string }
+      - name: context
+        label: Contexto do projeto
+        widget: object
+        required: false
+        fields:
+          - { name: clientOrBrand, label: Cliente ou marca, widget: string, required: false }
+          - name: role
+            label: Função
+            widget: object
+            required: false
+            fields:
+              - { name: pt, label: Português (Brasil), widget: string, required: false }
+              - { name: en, label: Inglês, widget: string, required: false }
       - name: tools
-        label: Tools
+        label: Ferramentas
         widget: list
         required: false
-        field: { name: tool, label: Tool, widget: string }
+        field: { name: tool, label: Ferramenta, widget: string }
       - name: links
-        label: Links
+        label: Links externos
         widget: list
         required: false
         fields:
           - name: label
-            label: Label
+            label: Rótulo
             widget: object
             fields:
-              - { name: pt, label: Português, widget: string }
-              - { name: en, label: English, widget: string }
-          - { name: url, label: URL, widget: string }
+              - { name: pt, label: Português (Brasil), widget: string }
+              - { name: en, label: Inglês, widget: string }
+          - {
+              name: url,
+              label: URL HTTPS,
+              widget: string,
+              pattern: ['^https://.+', 'Use uma URL HTTPS'],
+            }
+
+  - name: discipline_catalog
+    label: Disciplinas
+    files:
+      - name: disciplines
+        label: Catálogo de disciplinas
+        file: content/disciplines.json
+        fields:
+          - name: disciplines
+            label: Disciplinas
+            label_singular: Disciplina
+            widget: list
+            fields:
+              - { name: id, widget: hidden, default: '' }
+              - name: label
+                label: Rótulo
+                widget: object
+                fields:
+                  - { name: pt, label: Português (Brasil), widget: string }
+                  - { name: en, label: Inglês, widget: string }
+              - { name: rank, widget: hidden, default: '' }
+              - { name: archived, label: Arquivar disciplina, widget: boolean, default: false }
 
   - name: profile
-    label: Profile
+    label: Perfil
     files:
       - name: profile
-        label: Profile
+        label: Perfil público
         file: content/profile.json
         fields:
-          - { name: name, label: Name, widget: string }
-          # tagline/bio are NOT editable here: they're no longer rendered anywhere
-          # since the page trim, and Decap text widgets force non-empty values
-          # (blanking bio produced ' ' and broke strict validation — overridden in
-          # content). Values are managed in content/profile.json; docs/04 keeps
-          # them required.
-          - { name: email, label: Email, widget: string, required: false }
-          - name: services
-            label: Services
-            widget: list
-            fields:
-              - { name: id, label: Category, widget: select, options: [video, motion, product, graphic] }
-              - name: name
-                label: Name
-                widget: object
-                fields:
-                  - { name: pt, label: Português, widget: string }
-                  - { name: en, label: English, widget: string }
-              - name: blurb
-                label: Blurb
-                widget: object
-                fields:
-                  - { name: pt, label: Português, widget: string }
-                  - { name: en, label: English, widget: string }
-          - name: socials
-            label: Socials
-            widget: list
-            required: false
-            fields:
-              - { name: label, label: Label, widget: string }
-              - { name: url, label: URL, widget: string }
-          # profile.photo (optional About portrait) is intentionally NOT editable
-          # here: Decap's image widget is mandatory, which blocked saving a profile
-          # without a photo. The data model (docs/04) still accepts photo: null.
+          - { name: name, label: Nome, widget: string }
+          - { name: logo, label: Logo (opcional), widget: image, required: false }

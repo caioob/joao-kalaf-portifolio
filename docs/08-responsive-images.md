@@ -2,7 +2,7 @@
 
 **Goal:** higher-resolution imagery (crisp on large/retina displays) **without** a performance regression. The lever is responsive delivery — ship many sizes and modern formats, let the browser download only the smallest file that fills the slot at the device's pixel density.
 
-This spec is the source of truth for the image pipeline (`scripts/generate-images.mjs` + the dump's `scripts/lib/behance-images.mjs`), the `Image` schema (doc 04), and the rendering components (`ProjectCard`, `ProjectDetail`, About portrait).
+This spec is the source of truth for the image pipeline (`scripts/generate-images.mjs` + the dump's `scripts/lib/behance-images.mjs`), the `Image` schema (doc 04), and the rendering components (`ProjectCard`, `ProjectDetail`).
 
 > **Decision (2026-06-17, implemented):** **WebP-only, four widths per slot, variants committed.** AVIF (originally the primary format) was dropped to keep the repo small (~250 variant files vs ~1,000+) and builds fast — re-encoding ~1,000 AVIFs on every Vercel deploy would add minutes. `srcset`/`sizes` over a WebP ladder is the actual lever for "right resolution per viewport". The sections below reflect the implemented design; struck-through ambitions (AVIF, 6-width ladders) may return if build caching makes them cheap.
 
@@ -14,15 +14,14 @@ WebP only, served via a plain `<img srcset sizes>` (no `<picture>` element neede
 
 A "ladder" is the set of widths generated per image; `sizes` (§4) decides which rung the browser downloads. Four widths per slot (five for thumbnails — see the note under the table) — the single source of truth is `LADDERS` in `src/lib/images.js`.
 
-| Slot | Aspect | Ladder (px wide) | Master min |
-| --- | --- | --- | --- |
-| **thumbnail** (full-width card band) | 16:10 (cropped) | 400, 800, 1200, **1600**, **2400**\* | ≥ 1600 |
-| **gallery** (detail modal) | native (no crop) | 640, 1280, 1920, **2560** | ≥ 2048 |
-| **portrait** (About photo) | native | 320, 480, 640, **960** | ≥ 960 |
+| Slot                                                               | Aspect           | Ladder (px wide)                     | Master min |
+| ------------------------------------------------------------------ | ---------------- | ------------------------------------ | ---------- |
+| **thumbnail** (selected gallery cover on the full-width card band) | 16:10 (cropped)  | 400, 800, 1200, **1600**, **2400**\* | ≥ 1600     |
+| **gallery** (detail modal)                                         | native (no crop) | 640, 1280, 1920, **2560**            | ≥ 2048     |
 
-\*The 2400 rung only exists for masters whose intrinsic width exceeds it (the full-width-card pass re-derived one cover at 2400×1500 from its committed gallery master). The generator still caps *new* thumbnail uploads at 1600×1000 — raising the generator/importer caps is flagged as follow-up work.
+\*The 2400 rung only exists for masters whose intrinsic width exceeds it (the full-width-card pass re-derived one cover at 2400×1500 from its committed gallery master). The generator still caps _new_ thumbnail uploads at 1600×1000 — raising the generator/importer caps is flagged as follow-up work.
 
-The committed master **is the top rung** (at its own intrinsic width); the generator only writes the rungs strictly *below* the intrinsic width (`variantWidths()`), so nothing is ever upscaled and a small master simply yields a shorter ladder.
+The committed master **is the top rung** (at its own intrinsic width); the generator only writes the rungs strictly _below_ the intrinsic width (`variantWidths()`), so nothing is ever upscaled and a small master simply yields a shorter ladder.
 
 ## 3. Naming convention
 
@@ -39,13 +38,12 @@ Both masters **and** variants are committed (see §7). The ladder widths live in
 
 ## 4. The `sizes` contract (the part that protects performance)
 
-`sizes` tells the browser the slot's rendered width *before* layout, so it picks the right rung. Thumbnails are full-width bands: one per project inside `max-w-site` (1200px), with 24px per-side padding below the `md` breakpoint (768px) and 48px at `md+` — so a band renders at `min(1200px, 100vw) − 96px` ≈ **1104px on desktop**:
+`sizes` tells the browser the slot's rendered width _before_ layout, so it picks the right rung. Thumbnails are full-width bands: one per project inside `max-w-site` (1200px), with 24px per-side padding below the `md` breakpoint (768px) and 48px at `md+` — so a band renders at `min(1200px, 100vw) − 96px` ≈ **1104px on desktop**:
 
-| Slot | `sizes` |
-| --- | --- |
+| Slot                            | `sizes`                                                                  |
+| ------------------------------- | ------------------------------------------------------------------------ |
 | **thumbnail** (full-width band) | `(min-width: 768px) min(1104px, calc(100vw - 96px)), calc(100vw - 48px)` |
-| **gallery** | `(min-width: 768px) min(880px, 90vw), 92vw` |
-| **portrait** | `(min-width: 768px) 360px, 80vw` |
+| **gallery**                     | `(min-width: 768px) min(880px, 90vw), 92vw`                              |
 
 These strings live next to the components (they are HTML attributes, not Tailwind classes, so the token linter does not police them — but the values must stay in sync with the layout; the spec is their reference). If the grid breakpoints or `max-w-site` change, update these.
 
@@ -66,10 +64,10 @@ These strings live next to the components (they are HTML attributes, not Tailwin
 
 ## 7. Build pipeline
 
-1. **Masters:** the Behance importer (`docs/06-behance-import.md` §5.2) commits top-width WebP masters with `width`/`height`. Decap uploads (doc 07 §6) commit a raw image of **any** format — `generate-images.mjs` normalizes it (see below).
-2. **`scripts/generate-images.mjs`** processes the masters referenced by `content/`. For each it ensures a **canonical WebP master** (`canonicalSrc`) — converting + capping a non-WebP/oversized upload to the slot ceiling (thumbnail 1600×1000, gallery ≤2560, portrait ≤960) via `sharp`, and rewriting that record's `src`→`.webp` + `width`/`height` — then writes the sub-intrinsic WebP rungs (§2). **Idempotent** (already-normalized masters with variants are a no-op) and shares `LADDERS`/`variantWidths`/`variantSrc`/`canonicalSrc` with the frontend.
+1. **Masters:** the Behance importer (`docs/06-behance-import.md` §5.2) commits top-width WebP masters with `width`/`height`. Decap uploads (doc 07) commit a raw image of **any** format — `generate-images.mjs` normalizes it (see below).
+2. **`scripts/generate-images.mjs`** processes the gallery images referenced by production projects. It processes the selected `coverMediaId` image once for the 16:10 thumbnail slot, then processes every image for the native gallery slot. For each pass it ensures a **canonical WebP master** (`canonicalSrc`) — converting + capping a non-WebP/oversized upload to the slot ceiling (thumbnail 1600×1000, gallery ≤2560) via `sharp`, and rewriting that record's `src`→`.webp` + `width`/`height` — then writes the sub-intrinsic WebP rungs (§2). **Idempotent** (already-normalized masters with variants are a no-op) and shares `LADDERS`/`variantWidths`/`variantSrc`/`canonicalSrc` with the frontend.
 3. **Variants are committed** (`npm run images`, run once after a dump). The build runs the generator first (`build` = `node scripts/generate-images.mjs && vite build`); because variants exist it's a near-instant no-op, and a Decap-added master generates only its own few rungs on that deploy. This supersedes the earlier "generate at build, don't commit" note — committing keeps deploys fast and reliable (no multi-minute re-encode) at the cost of ~250 small files in git.
 
 ## 8. Component contract
 
-`src/components/ResponsiveImage.jsx` encapsulates the responsive `<img>` (`srcset` + `sizes` + intrinsic `width`/`height` + `loading`/`fetchpriority`/`decoding`), so `ProjectCard`/`ProjectDetail` don't repeat the markup. Props: `{ src, alt, slot, width, height, eager, className }`; it reads `srcSetFor`/`SIZES` from `src/lib/images.js`. The caller passes an already-localized `alt` (keeps the component i18n-free). Token discipline applies to any classes it carries.
+`src/components/ResponsiveImage.jsx` encapsulates the responsive `<img>` (`srcset` + `sizes` + intrinsic `width`/`height` + `loading`/`fetchpriority`/`decoding`), so `ProjectCard`/`ProjectDetail` don't repeat the markup. Props: `{ src, alt, slot, width, height, eager, className, style }`; it reads `srcSetFor`/`SIZES` from `src/lib/images.js`. The caller passes an already-localized `alt` (keeps the component i18n-free) and may pass a focal-point `object-position` style. Token discipline applies to any classes it carries.
