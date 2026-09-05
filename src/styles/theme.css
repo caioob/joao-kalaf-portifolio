@@ -37,6 +37,7 @@
   /* ── Layout (design §4) ────────────────────────────────── */
   --container-site: 75rem;
   --container-modal: 55rem;
+  --spacing-logo: 17rem;
   /* applied per side of each <Section>: 32→48px, i.e. 64–96px between sections */
   --spacing-section: clamp(2rem, 5vw, 3rem);
   --spacing-grid: 1.5rem;

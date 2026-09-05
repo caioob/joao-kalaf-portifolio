@@ -8,7 +8,7 @@ A stark print-editorial look: paper-white surfaces, blood-red type, and quiet bl
 
 1. **Light first.** Surface is paper; content is set in red ink and carries itself.
 2. **One accent — black.** Chrome (fills, borders, hover, focus) is monochrome. Red is reserved for type (`ink`), never for fills.
-3. **Type does the branding.** Strong display face, confident scale, no logos.
+3. **Type and artwork do the branding.** Strong display face, confident scale, and the supplied red mark beside the name.
 4. **Calm motion.** Animation confirms interaction, never decorates.
 5. **Tokens or nothing (hard rule).** No raw palette classes, arbitrary values, or literal colors outside `theme.css`. Enforced by CI.
 
@@ -56,6 +56,7 @@ Unchanged.
 | ------------------- | ----------------- | ------------------------------ |
 | `--container-site`  | `75rem` (1200px)  | Content max-width              |
 | `--container-modal` | `55rem` (880px)   | Project detail content column (centered in the full-screen stage) |
+| `--spacing-logo`    | `17rem` (272px)   | Desktop size for the complete supplied logo artwork to the right of the hero name |
 | `--blur-modal`      | `12px`            | Detail stage frosted-glass `backdrop-blur`     |
 | `--spacing-section` | `clamp(2rem, 5vw, 3rem)` | Vertical rhythm         |
 | `--spacing-grid`    | `1.5rem` (24px)   | Work grid gap                   |
@@ -71,6 +72,8 @@ Heights are 4/3 of the original `22/16/11rem` (quarter-rem rounded) so the full-
 Same inventory as the light system. Only behavior that depends on color:
 
 - `Navbar` — translucent `surface` + blur; hairline bottom border uses `line` (`#333132`) on scroll.
+- `Hero` — the supplied, uncropped `logo.webp` sits to the right of the name on desktop, visually bridging the hero and work heading. It stays below the name on smaller screens to prevent overlap.
+- `Favicon` — a square transparent raster derived from the supplied mark is used for browser tabs.
 - `FilterBar` — active pill = `accent-strong` text + `accent` hairline underline.
 - `LanguageToggle` — active pill = `accent` fill + `accent-ink` text (the standard on-fill pair).
 - `ProjectCard` hover — title shifts `ink` (red) → `accent-strong` (black); thumbnail scales 1.02. The video badge is a `surface-raised/90` fill with `surface` text.
